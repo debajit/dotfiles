@@ -33,4 +33,4 @@ zstyle ':vcs_info:git:*' formats '🌱 %b'
 # export PROMPT='%B%5~❯%b '
 
 NEWLINE=$'\n'
-export PROMPT='${NEWLINE}%F{138}%m%f %F{238}in %B%F{50}%5~%f%B%F{198} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+export PROMPT='${NEWLINE}%B%F{50}%5~%f%B%F{198} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
