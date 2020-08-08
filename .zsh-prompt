@@ -30,4 +30,4 @@ setopt prompt_subst
 
 NEWLINE=$'\n'
 
-export PROMPT='${NEWLINE}%F{67}%n%f %F{238}at %F{138}%m%f %F{238}in %B%F{168}%3d%f ${vcs_info_msg_0_}${NEWLINE}$python_info[virtualenv]%B%F{154}%(!.#.❯) %f%b'
+export PROMPT='${NEWLINE}%F{67}%n%f %F{238}at %F{138}%m%f %F{238}in %B%F{50}%5~%f ${vcs_info_msg_0_}${NEWLINE}$python_info[virtualenv]%B%F{154}%(!.#.❯) %f%b'
