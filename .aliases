@@ -1,0 +1,57 @@
+# Use saner defaults
+alias cp='cp -iv'
+alias df='df -kh'               # Free disk space
+alias du='du -khs'              # Disk usage
+alias feh='feh -Zr'             # Fast image viewer
+alias less='less -R'
+alias mkdir='mkdir -p'
+alias rsync='rsync -azvvhP'
+alias tmux='TERM=xterm-256color tmux'
+alias tree='tree -C'
+alias vi='vim'
+
+# Quick one-letter aliases
+alias G='git clone'             # Tab to expand this inline :)
+alias i="feh"                   # Image viewer
+alias m="mpv"                   # Movie player
+alias t='tree | less'           # Tree-like file listing
+alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
+
+# ls
+alias la='exa -la'              # Show all files, including dotfiles
+alias ll='exa -l'               # Show long listing
+alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
+
+# Package management commands
+# See OS detection in https://stackoverflow.com/a/18434831/2288585
+case "$OSTYPE" in
+  # Linux
+  linux*)
+    alias pi="pacman -S"        # Package install
+    alias pr="pacman -Rsc"      # Package remove/uninstall
+    alias pq="pacman -Ss"       # Package query/search/info
+    ;;
+
+  # macOS
+  darwin*)
+    alias pi="brew install"     # Package install
+    alias pr="brew uninstall"   # Package remove/uninstall
+    alias pq="brew search"      # Package query/search/info
+    ;;
+esac
+
+# Directory jumping. “1” to jump to the last dir and so on.
+alias d='dirs -v'               # List recent dirs to jump to them quickly
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+# Other aliases
+alias diffk='kitty +kitten diff'   # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
+alias ir='i -z'                    # Display images, in random order
+alias tm='tmux a -d'               # Connect to tmux session
+
+#
+# Useful utility aliases
+#
+
+# Start web server from current dir. Port optional: `start-web-server 1111`
+alias start-web-server='python3 -m http.server'
