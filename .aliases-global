@@ -1,0 +1,24 @@
+#
+# My ZSH global aliases.
+#
+# These are quick aliases that you can expand from any place in the shell.
+#
+# To expand them inline in your command line, add the following line
+# to your ~/.zshrc:
+#
+#   # Complete aliases inline by pressing Tab. See
+#   # https://superuser.com/a/1514591/2041
+#   zstyle ':completion:*' completer _expand_alias _complete _ignored
+#
+
+# Pipes
+alias -g l='| less'
+alias -g g='| grep'
+alias -g c='| wc -l'
+
+# Arguments
+alias -g h='--help'
+alias -g v='--version'
+
+# Other
+alias -g G='git clone'
