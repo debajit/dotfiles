@@ -1,3 +1,39 @@
-# Autocomplete (global) aliases inline with Tab.
-# See https://superuser.com/a/1514591/2041
-zstyle ':completion:*' completer _expand_alias _complete _ignored
+# Use Emacs keybindings. See
+# http://zsh.sourceforge.net/Guide/zshguide04.html
+bindkey -e
+
+# Initialize completion system
+autoload -Uz compinit
+compinit
+
+# Autocomplete the following with Tab:
+# - aliases
+# - words from history
+#
+# See
+# - https://superuser.com/a/1514591/2041
+# - man zshcompsys
+#
+zstyle ':completion:*' completer _expand_alias _complete _history _ignored
+
+# Tab-autocompletion will match lowercase letters for uppercase.
+# "cd desk<TAB>" will complete to "cd Desktop"
+#
+# See https://superuser.com/a/1092328/2041
+#
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+#
+# Configure zsh options. See
+#
+# - See supported options: setopt
+# - See details about each option: man zshoptions
+# - http://zsh.sourceforge.net/Intro/intro_16.html#SEC16
+# - https://scriptingosx.com/2019/06/moving-to-zsh-part-3-shell-options/
+#
+
+# Try to correct the spelling of commands
+setopt correct
+
+# Type directory name to auto-cd to it
+setopt autocd
