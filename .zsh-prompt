@@ -1,0 +1,33 @@
+#
+# .zsh-prompt
+#
+# My ZSH prompt.
+#
+# References:
+# - https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/
+# - http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+#
+
+# Enable git support
+#
+# See
+# - https://stackoverflow.com/a/30840986/2288585
+# - man zshbuiltins
+#
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+
+precmd() {
+  vcs_info
+}
+
+setopt prompt_subst
+
+# export PROMPT='%5~ %# '
+# export PROMPT='%B%5~❯%b '
+# export PROMPT='%F{67}%n%f %F{238}at %F{138}%m%f %F{238}in %F{168}%3d%f ${vcs_info_msg_0_}
+# $python_info[virtualenv]%F{95}● %f'
+
+NEWLINE=$'\n'
+
+export PROMPT='${NEWLINE}%F{67}%n%f %F{238}at %F{138}%m%f %F{238}in %B%F{168}%3d%f ${vcs_info_msg_0_}${NEWLINE}$python_info[virtualenv]%B%F{154}%(!.#.❯) %f%b'
