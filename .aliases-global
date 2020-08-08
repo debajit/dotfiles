@@ -19,6 +19,3 @@ alias -g c='| wc -l'
 # Arguments
 alias -g h='--help'
 alias -g v='--version'
-
-# Other
-alias -g G='git clone'
