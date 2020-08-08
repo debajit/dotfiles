@@ -12,10 +12,10 @@
 #
 
 # Pipes
-alias -g l='| less'
-alias -g g='| grep'
-alias -g c='| wc -l'
+alias -g L='| less'
+alias -g G='| grep'
+alias -g C='| wc -l'
 
 # Arguments
-alias -g h='--help'
-alias -g v='--version'
+alias -g H='--help'
+alias -g V='--version'
