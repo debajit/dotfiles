@@ -1,0 +1,21 @@
+# OS-Generated Files
+.DS_Store
+.Trashes
+Thumbs.db
+
+# Emacs files.
+# See also https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
+*~
+\#*\#
+.\#*
+*.orig
+
+# VIM artifacts
+# See also https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
+.netrwhist
+
+# TAGS files (ctags, etags)
+TAGS
+
+# TextMate backup files
+._*
