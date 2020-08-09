@@ -11,7 +11,9 @@ alias tree='tree -C'
 alias vi='vim'
 
 # Quick one-letter aliases
-alias G='git clone'             # Tab to expand this inline :)
+alias c='git clone'
+alias s='git status'
+alias d='git diff'
 alias i="feh"                   # Image viewer
 alias m="mpv"                   # Movie player
 alias t='tree | less'           # Tree-like file listing
@@ -41,7 +43,7 @@ case "$OSTYPE" in
 esac
 
 # Directory jumping. “1” to jump to the last dir and so on.
-alias d='dirs -v'               # List recent dirs to jump to them quickly
+alias j='dirs -v'               # List recent dirs to jump to them quickly
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Other aliases
