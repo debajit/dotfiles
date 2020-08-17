@@ -16,6 +16,7 @@ alias s='git status'
 alias d='git diff'
 alias i="feh"                   # Image viewer
 alias m="mpv"                   # Movie player
+alias q="git q"                 # Quick short git log
 alias t='tree | less'           # Tree-like file listing
 alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 
