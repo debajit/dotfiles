@@ -1,0 +1,346 @@
+#
+# .gitconfig
+#
+# Place this in ~/.gitconfig or %userprofile%\.gitconfig
+#
+
+
+[user]
+	name = Debajit Adhikary
+	email = 18019+debajit@users.noreply.github.com
+
+[alias]
+
+  ## Status
+  s = status
+
+
+  ## Staging
+
+  # Stage all tracked files and display status
+  a = !sh -c 'git stage -u :/ && git s'
+
+  # Add with patch
+  ap = add -p
+
+  # Add interactively
+  ai = add -i
+
+
+  ## Branch
+  b = branch
+  bb = branch -vv                   # Show local branches with additional info
+  ba = branch -avv                  # Show all branches
+  bd = branch -d                    # Delete a branch
+  bm = branch --move                # Rename a branch
+  which = branch -avv --contains    # Which branches contain this branch?
+  where = !sh -c 'git which "$1"'   # Alias for which
+
+  ## Checkout
+  c = checkout
+  cb = checkout -b
+
+
+  ## Commit
+  ci = commit                 # Inspired by Mercurial and Subversion, which alias "commit" to "ci"
+  cim = commit -m             # Add a commit with a quick message. Prefer to use "git ci"
+  f = commit --fixup HEAD     # Add a commit to fix HEAD
+  fix = commit --fixup        # git fix <commit_reference> --- Add another commit to fix the given commit
+
+
+  ## Cherry
+  cv = cherry -v
+
+
+  ## Cherry-Pick
+  cp = cherry-pick
+
+
+  ## Diff
+  d = diff --color-words -w
+  dk = difftool --no-symlinks --dir-diff
+  dks = dk --staged
+
+  ds = diff --staged
+  df = diff --color-words -W -w
+
+  ## Diff context
+  dd = diff --color-words -U10 -w
+  ddd = diff --color-words -U20 -w
+
+  ## Difftool aliases
+  dt = difftool
+  dts = difftool --staged
+  see = !sh -c 'git difftool -t Kaleidoscope "$1^!"' -
+  seecommit = !sh -c 'git difftool --no-symlinks --dir-diff "$1^!"' -
+
+  ## Inspecting commits
+  show-inline = show -w --color-words
+
+  ## Gitk
+  k = !gitk -1
+
+
+  ## Grep
+  todo = grep -e TODO -e FIXME                                    # Grep TODO and FIXME
+  g = grep --break --heading --ignore-case -e                     # General grep (case-insensitive)
+  gf = grep --ignore-case --break --heading --function-context -e # Grep function
+  gw = grep --ignore-case --break --heading --word-regexp -e      # Grep word
+  gs = grep --ignore-case --break --heading -F -e                 # Grep string
+
+  ## Grep context
+  gg = grep --ignore-case --break --heading -C6 -e        # Grep with larger context
+  ggg = grep --ignore-case --break --heading -C12 -e      # Grep with still larger context
+
+
+  ## Log
+
+  # Tip of current branch
+  tip = log --name-status -1
+  tipdiff = show HEAD
+  tipdifftool = difftool HEAD~1
+
+  # Short log: Handy one-line-per-commit log
+  q = log -10 --graph --format='format:%C(158 bold reverse)" %h "%C(reset)  "%s" %C(auto)"%d"%C(reset) %C(magenta)"%ar"%C(reset)  %C(104)"%an"%C(reset)' --date-order
+  l = log --graph --format='format:%C(yellow)"%h"%C(reset)  "%s" %C(auto)"%d"%C(reset) %C(magenta)"%ar"%C(reset)  %C(blue)"%an"%C(reset)' --date-order
+  ll = log --name-status --date=rfc --no-abbrev
+
+  # Log with diff
+  logdiff = log -p
+
+  ## Searching
+
+  # Find files matching a pattern
+  files = !sh -c 'git ls-files | grep -i --color=always "$1" | less -R' -
+
+  # Search for a string/pattern added or deleted (in code or commit message)
+  trace = log --name-status -i -S                                      # git log pickaxe. See when a string was added or removed in the code or a commit message.
+  tracediff = log -p -i -S                                             # git log pickaxe and show changes. To visually examine a commit use "git see commit"
+
+  # Search for a pattern in a commit message
+  messages = !sh -c 'git log --name-status -i --grep=$1' -             # git log for pattern in commit message
+  messagestring = !sh -c 'git log --name-status -i -F --grep=\"$1\"' - # git log for string in commit message
+
+  ## Incoming / Outgoing changes (Compares with upstream)
+  outgoing = log @{u}.. --name-status     # See outgoing changes using git log
+  out = !sh -c 'git l @{u}..'             # See outgoing changes, one change per line
+  incoming = log ..@{u} --name-status     # See incoming changes using git log
+  in = !sh -c 'git l ..@{u}'              # See incoming changes, one change per line
+  outdiff = log @{u}.. -p                 # Diffs the outgoing changes with upstream
+  outdifftool = difftool @{u}             # See outgoing changes using difftool. TODO: Use gitk for non-Kaleidoscope-like difftools?
+  incomingfrom = cherry -v HEAD
+  outgoingto = !sh -c 'git cherry -v $1'
+
+  ## Log by Author
+
+  #
+  # Show all commits by this author
+  # git author <username>
+  #
+  # Show all commits by the author having the given
+  # regex in the commit message:
+  #   git author <username> <regex>
+  #
+  author = !sh -c 'git ll -i --author=$1 --grep=$2' -
+
+  # Author grep fixed string: Show all commits by a particular
+  # user matching the given fixed string in the commit log
+  authorstr = !sh -c 'git ll -i --author=$1 -F --grep=\"$2\"' -
+
+  # Commits by me
+  # Usage:
+  #   git me
+  #   git me <pattern>
+  me = !sh -c 'git author debajit "$1"' -
+
+
+  ## Merge
+  m = merge
+  mff = merge --ff-only
+  mt = mergetool
+  mo = merge -s ours --no-edit
+  mtheirs = merge -Xtheirs
+
+
+  ## Pull
+  up = !sh -c 'git pull --rebase && echo && git q'
+
+
+  ## Rebase
+  r = rebase
+  rc = rebase --continue
+  ri = rebase -i
+
+
+  ## Tag
+  t = tag
+  tl = tag -l
+  tt = tag -n10
+  tags = tag -n10
+
+  #-----------------------------------
+  # UTILITY ALIASES
+  #-----------------------------------
+
+  # Amend aliases
+  # (long wordy aliases, to prevent unnecessary
+  # reflog resets after an erroneous amend)
+
+	# Amend the current commit with staged changes
+	# without editing the commit message
+	amend = commit --amend --no-edit
+
+	# Amend commit with current author information
+	amend-author = commit --amend --reset-author --no-edit
+
+
+  #---------------------------------------------------------
+  # FILE STATUS MANAGEMENT
+  # taken from http://stackoverflow.com/a/37083903/2288585
+  #---------------------------------------------------------
+
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  unhide-all = update-index --really-refresh
+  hidden = !git ls-files -v | grep \"^[a-z]\"
+  ignored = !git status -s --ignored | grep \"^!!\"
+
+  # Pick and apply a change without committing it
+  apply = !sh -c 'git cherry-pick --no-commit $1 && git reset' -
+
+  # Age of repository
+  age = log --reverse --date=relative
+
+  # Contributors
+  contributors = shortlog -s
+  contributors-by-commits = shortlog -sn
+
+  # Duplicates
+  dupes = !git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40
+
+  # Optimize repository
+  optimize = gc --aggressive
+
+  # Cleanup
+  untracked = ls-files --others --exclude-standard --directory # Also clean -dxn
+  clobber = clean -dxf # Remove all untracked files
+
+  # Stow: A better stash
+  stow = stash --keep-index
+
+  # Just create a new revision and push. We don't care about the commit message
+  sync = !sh -c 'git s && read -p \"Press Enter to Sync these changes, Control+C to cancel \" reply && git add . && git commit -a -m \"Sync files\" && git push && git checkout'
+
+
+  ## External tool-specific shortcuts
+
+  # Ruby / Rails
+  pry = grep -e byebug --or -e binding.pry
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = 82 bold reverse
+  # local = reset
+  remote = 204 bold
+  upstream = 197 bold
+
+[color "decorate"]
+  head = cyan bold
+  branch = 119 bold reverse
+  remoteBranch = 197 bold reverse
+  stash = magenta
+  tag = 226 bold reverse
+
+[color "diff"]
+  commit = yellow # Symbols
+  meta = 110 bold reverse
+  frag = 141 bold
+  old = 197 bold # Pastel red
+  new = 154 bold
+  whitespace = 196 reverse
+
+[color "grep"]
+  linenumber = 215 bold
+  match = 120 bold reverse
+  filename = 98 bold
+
+[color "status"]
+  added = red bold
+  changed = 209 bold
+  nobranch = 196 bold # Red
+  untracked = 196 bold # Red
+  updated = 154 bold # Bright lime green
+  localBranch = 121 bold reverse # see https://github.com/rrrene/bunt
+  remoteBranch = 210 bold reverse
+
+[column]
+  branch = column
+  status = column
+  tag = column
+
+[core]
+  attributesfile = ~/.gitattributes-global
+  editor = mate -w
+  excludesfile = ~/.gitignore-global
+
+[credential]
+  helper = osxkeychain
+
+[difftool]
+  prompt = false
+  trustExitCode = true
+
+[difftool "kitty"]
+	cmd = kitty +kitten diff $LOCAL $REMOTE
+
+[difftool "kitty.gui"]
+	cmd = kitty kitty +kitten diff $LOCAL $REMOTE
+
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[diff]
+  # tool = Kaleidoscope
+  # tool = p4merge
+  tool = kitty
+  guitool = kitty.gui
+
+[grep]
+  lineNumber = true
+
+[help]
+  autocorrect = 1
+
+[include]
+  path = ~/.gitconfig_local
+
+[log]
+  abbrevCommit = true
+  date = relative
+  decorate = full
+
+[merge]
+  tool = Kaleidoscope
+  # tool = p4merge
+
+[mergetool]
+  prompt = false
+
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+
+[pager]
+  status = true
+
+[push]
+  default = simple
+
+[rebase]
+  autosquash = true
+  autostash = true
+
+[rerere]
+  enabled = true
