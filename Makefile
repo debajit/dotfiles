@@ -15,7 +15,7 @@
 #
 
 # See https://stackoverflow.com/a/53083343
-SOURCE_FILES = $(shell  git ls-files -- ':!:Makefile')
+SOURCE_FILES = $(shell git ls-files ':!:Makefile' ':!:LICENSE' ':!:README.md')
 INSTALL_DIR = ${HOME}
 TARGET_FILES = $(addprefix $(INSTALL_DIR)/, $(SOURCE_FILES))
 
