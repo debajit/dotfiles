@@ -14,6 +14,7 @@ alias vi='vim'
 alias c='git clone'
 alias s='git status'
 alias d='git diff'
+alias f='git fetch origin'
 alias i="feh"                   # Image viewer
 alias m="mpv"                   # Movie player
 alias q="git q"                 # Quick short git log
