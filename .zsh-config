@@ -18,10 +18,12 @@ zstyle ':completion:*' completer _expand_alias _complete _history _ignored
 
 # Tab-autocompletion will match lowercase letters for uppercase.
 # "cd desk<TAB>" will complete to "cd Desktop"
-#
 # See https://superuser.com/a/1092328/2041
 #
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Also, allow autocomplete from the middle of the filename
+# See https://stackoverflow.com/a/22627273/2288585
+#
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
 
 #
 # History.
