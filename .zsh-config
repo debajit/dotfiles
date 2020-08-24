@@ -1,3 +1,13 @@
+#
+# .zsh-config
+# Configure zsh options.
+#
+# - See supported options: setopt
+# - See details about each option: man zshoptions
+# - http://zsh.sourceforge.net/Intro/intro_16.html#SEC16
+# - https://scriptingosx.com/2019/06/moving-to-zsh-part-3-shell-options/
+#
+
 # Use Emacs keybindings. See
 # http://zsh.sourceforge.net/Guide/zshguide04.html
 bindkey -e
@@ -40,17 +50,15 @@ setopt hist_ignore_dups         # Do not store duplicate commands
 setopt inc_append_history       # Add command to history immediately
 setopt share_history            # Share history across zsh sessions
 
-#
-# Configure other zsh options. See
-#
-# - See supported options: setopt
-# - See details about each option: man zshoptions
-# - http://zsh.sourceforge.net/Intro/intro_16.html#SEC16
-# - https://scriptingosx.com/2019/06/moving-to-zsh-part-3-shell-options/
-#
-
-# Try to correct the spelling of commands
+# Autocorrect. Try to correct the spelling of commands
 setopt correct
 
 # Type directory name to auto-cd to it
 setopt autocd
+
+# Dir stack. See
+# - https://unix.stackexchange.com/a/273088/141850
+# - http://zsh.sourceforge.net/Doc/Release/Options.html#Changing-Directories
+DIRSTACKSIZE=20
+setopt auto_pushd               # Push old dir into dirstack
+setopt pushd_ignore_dups        # Do not push duplicate dir names
