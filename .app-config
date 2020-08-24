@@ -1,0 +1,13 @@
+# fzf. See https://wiki.archlinux.org/index.php/Fzf
+case "$OSTYPE" in
+  # Linux
+  linux*)
+    source /usr/share/fzf/key-bindings.zsh
+    source /usr/share/fzf/completion.zsh
+    ;;
+
+  # macOS
+  darwin*)
+    source_dotfile ".fzf.zsh"
+    ;;
+esac
