@@ -44,6 +44,7 @@ zstyle ':completion:*' menu select
 
 # Bind Shift+Tab for the previous completion (e.g. in a menu selection)
 # See https://unix.stackexchange.com/a/84869/141850
+zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 #-----------------------------------------------------------------------
