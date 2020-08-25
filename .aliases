@@ -13,6 +13,7 @@ alias vi='vim'
 # Quick one-letter aliases
 alias c='git clone'
 alias s='git status'
+alias S='sudo !!'               # Use Tab to autocomplete if required
 alias d='git diff'
 alias f='git fetch origin'
 alias i="feh"                   # Image viewer
