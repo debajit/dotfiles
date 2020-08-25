@@ -2,8 +2,9 @@
 case "$OSTYPE" in
   # Linux
   linux*)
-    source /usr/share/fzf/key-bindings.zsh
-    source /usr/share/fzf/completion.zsh
+    source_file /usr/share/fzf/key-bindings.zsh # Arch-based distros
+    source_file /usr/share/fzf/completion.zsh   # Arch-based distros
+    source_file "${HOME}/.fzf.zsh"              # Other
     ;;
 
   # macOS
