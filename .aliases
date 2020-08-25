@@ -22,6 +22,11 @@ alias q="git q"                 # Quick short git log
 alias t="exa -T -a --git-ignore -I '.git|node_modules|*~' --color=always | less" # Tree-like file listing
 alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 
+# Git. Inspired by Magit’s shortcuts in Emacs.
+alias ds='git diff --staged'
+alias fu='git fetch origin'
+alias ru='git rebase "@{u}"'
+
 # ls
 alias la='exa -la'              # Show all files, including dotfiles
 alias ll='exa -l'               # Show long listing
