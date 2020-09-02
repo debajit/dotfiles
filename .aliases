@@ -39,8 +39,8 @@ alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 case "$OSTYPE" in
   # Linux
   linux*)
-    alias pi="pacman -S"        # Package install
-    alias pr="pacman -Rsc"      # Package remove/uninstall
+    alias pi="sudo pacman -S"   # Package install
+    alias pr="sudo pacman -Rsc" # Package remove/uninstall
     alias pq="pacman -Ss"       # Package query/search/info
     ;;
 
