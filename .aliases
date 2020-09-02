@@ -29,6 +29,7 @@ alias ru='git rebase "@{u}"'
 alias tip='git log -1 --name-status'
 
 # ls
+alias ls='exa'
 alias la='exa -la'              # Show all files, including dotfiles
 alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
