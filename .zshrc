@@ -30,6 +30,7 @@ source_dotfile ".zsh-prompt"
 source_dotfile ".aliases"          # General aliases, overridable locally
 source_dotfile ".aliases-global"   # Global aliases like L, G
 source_dotfile ".aliases-suffix"   # Associate file ext with default program
+source_dotfile ".aliases-radio.sh" # Play radio from the command line
 source_dotfile ".aliases.local"    # Local aliases
 source_dotfile ".paths"            # Global path settings
 source_dotfile ".paths.local"      # Global path settings
