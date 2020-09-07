@@ -19,12 +19,9 @@ function source_dotfile() {
 
 source_dotfile ".zsh-config"       # My custom ZSH configuration
 source_dotfile ".zshrc.local"      # Local config (e.g. workplace-specific)
-# source_file "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" # Source Prezto
 
 # Prompt
-# prompt debajit
-# prompt twofirewatch
-# eval "$(starship init zsh)"
+# eval "$(starship init zsh)"        # Uncomment this line to enable Starship. I find it be slow on older machines, so I wrote my own prompt (next line)
 source_dotfile ".zsh-prompt"
 
 source_dotfile ".aliases"            # General aliases, overridable locally
@@ -40,8 +37,3 @@ source_dotfile ".env_vars.local"     # Environment variables
 source_dotfile ".env_vars.secret"    # Secret environment variables
 source_dotfile '.app-config'
 source_dotfile ".nix-profile/etc/profile.d/nix.sh" # Setup nix
-
-# Configure AWS CLI
-source_file /usr/local/aws/bin/aws_zsh_completer.sh
-
-# ssh-add -AK

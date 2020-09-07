@@ -1,4 +1,7 @@
-# fzf. See https://wiki.archlinux.org/index.php/Fzf
+#
+# fzf.
+# See https://wiki.archlinux.org/index.php/Fzf
+#
 case "$OSTYPE" in
   # Linux
   linux*)
@@ -12,3 +15,12 @@ case "$OSTYPE" in
     source_dotfile ".fzf.zsh"
     ;;
 esac
+
+# zoxide
+# https://github.com/ajeetdsouza/zoxide
+# TODO: Check if zoxide is installed (using command -v zoxide)
+eval "$(zoxide init zsh)"
+eval "$(zoxide init posix --hook prompt)"
+
+# AWS CLI
+source_file /usr/local/aws/bin/aws_zsh_completer.sh
