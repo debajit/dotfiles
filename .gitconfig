@@ -316,6 +316,12 @@
 [include]
   path = ~/.gitconfig_local
 
+[init]
+	# Set "main" as the default branch name ("main" also happens to be
+	# the default git branch name set by Codeberg). See
+	# https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
+	defaultBranch = main
+
 [log]
   abbrevCommit = true
   date = relative
