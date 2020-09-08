@@ -35,5 +35,5 @@ source_dotfile ".paths.local"        # Global path settings
 source_dotfile ".env_vars"           # Environment variables
 source_dotfile ".env_vars.local"     # Environment variables
 source_dotfile ".env_vars.secret"    # Secret environment variables
-source_dotfile '.app-config'
+source_dotfile '.app-config.sh'
 source_dotfile ".nix-profile/etc/profile.d/nix.sh" # Setup nix

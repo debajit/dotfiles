@@ -16,11 +16,16 @@ case "$OSTYPE" in
     ;;
 esac
 
+#
 # zoxide
-# https://github.com/ajeetdsouza/zoxide
-# TODO: Check if zoxide is installed (using command -v zoxide)
-eval "$(zoxide init zsh)"
-eval "$(zoxide init posix --hook prompt)"
+# Directory autojump based on frecency.
+#
+# See https://github.com/ajeetdsouza/zoxide
+#
+if [[ -x "$(command -v zoxide)" ]]; then
+  eval "$(zoxide init zsh)"
+  eval "$(zoxide init posix --hook prompt)"
+fi
 
 # AWS CLI
 source_file /usr/local/aws/bin/aws_zsh_completer.sh
