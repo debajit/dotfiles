@@ -9,17 +9,13 @@
 # https://www.radio-browser.info/
 #
 
-# Mellow & Groovy
+# Mellow & Ambient
+alias ambientnature='mpv http://orion.shoutca.st:8157/stream'
 alias coffeemusic='mpv https://s10-webradio.webradio.de/coffee'
-alias electroswingandfunk='mpv http://orion.shoutca.st:8506/stream'
 
 # Instrumental
 alias guitargenius='mpv http://173.244.215.162:8020'
 alias classicalotto='mpv http://185.33.22.15:11077/'
-alias classicjazz='mpv http://jfm1.hostingradio.ru:14536/ijstream.mp3'
-
-# Ambient
-alias ambientnature='mpv http://orion.shoutca.st:8157/stream'
 
 # BBC
 alias bbc1='mpv http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p'
@@ -32,6 +28,10 @@ alias bbcan='mpv http://bbcmedia.ic.llnwd.net/stream/bbcmedia_asianet_mf_p'
 # Seattle
 alias kuow='mpv https://playerservices.streamtheworld.com/api/livestream-redirect/KUOWFM_HIGH_MP3.mp3'
 alias kexp='mpv http://live-mp3-128.kexp.org:8000'
+
+# Jazz, Funk
+alias classicjazz='mpv http://jfm1.hostingradio.ru:14536/ijstream.mp3'
+alias electroswingandfunk='mpv http://orion.shoutca.st:8506/stream'
 
 # Pop
 alias heartessex='mpv http://ice-sov.musicradio.com/HeartEssexMP3'
