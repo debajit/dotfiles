@@ -1,0 +1,3 @@
+# Personal scripts
+export PATH="${PATH}:${HOME}/bin"
+
