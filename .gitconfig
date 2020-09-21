@@ -282,7 +282,6 @@
 
 [core]
   attributesfile = ~/.gitattributes-global
-  editor = mate -w
   excludesfile = ~/.gitignore-global
 
 [credential]
