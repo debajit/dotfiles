@@ -50,6 +50,7 @@ case "$OSTYPE" in
     alias pi="brew install"     # Package install
     alias pr="brew uninstall"   # Package remove/uninstall
     alias pq="brew search"      # Package query/search/info
+    alias pu="brew upgrade"     # Upgrade a single package
     ;;
 esac
 
