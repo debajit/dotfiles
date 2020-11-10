@@ -5,7 +5,6 @@ alias du='du -khs'              # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
 alias less='less -R'
 alias mkdir='mkdir -p'
-alias rsync='rsync -azvvhP'
 alias tmux='TERM=xterm-256color tmux'
 alias tree='tree -C'
 alias vi='vim'
@@ -21,6 +20,14 @@ alias m="mpv"                   # Movie player
 alias q="git q"                 # Quick short git log
 alias t="exa -T -a --git-ignore -I '.git|node_modules|*~' --color=always | less" # Tree-like file listing
 alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
+
+# Backup
+#
+# Related:
+# - dry-rsyncdir (defined in .aliases-functions.sh)
+#
+alias rsyncdir='rsync -azhP --delete-after --exclude ".*"'
+alias rcopydir='rsync -azhP --exclude ".*"'
 
 # Git. Inspired by Magit’s shortcuts in Emacs.
 alias ds='git diff --staged'
