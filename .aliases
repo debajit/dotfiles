@@ -23,11 +23,12 @@ alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 
 # Backup
 #
-# Related:
-# - dry-rsyncdir (defined in .aliases-functions.sh)
+# Related: (defined in .aliases-functions.sh)
+# - drybackup
+# - drysyncdir
 #
-alias rsyncdir='rsync -azhP --delete-after --exclude ".*"'
-alias rcopydir='rsync -azhP --exclude ".*"'
+alias backup='rsync -azvvhP --exclude ".*"'
+alias syncdir='rsync -azvvhP  --delete-after --exclude ".*"'
 
 # Git. Inspired by Magit’s shortcuts in Emacs.
 alias ds='git diff --staged'
