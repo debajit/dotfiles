@@ -1,3 +1,6 @@
+# Tree-like file listing
+t() { tree -C "${1:-.}" | less -R }
+
 # Do a dry rsync and show what changes would be done (if files are
 # also deleted on the remote)
 #

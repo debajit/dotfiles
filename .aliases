@@ -3,13 +3,15 @@ alias cp='cp -iv'
 alias df='df -kh'               # Free disk space
 alias du='du -khs'              # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
-alias less='less -R'
 alias mkdir='mkdir -p'
 alias tmux='TERM=xterm-256color tmux'
-alias tree='tree -C'
 alias vi='vim'
 
 # Quick one-letter aliases
+#
+# Related: (defined in .aliases-functions.sh)
+# - t
+#
 alias c='git clone'
 alias s='git status'
 alias S='sudo !!'               # Use Tab to autocomplete if required
@@ -18,7 +20,6 @@ alias f='git fetch origin'
 alias i="feh"                   # Image viewer
 alias m="mpv"                   # Movie player
 alias q="git q"                 # Quick short git log
-alias t="exa -T -a --git-ignore -I '.git|node_modules|*~' --color=always | less" # Tree-like file listing
 alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 
 # Backup
