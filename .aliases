@@ -44,11 +44,12 @@ alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
-# Package management commands
+# Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
 case "$OSTYPE" in
   # Linux
   linux*)
+    alias o="xdg-open"
     alias pi="sudo pacman -S"   # Package install
     alias pr="sudo pacman -Rsc" # Package remove/uninstall
     alias pq="pacman -Ss"       # Package query/search/info
@@ -56,6 +57,7 @@ case "$OSTYPE" in
 
   # macOS
   darwin*)
+    alias o="open"
     alias pi="brew install"     # Package install
     alias pr="brew uninstall"   # Package remove/uninstall
     alias pq="brew search"      # Package query/search/info
