@@ -19,13 +19,3 @@ alias -g C='| wc -l'
 # Arguments
 alias -g H='--help'
 alias -g V='--version'
-
-# Git
-alias -g GCS="git clone git@git.sr.ht:~debajit/"
-alias -g GCC="git clone git@codeberg.org:debajit/NAME.git"
-alias -g GCD="git clone git@git.disroot.org:debajit/NAME.git"
-alias -g GCG="git clone git@github.com:debajit/NAME.git"
-alias -g GRS="git remote add srht git@git.sr.ht:~debajit/$( basename $PWD )"
-alias -g GRC="git remote add codeberg git@codeberg.org:debajit/$( basename $PWD ).git"
-alias -g GRD="git remote add disroot git@git.disroot.org:debajit/$( basename $PWD ).git"
-alias -g GRG="git remote add github git@github.com:debajit/$( basename $PWD ).git"
