@@ -12,11 +12,12 @@ alias vi='vim'
 # Related: (defined in .aliases-functions.sh)
 # - t
 #
+alias b="rsync -azvvhP --exclude '.*' $( basename $PWD )/ "
 alias c='git clone'
 alias s='git status'
 alias S='sudo !!'               # Use Tab to autocomplete if required
 alias d='git diff'
-alias f='git fetch origin'
+alias f='ranger'                # File manager
 alias i="feh"                   # Image viewer
 alias m="mpv"                   # Movie player
 alias q="git q"                 # Quick short git log
