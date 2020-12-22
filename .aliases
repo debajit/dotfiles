@@ -29,7 +29,7 @@ alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 # - drybackup
 # - drysyncdir
 #
-alias backup='rsync -azvvhP --exclude ".*"'
+# alias backup='rsync -azvvhP --exclude ".*"'
 alias syncdir='rsync -azvvhP  --delete-after --exclude ".*"'
 
 # Git. Inspired by Magit’s shortcuts in Emacs.
