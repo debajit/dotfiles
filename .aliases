@@ -55,6 +55,10 @@ alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
+# ssh
+alias ssh-fingerprint-md5='ssh-keygen -l -E md5 -f'
+alias ssh-fingerprint-sha='ssh-keygen -lf'
+
 # Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
 case "$OSTYPE" in
