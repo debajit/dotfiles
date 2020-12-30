@@ -12,7 +12,8 @@ alias vi='vim'
 # Related: (defined in .aliases-functions.sh)
 # - t
 #
-alias b="rsync -azvvhP --exclude '.*' $( basename $PWD )/ "
+alias b="rsync -azvvhP --exclude '.*'"
+alias B='duplicacy backup -threads 12'
 alias c='git clone'
 alias s='git status'
 alias S='sudo !!'               # Use Tab to autocomplete if required
