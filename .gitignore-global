@@ -19,3 +19,6 @@ TAGS
 
 # TextMate backup files
 ._*
+
+# Backup
+.duplicacy/
