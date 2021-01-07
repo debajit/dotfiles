@@ -49,8 +49,8 @@ alias GCD="git clone git@git.disroot.org:debajit/NAME.git"
 alias GCG="git clone git@github.com:debajit/NAME.git"
 alias GRS='git remote add srht git@git.sr.ht:~debajit/${PWD:t}'
 alias GRC='git remote add codeberg git@codeberg.org:debajit/${PWD:t}.git'
-alias GRD="git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git"
-alias GRG="git remote add github git@github.com:debajit/${PWD:t}.git"
+alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
+alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # ls
 alias ls='exa'
