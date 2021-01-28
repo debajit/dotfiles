@@ -13,10 +13,11 @@ alias vi='vim'
 # - t
 #
 alias b="rsync -azvvhP --exclude '.*'"
-alias B='duplicacy backup -threads 12 -stats'
-alias D='duplicacy backup -threads 12 -dry-run -stats'
-alias R='duplicacy restore -ignore-owner -threads 12 -r'
-alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r' # Restore all
+alias B='duplicacy backup -threads 12 -stats'                                         # Backup
+alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
+alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
+alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
+alias P='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
 alias c='git clone'
 alias s='git status'
 alias S='sudo !!'               # Use Tab to autocomplete if required
