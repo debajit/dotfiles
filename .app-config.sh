@@ -29,3 +29,9 @@ fi
 
 # AWS CLI
 source_file /usr/local/aws/bin/aws_zsh_completer.sh
+
+# Python
+# See https://medium.com/analytics-vidhya/setting-up-python-environment-in-macos-using-pyenv-and-pipenv-116293da8e72
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
