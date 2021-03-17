@@ -75,7 +75,7 @@ alias ssh-fingerprint-sha='ssh-keygen -lf'
 case "$OSTYPE" in
   # Linux
   linux*)
-    alias o="xdg-open"
+    alias open="xdg-open"
     alias pi="sudo pacman -S"   # Package install
     alias pr="sudo pacman -Rsc" # Package remove/uninstall
     alias pq="pacman -Ss"       # Package query/search/info
@@ -83,7 +83,7 @@ case "$OSTYPE" in
 
   # macOS
   darwin*)
-    alias o="open"
+    alias open="open"
     alias pi="brew install"     # Package install
     alias pr="brew uninstall"   # Package remove/uninstall
     alias pq="brew search"      # Package query/search/info

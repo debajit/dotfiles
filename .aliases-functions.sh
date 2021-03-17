@@ -1,3 +1,6 @@
+# Open the given file or dir. Without any args, opens the current dir.
+o() { open "${1:-.}" }
+
 # Tree-like file listing
 t() { tree -C "${1:-.}" | less -R }
 tt() { tree -C -L 2 "${1:-.}" | less -R }
