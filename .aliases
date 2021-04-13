@@ -76,9 +76,10 @@ case "$OSTYPE" in
   # Linux
   linux*)
     alias open="xdg-open"
-    alias pi="sudo pacman -S"   # Package install
-    alias pr="sudo pacman -Rsc" # Package remove/uninstall
-    alias pq="pacman -Ss"       # Package query/search/info
+    alias pi="pamac install"   # Package install
+    alias pr="pamac remove"    # Package remove/uninstall
+    alias pq="pamac search"    # Package query/search/info
+    alias pp="pamac info"      # Package info
     ;;
 
   # macOS
