@@ -9,6 +9,10 @@
 # https://www.radio-browser.info/
 #
 
+# General
+# https://anonradio.net/
+alias anonradio='mpv http://205.166.94.122:8000/anonradio'
+
 # Mellow & Ambient
 alias ambientnature='mpv http://orion.shoutca.st:8157/stream'
 alias coffeemusic='mpv https://s10-webradio.webradio.de/coffee'
