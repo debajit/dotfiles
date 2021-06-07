@@ -14,6 +14,27 @@ alias vi='vim'
 # - t
 #
 
+
+# Shell
+alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
+
+# Tools
+alias f='ranger'                # File manager
+alias m="mpv"                   # Movie player
+alias i="feh"                   # Image viewer
+
+# Git
+alias c='git clone'
+alias s='git status'
+alias d='git diff'
+alias q="git q"                 # Quick short git log
+
+# Sync
+alias S='rsync -sazvhP --delete-after --exclude ".*"'                # Sync
+alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sync
+alias D='drysyncdir'                                                 # Dry-run rsync
+alias SS='rsync -srzvhP --delete-after --exclude ".*" -A --no-perms' # rsync Samba/CIFS
+
 # Backup
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
 # alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
@@ -21,31 +42,14 @@ alias vi='vim'
 # alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
 # alias BP='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
 
-# Rsync
-alias S='rsync -sazvhP --delete-after --exclude ".*"'                # Sync
-alias D='drysyncdir'                                                 # Dry-run rsync
-alias SS='rsync -srzvhP --delete-after --exclude ".*" -A --no-perms' # rsync Samba/CIFS
-
-# Git
-alias c='git clone'
-alias s='git status'
-alias d='git diff'
-
-# Other
-alias f='ranger'                # File manager
-alias i="feh"                   # Image viewer
-alias m="mpv"                   # Movie player
-alias q="git q"                 # Quick short git log
-alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
-
 # Backup
 #
 # Related: (defined in .aliases-functions.sh)
 # - drybackup
 # - drysyncdir
 #
-# alias backup='rsync -azvvhP --exclude ".*"'
-alias syncdir='rsync -azvvhP  --delete-after --exclude ".*"'
+# alias backup='rsync -sazvvhP --exclude ".*"'
+alias syncdir='rsync -sazvvhP  --delete-after --exclude ".*"'
 
 # Git. Inspired by Magit’s shortcuts in Emacs.
 alias ds='git diff --staged'
