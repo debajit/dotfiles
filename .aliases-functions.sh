@@ -13,7 +13,7 @@ tt() { tree -C -L 2 "${1:-.}" | less -R }
 # - syncdir
 #
 drybackup()  { rsync -niaz "${1}" "${2}" | egrep -v '^\.' | less }
-drysyncdir() { rsync -niaz --delete-after "${1}" "${2}" | egrep -v '^\.' | less }
+drysyncdir() { rsync -niaz --delete-after "${1}" "${2}" --exclude=".*" | egrep -v '^\.' | less }
 
 # Detect the volume level in the given audio file. Look at the
 # max_volume value here. If you increase the volume level of this

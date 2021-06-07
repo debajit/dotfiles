@@ -14,13 +14,17 @@ alias vi='vim'
 # - t
 #
 
-# Backup and Sync
-alias B='duplicacy backup -threads 12 -stats'                                         # Backup
-alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
-alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
-alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
-alias P='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
-alias S='rsync -sazvhP --delete-after --exclude ".*"'                                 # Sync
+# Backup
+# alias B='duplicacy backup -threads 12 -stats'                                         # Backup
+# alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
+# alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
+# alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
+# alias BP='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
+
+# Rsync
+alias S='rsync -sazvhP --delete-after --exclude ".*"'                # Sync
+alias D='drysyncdir'                                                 # Dry-run rsync
+alias SS='rsync -srzvhP --delete-after --exclude ".*" -A --no-perms' # rsync Samba/CIFS
 
 # Git
 alias c='git clone'
