@@ -30,10 +30,10 @@ alias d='git diff'
 alias q="git q"                 # Quick short git log
 
 # Sync
-alias S='rsync -sazvhP --delete-after --exclude ".*"'                # Sync
+alias S='rsync -sazvhP --exclude ".*" --delete-after'                # Sync
 alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sync
 alias D='drysyncdir'                                                 # Dry-run rsync
-alias SS='rsync -srzvhP --delete-after --exclude ".*" -A --no-perms' # rsync Samba/CIFS
+alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
 
 # Backup
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
