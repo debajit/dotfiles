@@ -9,6 +9,15 @@
 # https://www.radio-browser.info/
 #
 
+#
+# Favorites
+#
+
+# 1Live
+# - Site: https://einslive.de/, https://www1.wdr.de/radio/1live/on-air/index.html
+# - Radio browser: https://www.radio-browser.info/#/history/9606f727-0601-11e8-ae97-52543be04c81
+alias 1live='mpv http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3'
+
 # General
 alias anonradio='mpv http://anonradio.net:8000/anonradio'
 
