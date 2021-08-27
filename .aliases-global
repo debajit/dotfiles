@@ -15,7 +15,18 @@
 alias -g L='| less'
 alias -g G='| grep'
 alias -g C='| wc -l'
+alias -g X='| xargs -0'
+alias -g 0='-print0'
 
 # Arguments
 alias -g H='--help'
 alias -g V='--version'
+
+case "${OSTYPE}" in
+  linux*)
+    alias -g P='| xclip -sel c'
+    ;;
+  darwin*)
+    alias -g P='| pbcopy'
+    ;;
+esac

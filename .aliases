@@ -29,6 +29,8 @@ alias s='git status'
 alias d='git diff'
 alias q="git q"                 # Quick short git log
 
+alias F='find . -iname'
+
 # Sync
 alias S='rsync -sazvhP --exclude ".*" --delete-after'                # Sync
 alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sync
