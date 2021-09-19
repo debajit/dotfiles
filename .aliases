@@ -66,6 +66,10 @@ alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
+# YouTube
+yt() { mpv ytdl://ytsearch:"$*" }                           # YouTube video
+yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
+
 # ssh
 alias ssh-fingerprint-md5='ssh-keygen -l -E md5 -f'
 alias ssh-fingerprint-sha='ssh-keygen -lf'
