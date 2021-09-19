@@ -15,7 +15,6 @@ alias vi='vim'
 # - t
 #
 
-
 # Shell
 alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 
@@ -33,10 +32,9 @@ alias q="git q"                 # Quick short git log
 alias F='find . -iname'
 
 # Sync
-alias S='rsync -sazvhP --exclude ".*" --delete-after'                # Sync
+alias rsync-full='rsync --delete-after'
 alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sync
-alias D='drysyncdir'                                                 # Dry-run rsync
-alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
+# alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
 
 # Backup
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
@@ -44,15 +42,6 @@ alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Sam
 # alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
 # alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
 # alias BP='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
-
-# Backup
-#
-# Related: (defined in .aliases-functions.sh)
-# - drybackup
-# - drysyncdir
-#
-# alias backup='rsync -sazvvhP --exclude ".*"'
-alias syncdir='rsync -sazvvhP  --delete-after --exclude ".*"'
 
 # Git. Inspired by Magit’s shortcuts in Emacs.
 alias ds='git diff --staged'
