@@ -29,7 +29,9 @@ alias s='git status'
 alias d='git diff'
 alias q="git q"                 # Quick short git log
 
+# Misc
 alias F='find . -iname'
+alias Q='cal -3 && date'        # Quick overview
 
 # Sync
 alias rsync-full='rsync --delete-after'
