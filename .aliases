@@ -1,9 +1,10 @@
 # Use saner defaults
 alias cp='cp -iv'
-alias df='df -kh'               # Free disk space
+alias df='df -Th'               # Free disk space
 alias du='du -khs'              # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
 alias mkdir='mkdir -p'
+alias rsync='rsync -aPvhs'
 alias tmux='TERM=xterm-256color tmux'
 alias vi='vim'
 
