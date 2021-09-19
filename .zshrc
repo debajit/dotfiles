@@ -24,9 +24,9 @@ source_dotfile ".zshrc.local"      # Local config (e.g. workplace-specific)
 # eval "$(starship init zsh)"        # Uncomment this line to enable Starship. I find it be slow on older machines, so I wrote my own prompt (next line)
 source_dotfile ".zsh-prompt"
 
-source_dotfile ".aliases"                          # General aliases, overridable locally
-source_dotfile ".aliases-global"                   # Global aliases like L, G
-source_dotfile ".aliases-suffix"                   # Associate file ext with default program
+source_dotfile ".aliases.sh"                       # General aliases, overridable locally
+source_dotfile ".aliases-global.sh"                # Global aliases like L, G
+source_dotfile ".aliases-suffix.sh"                # Associate file ext with default program
 source_dotfile ".aliases-functions.sh"             # Functions
 source_dotfile ".aliases-radio.sh"                 # Play radio from the command line
 source_dotfile ".aliases.private.sh"               # Private aliases
