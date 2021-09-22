@@ -24,7 +24,7 @@ alias m="mpv"                   # Movie player
 alias i="feh"                   # Image viewer
 
 # Git
-alias c='git clone'
+alias c='git checkout'
 alias s='git status'
 alias d='git diff'
 alias q="git q"                 # Quick short git log
