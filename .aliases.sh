@@ -103,7 +103,7 @@ alias j='dirs -v'               # List recent dirs to jump to them quickly
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Other aliases
-alias diffk='kitty +kitten diff'   # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
+alias kdiff='kitty +kitten diff'   # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
 alias ir='i -z'                    # Display images, in random order
 alias tm='tmux a -d'               # Connect to tmux session
 
