@@ -28,6 +28,10 @@ alias c='git checkout'
 alias s='git status'
 alias d='git diff'
 alias q="git q"                 # Quick short git log
+alias g='git g'
+alias gg='git gg'
+alias ggg='git ggg'
+alias gf='git gf'
 
 # Misc
 alias F="find . -iname '.*'"
