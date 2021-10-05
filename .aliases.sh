@@ -32,6 +32,7 @@ alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
+alias ss='git annex sync --content'
 
 # Misc
 alias F="find . -iname '.*'"
