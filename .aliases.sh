@@ -32,7 +32,7 @@ alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
-alias ss='git annex sync --content'
+alias gs='git annex sync --content'
 
 # Misc
 alias F="find . -iname '.*'"
@@ -95,11 +95,12 @@ case "$OSTYPE" in
 
   # macOS
   darwin*)
-    alias open="open"
     alias pi="brew install"     # Package install
     alias pr="brew uninstall"   # Package remove/uninstall
     alias pq="brew search"      # Package query/search/info
     alias pu="brew upgrade"     # Upgrade a single package
+
+    alias gk='sudo spctl --master-disable' # Disable GateKeeper
     ;;
 esac
 
