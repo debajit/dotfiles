@@ -213,7 +213,7 @@
 
   # Contributors
   contributors = shortlog -s
-  contributors-by-commits = shortlog -sn
+  contributors-by-commits = shortlog -sne
 
   # Duplicates
   dupes = !git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40
