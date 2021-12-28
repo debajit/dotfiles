@@ -117,5 +117,7 @@ alias tm='tmux a -d'               # Connect to tmux session
 # Useful utility aliases
 #
 
+alias isp='curl ifconfig.co/json | jq .asn_org'
+
 # Start web server from current dir. Port optional: `start-web-server 1111`
 alias start-web-server='python3 -m http.server'
