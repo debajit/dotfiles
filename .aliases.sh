@@ -37,9 +37,10 @@ alias gf='git gf'
 alias a='git annex'
 alias aa='git annex add . -J6'
 alias ac='git annex copy . --to b2 -J6'
+alias ae='git annex enableremote'
 alias ag='git annex get . --from b2 -J6'
 alias as='git annex sync'
-
+alias aw='git annex whereis'
 
 # Misc
 alias F="find . -iname '.*'"
