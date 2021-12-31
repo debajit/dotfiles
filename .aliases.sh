@@ -32,7 +32,14 @@ alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
-alias gs='git annex sync --content'
+
+# Git Annex
+alias a='git annex'
+alias aa='git annex add . -J6'
+alias ac='git annex copy . --to b2 -J6'
+alias ag='git annex get . --from b2 -J6'
+alias as='git annex sync'
+
 
 # Misc
 alias F="find . -iname '.*'"
