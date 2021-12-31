@@ -27,11 +27,15 @@ alias i="feh"                   # Image viewer
 alias c='git checkout'
 alias s='git status'
 alias d='git diff'
+alias ds='git diff --staged'
 alias q="git q"                 # Quick short git log
 alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
+alias fu='git fetch origin'     # Inspired by Magit’s shortcuts
+alias ru='git rebase "@{u}"'
+alias tip='git log -1 --name-status'
 
 # Git Annex
 alias a='git annex'
@@ -41,6 +45,16 @@ alias ae='git annex enableremote'
 alias ag='git annex get . --from b2 -J6'
 alias as='git annex sync'
 alias aw='git annex whereis'
+
+# Git remotes
+alias GCS="git clone git@git.sr.ht:~debajit/"
+alias GCC="git clone git@codeberg.org:debajit/NAME.git"
+alias GCD="git clone git@git.disroot.org:debajit/NAME.git"
+alias GCG="git clone git@github.com:debajit/NAME.git"
+alias GRS='git remote add srht git@git.sr.ht:~debajit/${PWD:t}'
+alias GRC='git remote add codeberg git@codeberg.org:debajit/${PWD:t}.git'
+alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
+alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Misc
 alias F="find . -iname '.*'"
@@ -57,22 +71,6 @@ alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sy
 # alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
 # alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
 # alias BP='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
-
-# Git. Inspired by Magit’s shortcuts in Emacs.
-alias ds='git diff --staged'
-alias fu='git fetch origin'
-alias ru='git rebase "@{u}"'
-alias tip='git log -1 --name-status'
-
-# Git remotes
-alias GCS="git clone git@git.sr.ht:~debajit/"
-alias GCC="git clone git@codeberg.org:debajit/NAME.git"
-alias GCD="git clone git@git.disroot.org:debajit/NAME.git"
-alias GCG="git clone git@github.com:debajit/NAME.git"
-alias GRS='git remote add srht git@git.sr.ht:~debajit/${PWD:t}'
-alias GRC='git remote add codeberg git@codeberg.org:debajit/${PWD:t}.git'
-alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
-alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # ls
 alias ls='exa'
