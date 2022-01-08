@@ -22,6 +22,7 @@ alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
 alias f='ranger'                # File manager
 alias m="mpv"                   # Movie player
 alias i="feh"                   # Image viewer
+alias r='rsync -aPsh'
 
 # Git
 alias c='git checkout'
@@ -39,12 +40,15 @@ alias tip='git log -1 --name-status'
 
 # Git Annex
 alias a='git annex'
-alias aa='git annex add . -J6'
-alias ac='git annex copy . --to b2 -J6'
+alias aa='git annex add -J6'
+alias ac='git annex copy --to b2 -J6'
 alias ae='git annex enableremote'
-alias ag='git annex get . --from b2 -J6'
+alias ag='git annex get -J6'
+alias al='git annex lock'
 alias as='git annex sync'
+alias au='git annex unlock'
 alias aw='git annex whereis'
+alias ax='git annex export main --to nas -J6'
 
 # Git remotes
 alias GCS="git clone git@git.sr.ht:~debajit/"
