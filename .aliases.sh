@@ -25,6 +25,7 @@ alias i="feh"                   # Image viewer
 alias r='rsync -aPsh'
 
 # Git
+alias b='git branch'
 alias c='git checkout'
 alias s='git status'
 alias d='git diff'
@@ -35,6 +36,7 @@ alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
 alias fu='git fetch origin'     # Inspired by Magit’s shortcuts
+alias ro='git rebase origin/master'
 alias ru='git rebase "@{u}"'
 alias tip='git log -1 --name-status'
 
