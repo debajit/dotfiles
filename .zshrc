@@ -33,7 +33,7 @@ source_dotfile ".aliases.private.sh"               # Private aliases
 source_dotfile ".aliases.local"                    # Local aliases
 source_dotfile ".paths"                            # Global path settings
 source_dotfile ".paths.local"                      # Global path settings
-source_dotfile ".env_vars"                         # Environment variables
+source_dotfile ".env_vars.sh"                      # Environment variables
 source_dotfile ".env_vars.local"                   # Environment variables
 source_dotfile ".env_vars.secret"                  # Secret environment variables
 source_dotfile '.app-config.sh'
