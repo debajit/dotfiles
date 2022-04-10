@@ -15,8 +15,10 @@ alias vi='vim'
 # - t
 #
 
-# Shell
+# General aliases
+alias e='echo'
 alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
+alias w='tail -f /dev/null --pid`pgrep rsync` && '
 
 # Tools
 alias f='ranger'                # File manager
@@ -63,11 +65,11 @@ alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
 alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Misc
-alias F="find . -iname '.*'"
+alias F="find -type f -iname '*.ext'"
+alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 
 # Sync
-alias rsync-full='rsync --delete-after'
 alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sync
 # alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
 
