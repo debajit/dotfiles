@@ -70,7 +70,7 @@ alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 
 # Sync
-alias R="rclone -P sync --exclude '.*{/**,}'"                        # Rclone sync
+alias R="rclone -PL sync --exclude '.*{/**,}'"                        # Rclone sync
 # alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
 
 # Backup
