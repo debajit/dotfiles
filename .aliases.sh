@@ -32,7 +32,9 @@ alias c='git checkout'
 alias s='git status'
 alias d='git diff'
 alias ds='git diff --staged'
+alias p='git pull --rebase'
 alias q="git q"                 # Quick short git log
+alias re='git rebase'
 alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
@@ -41,6 +43,7 @@ alias fu='git fetch origin'     # Inspired by Magit’s shortcuts
 alias ro='git rebase origin/master'
 alias ru='git rebase "@{u}"'
 alias tip='git log -1 --name-status'
+alias x='git reset --hard'
 
 # Git Annex
 alias a='git annex'
