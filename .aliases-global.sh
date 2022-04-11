@@ -23,6 +23,7 @@ alias -g H='--help'
 alias -g V='--version'
 
 # Options
+alias -g h='HEAD'
 alias -g m='main'
 alias -g n='--no-decorate'
 alias -g om='origin/main'
