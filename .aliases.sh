@@ -1,6 +1,6 @@
 # Use saner defaults
 alias cp='cp -iv'
-alias df='df -Th'               # Free disk space
+alias df='df -h'                # Free disk space
 alias du='du -khs'              # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
 alias mkdir='mkdir -p'
@@ -8,23 +8,17 @@ alias rsync='rsync -aPvhs'
 alias tmux='TERM=xterm-256color tmux'
 alias vi='vim'
 
-#
-# Quick one-letter aliases
-#
-# Related: (defined in .aliases-functions.sh)
-# - t
-#
-
 # General aliases
 alias e='echo'
-alias u="cd .. && pwd && ls"    # cd “up” to the parent directory
-alias w='tail -f /dev/null --pid`pgrep rsync` && '
+alias u="cd .. && pwd && ls"                         # cd “up” to the parent directory
+alias w='tail -f /dev/null --pid=`pgrep rsync` && '  # Wait for a process
 
 # Tools
-alias f='ranger'                # File manager
-alias m="mpv"                   # Movie player
-alias i="feh"                   # Image viewer
+alias f='ranger'                  # File manager
+alias m="mpv"                     # Movie player
+alias i="feh"                     # Image viewer
 alias r='rsync -aPsh'
+alias kdiff='kitty +kitten diff'  # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
 
 # Git
 alias b='git branch'
@@ -72,10 +66,6 @@ alias F="find -type f -iname '*.ext'"
 alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 
-# Sync
-alias R="rclone -PL sync --exclude '.*{/**,}'"                        # Rclone sync
-# alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
-
 # Backup
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
 # alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
@@ -90,22 +80,39 @@ alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
+# Navigation.
+# Directory jumping. “1” to jump to the last dir and so on.
+alias j='dirs -v'               # List recent dirs to jump to them quickly
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
 # Security
 alias en='gpg --symmetric --cipher-algo AES256' # Encrypt
+
+# Shell
+alias Z='source "${HOME}/.zshrc"' # Reload ZSH configuration
+
+# SSH
+alias ssh-fingerprint-md5='ssh-keygen -l -E md5 -f'
+alias ssh-fingerprint-sha='ssh-keygen -lf'
+
+# Sync
+alias R="rclone -PL sync --exclude '.*{/**,}'"                        # Rclone sync
+# alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
+
+# Useful utility aliases
+alias isp='curl ifconfig.co/json | jq .asn_org' # Show your ISP (experimental)
+alias start-web-server='python3 -m http.server' # Start a web server from current dir. Port optional: `start-web-server 1111`
 
 # YouTube
 yt() { mpv ytdl://ytsearch:"$*" }                           # YouTube video
 yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
-
-# ssh
-alias ssh-fingerprint-md5='ssh-keygen -l -E md5 -f'
-alias ssh-fingerprint-sha='ssh-keygen -lf'
 
 # Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
 case "$OSTYPE" in
   # Linux
   linux*)
+    alias df="df -Th"
     alias open="xdg-open"
     alias pi="pamac install"   # Package install
     alias pr="pamac remove"    # Package remove/uninstall
@@ -125,20 +132,6 @@ case "$OSTYPE" in
     ;;
 esac
 
-# Directory jumping. “1” to jump to the last dir and so on.
-alias j='dirs -v'               # List recent dirs to jump to them quickly
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
-# Other aliases
-alias kdiff='kitty +kitten diff'   # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
+# Miscellaneous application-specific aliases (experimental)
 alias ir='i -z'                    # Display images, in random order
 alias tm='tmux a -d'               # Connect to tmux session
-
-#
-# Useful utility aliases
-#
-
-alias isp='curl ifconfig.co/json | jq .asn_org'
-
-# Start web server from current dir. Port optional: `start-web-server 1111`
-alias start-web-server='python3 -m http.server'
