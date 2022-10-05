@@ -90,6 +90,9 @@ alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
+# Security
+alias en='gpg --symmetric --cipher-algo AES256' # Encrypt
+
 # YouTube
 yt() { mpv ytdl://ytsearch:"$*" }                           # YouTube video
 yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
