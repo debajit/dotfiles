@@ -42,6 +42,7 @@ alias kuow='mpv https://playerservices.streamtheworld.com/api/livestream-redirec
 alias kexp='mpv http://live-mp3-128.kexp.org:8000'
 
 # Jazz, Funk
+alias smoothjazz='mpv https://0n-smoothjazz.radionetz.de/0n-smoothjazz.mp3'
 alias classicjazz='mpv http://jfm1.hostingradio.ru:14536/ijstream.mp3'
 alias electroswingandfunk='mpv http://orion.shoutca.st:8506/stream'
 
