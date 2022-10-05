@@ -193,6 +193,9 @@
 	# Amend commit with current author information
 	amend-author = commit --amend --reset-author --no-edit
 
+	# Backup (Experimental)
+	backup = git push origin "$(git rev-parse --abbrev-ref HEAD)"
+
 
   #---------------------------------------------------------
   # FILE STATUS MANAGEMENT
