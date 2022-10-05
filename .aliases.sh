@@ -119,6 +119,7 @@ case "$OSTYPE" in
     alias pr="brew uninstall"   # Package remove/uninstall
     alias pq="brew search"      # Package query/search/info
     alias pu="brew upgrade"     # Upgrade a single package
+    alias pp="brew info"        # Package info
 
     alias gk='sudo spctl --master-disable' # Disable GateKeeper
     ;;
