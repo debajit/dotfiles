@@ -136,6 +136,7 @@ case "$OSTYPE" in
     alias ao="pacmd list-sinks | grep -e 'name:' -e 'index:'"                     # Audio output
     alias ap='pactl set-default-sink raop_output.Bose-SoundTouch-20.local'        # Airplay
     alias al='pactl set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo'  # Use local audio output
+    alias ar='systemctl --user restart pulseaudio'                                # Restart PulseAudio user service
     ;;
 
   # macOS
