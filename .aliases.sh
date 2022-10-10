@@ -1,3 +1,13 @@
+#
+# Aliases.
+#
+# Most of the one-letter or two-letter aliases are generally meant to
+# be used by pressing a Tab after typing them to be able to change
+# their arguments on the fly and have a more meaningful command
+# history. (See .zsh-config in this repo for the Zsh Tab
+# autocompletion features configured).
+#
+
 # Use saner defaults
 alias cp='cp -iv'
 alias df='df -h'                # Free disk space
@@ -110,14 +120,22 @@ yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
 # Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
 case "$OSTYPE" in
-  # Linux
+  # GNU/Linux
   linux*)
+    # Custom overrides
     alias df="df -Th"
     alias open="xdg-open"
+
+    # Package management
     alias pi="pamac install"   # Package install
     alias pr="pamac remove"    # Package remove/uninstall
     alias pq="pamac search"    # Package query/search/info
     alias pp="pamac info"      # Package info
+
+    # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
+    alias ao="pacmd list-sinks | grep -e 'name:' -e 'index:'"                     # Audio output
+    alias ap='pactl set-default-sink raop_output.Bose-SoundTouch-20.local'        # Airplay
+    alias al='pactl set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo'  # Use local audio output
     ;;
 
   # macOS
