@@ -14,7 +14,7 @@
 
 # Pipes
 alias -g L='| less'
-alias -g G='| rg -S'
+alias -g G='| grep'
 alias -g C='| wc -l'
 alias -g X='| xargs -0'
 
