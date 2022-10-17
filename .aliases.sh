@@ -53,6 +53,7 @@ alias x='git reset --hard'
 alias a='git annex'
 alias aa='git annex add -J6'
 alias ac='git annex copy --to b2 -J6'
+alias ad='git annex drop -J8'
 alias ae='git annex enableremote'
 alias ag='git annex get -J6'
 alias al='git annex lock'
@@ -123,7 +124,7 @@ case "$OSTYPE" in
   # GNU/Linux
   linux*)
     # Custom overrides
-    alias df="df -Th"
+    alias df="df -Thx squashfs" # Exclude snaps. See https://askubuntu.com/a/1337531
     alias open="xdg-open"
 
     # Package management
