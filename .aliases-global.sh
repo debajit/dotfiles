@@ -17,7 +17,7 @@ alias -g L='| less'
 alias -g G='| grep'
 alias -g C='| wc -l'
 alias -g X='| xargs -0'
-alias -g B='| base64 -d'
+alias -g D='| base64 -d'
 
 # Arguments
 alias -g H='--help'

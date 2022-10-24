@@ -78,6 +78,21 @@ alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 
 # Backup
+alias B="borg create --stats --progress ::archive-{hostname}-{now} $HOME/.emacs.d" # Snapshot
+alias BL='borg list --last 10'
+alias BR='borg extract --list ::'
+alias BP='borg prune -v --list --dry-run \
+    --keep-last=5 \
+    --keep-daily=7 \
+    --keep-weekly=4 \
+    --keep-monthly=6 \
+    --keep-yearly=1'
+alias BPP='borg prune --stats --progress \
+    --keep-last=5 \
+    --keep-daily=7 \
+    --keep-weekly=4 \
+    --keep-monthly=6 \
+    --keep-yearly=1'
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
 # alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
 # alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
