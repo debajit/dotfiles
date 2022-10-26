@@ -85,6 +85,7 @@ backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclud
     $HOME/.env_vars* \
     $HOME/.paths* \
     $HOME/.app-config* \
+    $HOME/Archive/Notes \
     $HOME/Projects'
 alias B="${backup_command}"       # Backup
 alias BC="${backup_command}"      # Since B may be overridden in .aliases.local.sh
