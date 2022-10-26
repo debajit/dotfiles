@@ -1,0 +1,20 @@
+# Backup files
+*~
+*.tmp
+*.orig
+*.bak
+sh:**/#*#
+sh:**/.#*
+sh:**/._*
+
+# Git
+sh:**/.git/
+
+# ZSH sessions
+*/.zsh_sessions/
+
+# macOS-generated files
+*/.DS_Store
+
+# Windows-generated files
+*/Thumbs.db
