@@ -78,9 +78,26 @@ alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 
 # Backup
-alias B="borg create --stats --progress ::archive-{hostname}-{now} $HOME/.emacs.d" # Snapshot
+backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
+    $HOME/.emacs.d \
+    $HOME/.zsh* \
+    $HOME/.aliases* \
+    $HOME/.env_vars* \
+    $HOME/.paths* \
+    $HOME/.app-config* \
+    $HOME/Projects'
+alias B="${backup_command}"       # Backup
+alias BC="${backup_command}"      # Since B may be overridden in .aliases.local.sh
+alias BD="${backup_command/--stats --progress/--list --dry-run}"
 alias BL='borg list --last 10'
+
+# Restore from backups.
+# borg extract --list ::ARCHIVE 're:snippets'
+# to extract only paths with the substring 'snippets'
 alias BR='borg extract --list ::'
+
+# Prune backups
+# TODO: Refactor into a single set of options
 alias BP='borg prune -v --list --dry-run \
     --keep-last=5 \
     --keep-daily=7 \
@@ -93,6 +110,7 @@ alias BPP='borg prune --stats --progress \
     --keep-weekly=4 \
     --keep-monthly=6 \
     --keep-yearly=1'
+
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
 # alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
 # alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
