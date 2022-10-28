@@ -91,6 +91,8 @@ alias B="${backup_command}"       # Backup
 alias BC="${backup_command}"      # Since B may be overridden in .aliases.local.sh
 alias BD="${backup_command/--stats --progress/--list --dry-run}"
 alias BL='borg list --last 10'
+alias BLG="borg list --last 10 -a '*gnu*'"
+alias BLW="borg list --last 10 -a '*tw*'"
 
 # Restore from backups.
 # borg extract --list ::ARCHIVE 're:snippets'
@@ -124,6 +126,9 @@ alias la='exa -la'              # Show all files, including dotfiles
 alias ll='exa -l'               # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
+
+# Development
+alias ys='yarn start'
 
 # Navigation.
 # Directory jumping. “1” to jump to the last dir and so on.
