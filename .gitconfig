@@ -355,3 +355,9 @@
 
 [rerere]
   enabled = true
+
+[annex]
+	# Annex binary files.
+	# See https://git-annex.branchable.com/tips/largefiles/
+	# and https://news.ycombinator.com/item?id=33060931
+	largefiles = largerthan=1kb and not (mimeencoding=us-ascii or mimeencoding=utf-8)
