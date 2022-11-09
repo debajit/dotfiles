@@ -9,6 +9,7 @@ Thumbs.db
 \#*\#
 .\#*
 *.orig
+.projectile
 
 # VIM artifacts
 # See also https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
