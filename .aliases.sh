@@ -98,6 +98,7 @@ alias BLW="borg list --last 10 -a '*tw*'"
 # borg extract --list ::ARCHIVE 're:snippets'
 # to extract only paths with the substring 'snippets'
 alias BR='borg extract --list ::'
+alias BRD='borg extract --list --dry-run ::'
 
 # Prune backups
 # TODO: Refactor into a single set of options
