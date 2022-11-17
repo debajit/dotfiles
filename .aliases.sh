@@ -88,6 +88,7 @@ backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclud
     $HOME/.config/cmus/* \
     $HOME/.config/rclone/* \
     $HOME/.local/share/fonts/* \
+    $HOME/Archive/Contacts \
     $HOME/Archive/Notes \
     $HOME/Projects \
     /etc/hosts'
