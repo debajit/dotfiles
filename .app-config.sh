@@ -22,9 +22,8 @@ esac
 #
 # See https://github.com/ajeetdsouza/zoxide
 #
-if [[ -x "$(command -v zoxide)" ]]; then
+if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
-  eval "$(zoxide init posix --hook prompt)"
 fi
 
 # AWS CLI
