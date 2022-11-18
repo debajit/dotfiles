@@ -173,6 +173,8 @@ case "$OSTYPE" in
     alias open="xdg-open"
 
     # Package management
+    # TODO: Filter by distro: grep -ioP '^ID=\K.+' /etc/os-release. See https://unix.stackexchange.com/a/671133
+
     alias pi="pamac install"   # Package install
     alias pr="pamac remove"    # Package remove/uninstall
     alias pq="pamac search"    # Package query/search/info
