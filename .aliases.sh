@@ -51,16 +51,16 @@ alias x='git reset --hard'
 
 # Git Annex
 alias a='git annex'
-alias aa='git annex add -J6'
-alias ac='git annex copy --to b2 -J6'
-alias ad='git annex drop -J8'
+alias aa='git annex add -J24'
+alias ac='git annex copy --to b2 -J24'
+alias ad='git annex drop -J24'
 alias ae='git annex enableremote'
-alias ag='git annex get -J6'
+alias ag='git annex get -J24'
 alias al='git annex lock'
 alias as='git annex sync'
 alias au='git annex unlock'
 alias aw='git annex whereis'
-alias ax='git annex export main --to nas -J6'
+alias ax='git annex export main --to nas -J24'
 
 # Git remotes
 alias GCS="git clone git@git.sr.ht:~debajit/"
