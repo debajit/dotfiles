@@ -173,12 +173,28 @@ case "$OSTYPE" in
     alias open="xdg-open"
 
     # Package management
-    # TODO: Filter by distro: grep -ioP '^ID=\K.+' /etc/os-release. See https://unix.stackexchange.com/a/671133
+    distro=$(grep -ioP '^ID=\K.+' /etc/os-release) # See https://unix.stackexchange.com/a/671133
 
-    alias pi="pamac install"   # Package install
-    alias pr="pamac remove"    # Package remove/uninstall
-    alias pq="pamac search"    # Package query/search/info
-    alias pp="pamac info"      # Package info
+    case "${distro}" in
+      arch)
+        # Core package operations
+        alias pi='sudo pacman -S'           # Package install
+        alias pq='pacman -Ss'               # Package query/search in Arch repo
+        alias pr='sudo pacman -Rs'          # Package remove. See https://wiki.archlinux.org/title/pacman
+        alias pu='sudo pacman -Syu && paru' # Package update (all from Arch repo)
+
+        alias pl='pacman -Qs'        # Package local (search)
+        alias po='pacman -Qtdq'      # Package orphans (installed as deps but not required by any package)
+        alias pc='pacman -Qtdq | sudo pacman -Rns -' # Package cleanup unused packages
+        ;;
+
+      # TODO: Check and update for Manjaro
+      *)
+        alias pi="pamac install"   # Package install
+        alias pr="pamac remove"    # Package remove/uninstall
+        alias pq="pamac search"    # Package query/search/info
+        alias pp="pamac info"      # Package info
+    esac
 
     # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
     alias ao="pacmd list-sinks | grep -e 'name:' -e 'index:'"                     # Audio output
