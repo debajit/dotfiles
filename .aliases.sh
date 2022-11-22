@@ -184,17 +184,18 @@ case "$OSTYPE" in
         alias pr='sudo pacman -Rs'          # Package remove. See https://wiki.archlinux.org/title/pacman
         alias pu='sudo pacman -Syu && paru' # Package update (all from Arch repo)
 
-        alias pl='pacman -Qs'        # Package local (search)
-        alias po='pacman -Qtdq'      # Package orphans (installed as deps but not required by any package)
+        alias pl='pacman -Qs'               # Package local. Search for a locally installed package
+        alias po='pacman -Qtdq'             # Package orphans (installed as deps but not required by any package)
         alias pc='pacman -Qtdq | sudo pacman -Rns -' # Package cleanup unused packages
         ;;
 
-      # TODO: Check and update for Manjaro
-      *)
-        alias pi="pamac install"   # Package install
-        alias pr="pamac remove"    # Package remove/uninstall
-        alias pq="pamac search"    # Package query/search/info
-        alias pp="pamac info"      # Package info
+      manjaro)
+        alias pi="pamac install"            # Package install
+        alias pr="pamac remove"             # Package remove/uninstall
+        alias pq="pamac search"             # Package query/search/info
+        alias pp="pamac info"               # Package info
+        alias pU='pamac checkupdates -a'    # Package check for updates (all packages including AUR)
+        alias pu='pamac upgrade -a'         # Package update (all packages including AUR)
     esac
 
     # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
