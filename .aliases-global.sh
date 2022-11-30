@@ -14,6 +14,7 @@
 
 # Pipes
 alias -g L='| less'
+alias -g LL='--color=always | less -R'
 alias -g G='| grep'
 alias -g C='| wc -l'
 alias -g J='| jq'
