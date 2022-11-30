@@ -1,0 +1,41 @@
+#
+# .rsync-exclude.lst
+#
+# A list of file patterns that can be passed to rsync so that they are
+# not synced. You can use rsync’s --exclude-from option for this.
+#
+# EXAMPLE:
+#   rsync -aPshL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ nas:/volume2/Music/ -ni
+#
+
+# Backup files
+*~
+*.tmp
+*.orig
+*.bak
+\#*\#
+.\#*
+._*
+
+# Build artifacts
+*.a
+*.o
+
+# Git
+**/.git/
+
+# ZSH sessions
+*/.zsh_sessions/
+
+# Image management files
+*/.picasa.ini
+*/.picasaoriginals/
+
+# GNU/Linux-generated files
+.goutputstream-*
+
+# macOS-generated files
+*/.DS_Store
+
+# Windows-generated files
+*/Thumbs.db
