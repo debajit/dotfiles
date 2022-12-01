@@ -73,6 +73,9 @@ alias GRC='git remote add codeberg git@codeberg.org:debajit/${PWD:t}.git'
 alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
 alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
+# Btrfs
+alias bl='sudo btrfs subvolume list / | column -t'  # btrfs list subvolumes
+alias bm='mount -t btrfs | column -t'               # btrfs mounts (useful to see runtime mounts like for TimeShift)
 # Misc
 alias F="find -type f -iname '*.ext'"
 alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
