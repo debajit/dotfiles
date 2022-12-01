@@ -14,7 +14,6 @@ alias df='df -h'                # Free disk space
 alias du='du -khs'              # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
 alias mkdir='mkdir -p'
-alias rsync='rsync -aPvhs'
 alias tmux='TERM=xterm-256color tmux'
 alias vi='vim'
 
@@ -27,7 +26,8 @@ alias w='tail -f /dev/null --pid=`pgrep rsync` && '  # Wait for a process
 alias f='ranger'                  # File manager
 alias m="mpv"                     # Movie player
 alias i="feh"                     # Image viewer
-alias r='rsync -aPsh'
+alias r='rsync -aPvhs --exclude-from ~/.rsync-exclude.lst'
+alias rl='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst'
 alias kdiff='kitty +kitten diff'  # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
 
 # Git
