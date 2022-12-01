@@ -74,8 +74,12 @@ alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
 alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Btrfs
-alias bl='sudo btrfs subvolume list / | column -t'  # btrfs list subvolumes
-alias bm='mount -t btrfs | column -t'               # btrfs mounts (useful to see runtime mounts like for TimeShift)
+alias bl='sudo btrfs subvolume list -t /'  # btrfs list subvolumes
+alias bm='mount -t btrfs | column -t'      # btrfs mounts (useful to see runtime mounts like for TimeShift)
+alias bs='sudo btrfs subvolume show'       # btrfs show subvolume details
+alias bd='sudo btrfs subvolume delete'     # btrfs delete snapshot (subvolume)
+alias bu='btrfs filesystem usage'          # btrfs disk usage
+
 # Misc
 alias F="find -type f -iname '*.ext'"
 alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
@@ -96,7 +100,8 @@ backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclud
     $HOME/Archive/Contacts \
     $HOME/Archive/Notes \
     $HOME/Projects \
-    /etc/hosts'
+    /etc/hosts \
+    /etc/fstab'
 alias B="${backup_command}"       # Backup
 alias BC="${backup_command}"      # Since B may be overridden in .aliases.local.sh
 alias BD="${backup_command/--stats --progress/--list --dry-run}"
