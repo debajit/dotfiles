@@ -136,6 +136,9 @@ alias BPP='borg prune --stats --progress \
 # alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
 # alias BP='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
 
+# Sync
+alias R="rclone -PL sync --exclude-from ~/.rclone-exclude.lst"
+
 # ls
 alias ls='exa'
 alias la='exa -la'              # Show all files, including dotfiles
@@ -160,10 +163,6 @@ alias Z='source "${HOME}/.zshrc"' # Reload ZSH configuration
 # SSH
 alias ssh-fingerprint-md5='ssh-keygen -l -E md5 -f'
 alias ssh-fingerprint-sha='ssh-keygen -lf'
-
-# Sync
-alias R="rclone -PL sync --exclude '.*{/**,}'"                        # Rclone sync
-# alias SS='rsync -srzvhP --exclude ".*" -A --no-perms --delete-after' # rsync Samba/CIFS
 
 # Useful utility aliases
 alias isp='curl ifconfig.co/json | jq .asn_org' # Show your ISP (experimental)
