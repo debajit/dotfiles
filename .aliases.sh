@@ -108,6 +108,8 @@ alias BD="${backup_command/--stats --progress/--list --dry-run}"
 alias BL='borg list --last 10'
 alias BLG="borg list --last 10 -a '*gnu*'"
 alias BLW="borg list --last 10 -a '*tw*'"
+alias TL='sudo timeshift --list'
+alias TC='sudo timeshift --check'
 
 # Restore from backups.
 # borg extract --list ::ARCHIVE 're:snippets'
