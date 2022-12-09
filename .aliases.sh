@@ -198,6 +198,9 @@ case "$OSTYPE" in
         alias pl='pacman -Qs'               # Package local. Search for a locally installed package
         alias po='pacman -Qtdq'             # Package orphans (installed as deps but not required by any package)
         alias pc='pacman -Qtdq | sudo pacman -Rns -' # Package cleanup unused packages
+
+        # Audio (PipeWire. See https://wiki.archlinux.org/title/PipeWire)
+        alias ar='systemctl --user restart pipewire'                                  # Restart PipeWire user service
         ;;
 
       manjaro)
@@ -207,13 +210,14 @@ case "$OSTYPE" in
         alias pp="pamac info"               # Package info
         alias pU='pamac checkupdates -a'    # Package check for updates (all packages including AUR)
         alias pu='pamac upgrade -a'         # Package update (all packages including AUR)
+
+        # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
+        alias ao="pacmd list-sinks | grep -e 'name:' -e 'index:'"                     # Audio output
+        alias ap='pactl set-default-sink raop_output.Bose-SoundTouch-20.local'        # Airplay
+        alias al='pactl set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo'  # Use local audio output
+        alias ar='systemctl --user restart pulseaudio'                                # Restart PulseAudio user service
     esac
 
-    # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
-    alias ao="pacmd list-sinks | grep -e 'name:' -e 'index:'"                     # Audio output
-    alias ap='pactl set-default-sink raop_output.Bose-SoundTouch-20.local'        # Airplay
-    alias al='pactl set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo'  # Use local audio output
-    alias ar='systemctl --user restart pulseaudio'                                # Restart PulseAudio user service
     ;;
 
   # macOS
