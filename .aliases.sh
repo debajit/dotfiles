@@ -179,7 +179,24 @@ yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
 case "$OSTYPE" in
   # GNU/Linux
   linux*)
-    # Custom overrides
+    #-------------------------------------
+    # Keyboard customizations
+    #-------------------------------------
+
+    # Keyboard defaults. A basic keyboard map override for GNOME with
+    # the following remappings: (See also
+    # https://unix.stackexchange.com/a/333392)
+    #
+    # - Caps lock → Control
+    # - Right Alt → Compose
+    #
+    alias kd="dconf write /org/gnome/desktop/input-sources/xkb-options \"['terminate:ctrl_alt_bksp', 'caps:ctrl_modifier', 'compose:ralt']\""
+
+    # KeYboard: Swap Super and Meta. This is convenient for hardware
+    # like the Framework Laptop, to have Super under your left thumb.
+    alias ks="dconf write /org/gnome/desktop/input-sources/xkb-options \"['terminate:ctrl_alt_bksp', 'caps:ctrl_modifier', 'compose:ralt', 'altwin:swap_lalt_lwin']\""
+
+    # Custom command overrides
     alias df="df -Thx squashfs" # Exclude snaps. See https://askubuntu.com/a/1337531
     alias open="xdg-open"
 
