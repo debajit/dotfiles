@@ -205,7 +205,7 @@ case "$OSTYPE" in
 
     case "${distro}" in
       arch)
-        # Core package operations
+        # Package management
         alias pi='sudo pacman -S'           # Package install
         alias pq='pacman -Ss'               # Package query/search in Arch repo
         alias pr='sudo pacman -Rs'          # Package remove. See https://wiki.archlinux.org/title/pacman
@@ -221,6 +221,7 @@ case "$OSTYPE" in
         ;;
 
       manjaro)
+        # Package management
         alias pi="pamac install"            # Package install
         alias pr="pamac remove"             # Package remove/uninstall
         alias pq="pamac search"             # Package query/search/info
@@ -233,15 +234,15 @@ case "$OSTYPE" in
         alias ap='pactl set-default-sink raop_output.Bose-SoundTouch-20.local'        # Airplay
         alias al='pactl set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo'  # Use local audio output
         alias ar='systemctl --user restart pulseaudio'                                # Restart PulseAudio user service
-	;;
+        ;;
 
       ubuntu)
-	alias pcu='sudo apt update && apt list --upgradable'    # Package check for updates
-	alias pu='sudo apt upgrade'                             # Package upgrade (all)
-	alias pc='sudo apt autoremove'                          # Package cleanup unused packages
-	;;
+        # Package management
+        alias pcu='sudo apt update && apt list --upgradable'    # Package check for updates
+        alias pu='sudo apt upgrade'                             # Package upgrade (all)
+        alias pc='sudo apt autoremove'                          # Package cleanup unused packages
+        ;;
     esac
-
     ;;
 
   # macOS
