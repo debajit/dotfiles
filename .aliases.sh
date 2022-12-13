@@ -225,7 +225,7 @@ case "$OSTYPE" in
         alias pr="pamac remove"             # Package remove/uninstall
         alias pq="pamac search"             # Package query/search/info
         alias pp="pamac info"               # Package info
-        alias pU='pamac checkupdates -a'    # Package check for updates (all packages including AUR)
+        alias pcu='pamac checkupdates -a'   # Package check for updates (all packages including AUR)
         alias pu='pamac upgrade -a'         # Package update (all packages including AUR)
 
         # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
@@ -233,6 +233,12 @@ case "$OSTYPE" in
         alias ap='pactl set-default-sink raop_output.Bose-SoundTouch-20.local'        # Airplay
         alias al='pactl set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo'  # Use local audio output
         alias ar='systemctl --user restart pulseaudio'                                # Restart PulseAudio user service
+	;;
+
+      ubuntu)
+	alias pcu='sudo apt update && apt list --upgradable'    # Package check for updates
+	alias pu='sudo apt upgrade'                             # Package upgrade (all)
+	;;
     esac
 
     ;;
