@@ -238,6 +238,7 @@ case "$OSTYPE" in
       ubuntu)
 	alias pcu='sudo apt update && apt list --upgradable'    # Package check for updates
 	alias pu='sudo apt upgrade'                             # Package upgrade (all)
+	alias pc='sudo apt autoremove'                          # Package cleanup unused packages
 	;;
     esac
 
