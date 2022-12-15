@@ -35,7 +35,10 @@
 .goutputstream-*
 
 # macOS-generated files
-*/.DS_Store
+**/.DS_Store
 
 # Windows-generated files
-*/Thumbs.db
+**/Thumbs.db
+
+# Synology
+**/@eaDir/
