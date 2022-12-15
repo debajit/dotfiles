@@ -34,7 +34,8 @@ alias -g om='origin/main'
 
 case "${OSTYPE}" in
   linux*)
-    alias -g P='| xclip -sel c -r'
+    # alias -g P='| xclip -sel c -r'  # For X11
+    alias -g P='| wl-copy'            # For Wayland. See https://github.com/bugaevc/wl-clipboard
     ;;
   darwin*)
     alias -g P='| pbcopy'
