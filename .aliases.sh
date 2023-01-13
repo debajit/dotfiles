@@ -121,19 +121,16 @@ alias BR='borg extract --list ::'
 alias BRD='borg extract --list --dry-run ::'
 
 # Prune backups
-# TODO: Refactor into a single set of options
-alias BP='borg prune -v --list --dry-run \
+backup_prune_command='borg prune --stats --progress \
+    --glob-archives "*${HOSTNAME}*" \
     --keep-last=5 \
     --keep-daily=7 \
     --keep-weekly=4 \
     --keep-monthly=6 \
     --keep-yearly=1'
-alias BPP='borg prune --stats --progress \
-    --keep-last=5 \
-    --keep-daily=7 \
-    --keep-weekly=4 \
-    --keep-monthly=6 \
-    --keep-yearly=1'
+alias BP="${backup_prune_command}"                                         # Prune backups
+alias BPD="${backup_prune_command/--stats --progress/-v --list --dry-run}" # Dry-prune backups
+# TODO: Add `borg compact` aliases
 
 # alias B='duplicacy backup -threads 12 -stats'                                         # Backup
 # alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
