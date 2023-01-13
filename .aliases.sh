@@ -96,6 +96,7 @@ backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclud
     $HOME/.paths* \
     $HOME/.app-config* \
     $HOME/.config/cmus/* \
+    $HOME/.config/espanso/* \
     $HOME/.config/rclone/* \
     $HOME/.hunspell_en_US \
     $HOME/.local/share/fonts/* \
