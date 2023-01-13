@@ -85,6 +85,7 @@ alias F="find -type f -iname '*.ext'"
 alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 alias S='systemctl'
+alias SS='systemctl status'
 
 # Backup
 backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
