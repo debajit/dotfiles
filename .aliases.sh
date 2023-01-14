@@ -122,7 +122,7 @@ alias BRD='borg extract --list --dry-run ::'
 
 # Prune backups
 backup_prune_command='borg prune --stats --progress \
-    --glob-archives "*${HOSTNAME}*" \
+    --glob-archives "archive-{hostname}-*" \
     --keep-last=5 \
     --keep-daily=7 \
     --keep-weekly=4 \
