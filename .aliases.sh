@@ -74,11 +74,12 @@ alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
 alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Btrfs
-alias bl='sudo btrfs subvolume list -t .'  # btrfs list subvolumes
-alias bm='mount -t btrfs | column -t'      # btrfs mounts (useful to see runtime mounts like for TimeShift)
-alias bs='sudo btrfs subvolume show'       # btrfs show subvolume details
-alias bd='sudo btrfs subvolume delete'     # btrfs delete snapshot (subvolume)
-alias bu='btrfs filesystem usage'          # btrfs disk usage
+alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
+alias bm='mount -t btrfs | column -t'            # btrfs mounts (useful to see runtime mounts like for TimeShift)
+alias bs='sudo btrfs subvolume show'             # btrfs show subvolume details
+alias bd='sudo btrfs subvolume delete'           # btrfs delete snapshot (subvolume)
+alias bu='btrfs filesystem usage'                # btrfs disk usage
+alias DF='btrfs filesystem usage . | grep Free'  # btrfs free space available on disk
 
 # Misc
 alias F="find -type f -iname '*.ext'"
