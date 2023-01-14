@@ -163,6 +163,8 @@ alias en='gpg --symmetric --cipher-algo AES256' # Encrypt
 alias Z='source "${HOME}/.zshrc"' # Reload ZSH configuration
 
 # SSH
+alias sshg="ssh-keygen -t ed25519"
+alias ssha="ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519_APP -C ${USER}_APP@${HOSTNAME}"
 alias ssh-fingerprint-md5='ssh-keygen -l -E md5 -f'
 alias ssh-fingerprint-sha='ssh-keygen -lf'
 
