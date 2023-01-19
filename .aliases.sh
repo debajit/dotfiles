@@ -89,7 +89,7 @@ alias S='systemctl'
 alias SS='systemctl status'
 
 # Backup
-backup_command='borg create --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
+backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
     $HOME/.emacs.d \
     $HOME/.zsh* \
     $HOME/.aliases* \
