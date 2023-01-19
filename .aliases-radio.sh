@@ -13,6 +13,9 @@
 # Favorites
 #
 
+# News
+alias npr="mpv 'http://npr-ice.streamguys1.com/live.mp3'"
+
 # 1Live
 # - Site: https://einslive.de/, https://www1.wdr.de/radio/1live/on-air/index.html
 # - Radio browser: https://www.radio-browser.info/#/history/9606f727-0601-11e8-ae97-52543be04c81
@@ -39,7 +42,7 @@ alias bbcan='mpv http://bbcmedia.ic.llnwd.net/stream/bbcmedia_asianet_mf_p'
 
 # Seattle
 alias kuow='mpv https://playerservices.streamtheworld.com/api/livestream-redirect/KUOWFM_HIGH_MP3.mp3'
-alias kexp='mpv http://live-mp3-128.kexp.org:8000'
+alias kexp="mpv 'http://live-mp3-128.kexp.org/kexp128.mp3'"
 
 # Jazz, Funk
 alias smoothjazz='mpv https://0n-smoothjazz.radionetz.de/0n-smoothjazz.mp3'
