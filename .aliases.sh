@@ -101,8 +101,7 @@ backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exc
     $HOME/.config/rclone/* \
     $HOME/.hunspell_en_US \
     $HOME/.local/share/fonts/* \
-    $HOME/Archive/Contacts \
-    $HOME/Archive/Notes \
+    $HOME/Archive/Knowledge \
     $HOME/Projects \
     /etc/hosts \
     /etc/fstab'
