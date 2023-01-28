@@ -1,3 +1,6 @@
 # Personal scripts
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/bin" # TODO: Remove this in favor of the above line
+
+# Ruby Gems
+export PATH="${PATH}:${HOME}/.local/share/gem/ruby/3.0.0/bin"
