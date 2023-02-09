@@ -212,7 +212,7 @@ case "$OSTYPE" in
         alias pq='pacman -Ss'               # Package query/search in Arch repo
         alias pr='sudo pacman -Rs'          # Package remove. See https://wiki.archlinux.org/title/pacman
         alias pu='sudo pacman -Syu && paru' # Package update (all from Arch repo)
-        alias pp='pacman -Si'               # Package info
+        alias pp='pacman -Sii'              # Package info
 
         alias pl='pacman -Qs'               # Package local. Search for a locally installed package
         alias po='pacman -Qtdq'             # Package orphans (installed as deps but not required by any package)
