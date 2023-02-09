@@ -29,6 +29,7 @@ alias i="feh"                     # Image viewer
 alias r='rsync -aPvhs --exclude-from ~/.rsync-exclude.lst'
 alias rl='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst'
 alias kdiff='kitty +kitten diff'  # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
+alias icat="kitty +kitten icat"   # See https://sw.kovidgoyal.net/kitty/kittens/icat/
 
 # Git
 alias b='git branch'
@@ -98,6 +99,7 @@ backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exc
     $HOME/.app-config* \
     $HOME/.config/cmus/* \
     $HOME/.config/espanso/* \
+    $HOME/.config/ranger/* \
     $HOME/.config/rclone/* \
     $HOME/.hunspell_en_US \
     $HOME/.local/share/fonts/* \
