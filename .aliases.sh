@@ -152,6 +152,11 @@ alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
 # Development
 alias ys='yarn start'
+alias rp='bundle gem --mit --test rspec'  # Ruby project
+
+# File information
+alias ext="fd -t f | grep -oE '\.(\w+)$' | sort | uniq -c | sort -nr"   # Print extensions of all files with counts
+alias extl="fd -t l | grep -oE '\.(\w+)$' | sort | uniq -c | sort -nr"  # Print extensions of all symlinks with counts
 
 # Navigation.
 # Directory jumping. “1” to jump to the last dir and so on.
