@@ -87,6 +87,10 @@ alias F="find -type f -iname '*.ext'"
 alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 alias S='systemctl'
+alias SE='systemctl enable'
+alias SD='systemctl disable'
+alias SR='systemctl restart'
+alias SL='systemctl list-units'
 alias SS='systemctl status'
 
 # Backup
