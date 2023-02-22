@@ -2,11 +2,18 @@
 
 My dotfiles to quickly configure my computing setup.
 
-All dotfiles are designed work on both Linux and macOS (OS-checks are done as required). I've been using it successfully with Manjaro Linux (based on Arch) and macOS (Mojave and Catalina).
+I’ve been using this setup successfully on a variety of systems, for almost a decade now:
+
+- GNU operating systems (Arch, Manjaro, Ubuntu on WSL2, AmazonLinux, Synology NAS)
+- macOS
+
+GNU/Linux distribution checks are done as required to customize behavior and commands.
 
 ## Installation
 
-Clone this repository into any local directory, and then just run `make`. This will copy all the dotfiles into their appropriate places.
+Clone this repository and run `make`.
+
+This will copy all the dotfiles into their appropriate places.
 
 ## Uninstallation
 
