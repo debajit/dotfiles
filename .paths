@@ -2,5 +2,6 @@
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/bin" # TODO: Remove this in favor of the above line
 
-# Ruby Gems
-export PATH="${PATH}:${HOME}/.local/share/gem/ruby/3.0.0/bin"
+# Ruby Gems. See https://wiki.archlinux.org/title/Ruby#Setup
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
