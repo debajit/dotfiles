@@ -53,7 +53,7 @@ alias x='git reset --hard'
 # Git Annex
 alias a='git annex'
 alias aa='git annex add -J24'
-alias ac='git annex copy --to b2 -J6'
+alias ac='git annex find --not --in b2 --print0 | xargs -0 git annex copy --to b2 -J6'
 alias ad='git annex drop -J6'
 alias ae='git annex enableremote'
 alias ag='git annex get -J6'
