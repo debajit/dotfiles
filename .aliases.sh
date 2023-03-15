@@ -76,7 +76,7 @@ alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Btrfs
 alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
-alias bm='mount -t btrfs | column -t'            # btrfs mounts (useful to see runtime mounts like for TimeShift)
+alias bm='findmnt -t btrfs'                      # btrfs mounts (useful to see runtime mounts like for TimeShift)
 alias bs='sudo btrfs subvolume show'             # btrfs show subvolume details
 alias bd='sudo btrfs subvolume delete'           # btrfs delete snapshot (subvolume)
 alias bu='btrfs filesystem usage'                # btrfs disk usage
@@ -225,6 +225,7 @@ case "$OSTYPE" in
         alias pu='sudo pacman -Syu && paru' # Package update (all from Arch repo)
         alias pp='pacman -Sii'              # Package info
         alias pf='pacman -F'                # Package that provides a binary or file
+        alias pw='pactree -r'               # Which top-level package depends on this package?
 
         alias pl='pacman -Qs'               # Package local. Search for a locally installed package
         alias po='pacman -Qtdq'             # Package orphans (installed as deps but not required by any package)
@@ -242,6 +243,7 @@ case "$OSTYPE" in
         alias pp="pamac info"               # Package info
         alias pcu='pamac checkupdates -a'   # Package check for updates (all packages including AUR)
         alias pu='pamac upgrade -a'         # Package update (all packages including AUR)
+        alias pw='pactree -r'               # Which top-level package depends on this package?
 
         # Audio (PulseAudio. See https://wiki.archlinux.org/title/PulseAudio/Examples )
         alias ao="pacmd list-sinks | grep -e 'name:' -e 'index:'"                     # Audio output
