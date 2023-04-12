@@ -105,7 +105,9 @@ backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exc
     $HOME/.config/espanso/* \
     $HOME/.config/ranger/* \
     $HOME/.config/rclone/* \
+    $HOME/{.config,.local/share}/liferea \
     $HOME/.hunspell_en_US \
+    $HOME/.local/share/Anki2 \
     $HOME/.local/share/fonts/* \
     $HOME/Archive/Knowledge \
     $HOME/Projects \
