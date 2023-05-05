@@ -19,6 +19,7 @@ alias vi='vim'
 
 # General aliases
 alias e='echo'
+alias j='zi'                                         # Jump quickly to recently used directories
 alias u="cd .. && pwd && ls"                         # cd “up” to the parent directory
 alias w='tail -f /dev/null --pid=`pgrep rsync` && '  # Wait for a process
 alias rme='fd -te -X rm -r'                          # Remove empty directories and files
@@ -167,7 +168,7 @@ alias extl="fd -t l | grep -oE '\.(\w+)$' | sort | uniq -c | sort -nr"  # Print 
 
 # Navigation.
 # Directory jumping. “1” to jump to the last dir and so on.
-alias j='dirs -v'               # List recent dirs to jump to them quickly
+# alias j='dirs -v'               # List recent dirs to jump to them quickly
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Security
