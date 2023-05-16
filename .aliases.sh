@@ -18,7 +18,7 @@ alias tmux='TERM=xterm-256color tmux'
 alias vi='vim'
 
 # General aliases
-alias e='echo'
+alias e='emacsclient'                               # Edit file in existing Emacs server session
 alias j='zi'                                         # Jump quickly to recently used directories
 alias u="cd .. && pwd && ls"                         # cd “up” to the parent directory
 alias w='tail -f /dev/null --pid=`pgrep rsync` && '  # Wait for a process
