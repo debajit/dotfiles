@@ -39,4 +39,12 @@ zstyle ':vcs_info:git:*' formats '🎃 %b'
 
 NEWLINE=$'\n'
 # See color code previews here: https://i.stack.imgur.com/Vn0V3.png
+
+# Default prompt
 export PROMPT='${NEWLINE}%B%F{87}%5~%f%B%F{187} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+
+# Show host etc on a remote machine
+if [[ -d /usr/syno ]]; then
+  # Long prompt: "user at host in dir :emoji: branch"
+  export PROMPT='${NEWLINE}%F{183}%n%f %F{250}at%f %F{220}%m%f %F{250}in%f %B%F{87}%5~%f%B%F{187} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+fi
