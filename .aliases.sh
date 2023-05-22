@@ -266,6 +266,16 @@ case "$OSTYPE" in
         alias pc='sudo apt autoremove'                          # Package cleanup unused packages
         ;;
     esac
+
+    # Synology GNU/Linux
+    if [[ -d /usr/syno ]]; then
+      # Package management (Entware/opkg). See also https://github.com/Entware/Entware/wiki#using-repo
+      alias pi='sudo opkg install'
+      alias pq='sudo opkg find'             # Provide a quoted regex for more complex queries
+      alias pr='sudo opkg remove'
+      alias pu='sudo opkg upgrade'
+      alias pp='sudo opkg info'
+    fi
     ;;
 
   # macOS
