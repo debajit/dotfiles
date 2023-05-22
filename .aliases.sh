@@ -162,7 +162,7 @@ alias smn='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "n
 # ls
 alias ls='exa'
 alias la='exa -la'              # Show all files, including dotfiles
-alias ll='exa -l'               # Show long listing
+alias ll='exa -lg'              # Show long listing
 alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
 alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
 
