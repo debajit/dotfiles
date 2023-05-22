@@ -6,7 +6,7 @@ export MAILDIR="$HOME/.mail"
 case "$OSTYPE" in
   linux*) # GNU/Linux
 
-    distro=$(grep -ioP '^ID=\K.+' /etc/os-release) # See https://unix.stackexchange.com/a/671133
+    distro=$(grep -ioP '^ID=\K.+' /etc/os-release &> /dev/null) # See https://unix.stackexchange.com/a/671133
 
     case "${distro}" in
       arch)
