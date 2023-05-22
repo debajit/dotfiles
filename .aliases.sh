@@ -98,6 +98,8 @@ alias SD='systemctl disable'
 alias SR='systemctl restart'
 alias SL='systemctl list-units'
 alias SS='systemctl status'
+alias ST='systemctl start'
+alias SP='systemctl stop'
 
 # Backup
 backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
