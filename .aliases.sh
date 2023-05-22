@@ -156,6 +156,8 @@ alias BPD="${backup_prune_command/--stats --progress/-v --list --dry-run}" # Dry
 
 # Sync
 alias R="rclone -PL sync --exclude-from ~/.rclone-exclude.lst"
+alias smc='rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'
+alias smn='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni | less'
 
 # ls
 alias ls='exa'
