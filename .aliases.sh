@@ -218,7 +218,7 @@ case "$OSTYPE" in
     alias open="xdg-open"
 
     # Package management
-    distro=$(grep -ioP '^ID=\K.+' /etc/os-release &> /dev/null) # See https://unix.stackexchange.com/a/671133
+    distro=$(grep -ioP '^ID=\K.+' /etc/os-release 2> /dev/null) # See https://unix.stackexchange.com/a/671133
 
     case "${distro}" in
       arch)
