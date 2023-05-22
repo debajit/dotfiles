@@ -22,7 +22,7 @@ source_dotfile ".zshrc.local"      # Local config (e.g. workplace-specific)
 
 # Prompt
 # eval "$(starship init zsh)"        # Uncomment this line to enable Starship. I find it be slow on older machines, so I wrote my own prompt (next line)
-source_dotfile ".zsh-prompt"
+source_dotfile ".zsh-prompt.sh"
 
 source_dotfile ".env_vars.sh"                      # Environment variables
 source_dotfile ".env_vars.local.sh"                # Custom environment variables
