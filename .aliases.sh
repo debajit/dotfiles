@@ -19,10 +19,10 @@ alias vi='vim'
 
 # General aliases
 alias e='emacsclient'                               # Edit file in existing Emacs server session
-alias j='zi'                                         # Jump quickly to recently used directories
-alias u="cd .. && pwd && ls"                         # cd “up” to the parent directory
-alias w='tail -f /dev/null --pid=`pgrep rsync` && '  # Wait for a process
-alias rme='fd -te -X rm -r'                          # Remove empty directories and files
+alias j='zi'                                        # Jump quickly to recently used directories
+alias u="cd .. && pwd && ls"                        # cd “up” to the parent directory
+alias w='tail -f /dev/null --pid=`pgrep rsync` && ' # Wait for a process
+alias rme='fd -te -X rm -r'                         # Remove empty directories and files
 
 # Tools
 alias f='ranger'                  # File manager
