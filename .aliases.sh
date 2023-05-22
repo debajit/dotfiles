@@ -76,6 +76,10 @@ alias GRC='git remote add codeberg git@codeberg.org:debajit/${PWD:t}.git'
 alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
 alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
+# Docker
+alias DS='systemctl status --user docker'
+alias DP='docker ps'
+
 # Btrfs
 alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
 alias bm='findmnt -t btrfs'                      # btrfs mounts (useful to see runtime mounts like for TimeShift)
