@@ -43,8 +43,8 @@ NEWLINE=$'\n'
 # Default prompt
 export PROMPT='${NEWLINE}%B%F{87}%5~%f%B%F{187} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
 
-# Show host etc on a remote machine
-if [[ -d /usr/syno ]]; then
+# Use extended prompt for remote sessions
+if [[ -n "$SESSION_TYPE" ]]; then
   # Long prompt: "user at host in dir :emoji: branch"
-  export PROMPT='${NEWLINE}%F{183}%n%f %F{250}at%f %F{220}%m%f %F{250}in%f %B%F{87}%5~%f%B%F{187} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+  export PROMPT='${NEWLINE}%F{183}%n%f %F{250}at%f %F{215}%m%f %F{250}in%f %B%F{87}%5~%f%B%F{187} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
 fi
