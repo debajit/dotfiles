@@ -51,7 +51,7 @@ alias ro='git rebase origin/master'
 alias ru='git rebase "@{u}"'
 alias tip='git log -1 --name-status'
 alias x='git reset --hard'
-alias GP="git log --oneline | gum filter | awk '{ print \$1 }'" # Git: pick commit
+alias GP="git l | gum filter | awk '{ print \$2 }'" # Git: pick commit
 
 # Git Annex
 alias a='git annex'
