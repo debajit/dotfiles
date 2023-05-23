@@ -17,7 +17,7 @@ function source_dotfile() {
     source_file "${filename}"
 }
 
-source_dotfile ".zsh-config"       # My custom ZSH configuration
+source_dotfile ".zsh-config.sh"    # My custom ZSH configuration
 source_dotfile ".zshrc.local"      # Local config (e.g. workplace-specific)
 
 # Prompt

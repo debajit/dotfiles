@@ -63,13 +63,26 @@ setopt hist_ignore_dups         # Do not store duplicate commands
 setopt inc_append_history       # Add command to history immediately
 setopt share_history            # Share history across zsh sessions
 
+
+#-----------------------------------------------------------------------
+# Text editing
+#-----------------------------------------------------------------------
+
 # Delete backwards upto / and other delimiters instead of deleting
 # entire paths. See https://superuser.com/a/696932/2041
 autoload -Uz select-word-style
 select-word-style bash
 
+
+#-----------------------------------------------------------------------
 # Autocorrect. Try to correct the spelling of commands
+#-----------------------------------------------------------------------
+
 setopt correct
+
+#-----------------------------------------------------------------------
+# Directory navigation
+#-----------------------------------------------------------------------
 
 # Type directory name to auto-cd to it
 setopt autocd
@@ -80,3 +93,14 @@ setopt autocd
 DIRSTACKSIZE=20
 setopt auto_pushd               # Push old dir into dirstack
 setopt pushd_ignore_dups        # Do not push duplicate dir names
+
+#-----------------------------------------------------------------------
+# URL quoting. See
+# - https://emacs.ch/@galdor/110016202546305758
+#-----------------------------------------------------------------------
+
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
+
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
