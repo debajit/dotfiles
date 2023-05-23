@@ -1,9 +1,3 @@
 # Personal scripts
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/bin" # TODO: Remove this in favor of the above line
-
-# Ruby Gems. See https://wiki.archlinux.org/title/Ruby#Setup
-if command -v ruby &> /dev/null; then
-  export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-  export PATH="$PATH:$GEM_HOME/bin"
-fi
