@@ -5,6 +5,9 @@ export MAILDIR="$HOME/.mail"
 # Docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
+# Gum
+export GUM_FILTER_INDICATOR='⏺'
+
 # OS-specific customization
 case "$OSTYPE" in
   linux*) # GNU/Linux
