@@ -16,6 +16,7 @@
 alias -g L='| less'
 alias -g LL='--color=always | less -R'
 alias -g G='| grep'
+alias -g A="| awk '{ print \$1 }'"
 alias -g C='| wc -l'
 alias -g T='| column -t'
 alias -g J='| jq'
