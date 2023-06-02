@@ -42,6 +42,7 @@ alias ds='git diff --staged'
 alias p='git pull --rebase'
 alias q="git q"                 # Quick short git log
 alias re='git rebase'
+alias gc='git clone'
 alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
