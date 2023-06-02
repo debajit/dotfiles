@@ -18,7 +18,6 @@ function source_dotfile() {
 }
 
 source_dotfile ".zsh-config.sh"    # My custom ZSH configuration
-source_dotfile ".zshrc.local"      # Local config (e.g. workplace-specific)
 
 # Prompt
 # eval "$(starship init zsh)"        # Uncomment this line to enable Starship. I find it be slow on older machines, so I wrote my own prompt (next line)
@@ -39,5 +38,6 @@ source_dotfile ".paths"                            # Global path settings
 source_dotfile ".paths.local"                      # Global path settings
 source_dotfile '.app-config.sh'
 source_dotfile ".nix-profile/etc/profile.d/nix.sh" # Setup nix
+source_dotfile ".zshrc.local.sh"                   # Local config (e.g. workplace-specific)
 
 cal
