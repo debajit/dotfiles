@@ -162,11 +162,11 @@ alias smc='rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/
 alias smn='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni | less'
 
 # ls
-alias ls='exa'
-alias la='exa -la'              # Show all files, including dotfiles
-alias ll='exa -lg'              # Show long listing
-alias lk='exa -l --sort size'   # Long listing by size, largest size at the bottom
-alias lt='exa -l --sort newest' # Lists sorted by date, most recent last
+alias ls='exa --group-directories-first'
+alias la='exa -lga'              # Show all files, including dotfiles
+alias ll='exa -lg'               # Show long listing
+alias lk='exa -lg --sort size'   # Long listing by size, largest size at the bottom
+alias lt='exa -lg --sort newest' # Lists sorted by date, most recent last
 
 # Development
 alias ys='yarn start'
