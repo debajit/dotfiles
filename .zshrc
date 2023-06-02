@@ -34,6 +34,7 @@ source_dotfile ".aliases-functions.sh"             # Functions
 source_dotfile ".aliases-radio.sh"                 # Play radio from the command line
 source_dotfile ".aliases.private.sh"               # Private aliases
 source_dotfile ".aliases.local.sh"                 # Local aliases
+source_dotfile ".keys.sh"                          # Key chords and keybindings for various common shell operations
 source_dotfile ".paths"                            # Global path settings
 source_dotfile ".paths.local"                      # Global path settings
 source_dotfile '.app-config.sh'
