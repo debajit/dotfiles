@@ -6,7 +6,9 @@ bindkey -s '^[R' 'source ~/.zshrc\n'                       # Alt+Shift+r  =>  Re
 bindkey -s '^[l' 'lt\n'                                    # Alt+l  =>  ls
 bindkey -s '^[u' 'cd ..\n'                                 # Alt+u  =>  cd ..
 bindkey -s '^[-' 'cd -\n'                                  # Alt+-  =>  cd -    (Previous directory)
-bindkey -s '^[j' 'zi\n'                                    # Alt+j  =>  zi      (zoxide recent directory picker)
+if [[ $+commands[zoxide] ]]; then
+  bindkey -s '^[j' 'dirs -v\n'                             # Alt+j => dirs -v (if zoxide is not installed)
+fi
 
 # Text insertion
 bindkey -s '^[C' 'cd '                                     # Alt+Shift+c  =>  Insert text: “cd ”
