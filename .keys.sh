@@ -26,3 +26,4 @@ bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Webs
 # Commands
 bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
 bindkey -s '^[S' 'espanso restart\n'                       # Alt+Shift+s => espanso restart
+bindkey -s '^[^L' 'git-log-fzf\n'                          # Ctrl+Alt+l  => git commit browser (with fzf)
