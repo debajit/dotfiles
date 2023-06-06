@@ -6,7 +6,7 @@ bindkey -s '^[R' 'source ~/.zshrc\n'                       # Alt+Shift+r => Relo
 bindkey -s '^[l' 'lt\n'                                    # Alt+l => ls
 bindkey -s '^[u' 'cd ..\n'                                 # Alt+u => cd ..
 bindkey -s '^[-' 'cd -\n'                                  # Alt+- => cd -    (Previous directory)
-if [[ $+commands[zoxide] ]]; then
+if (( $+commands[zoxide] )); then
   bindkey -s '^[j' 'zi\n'                                  # Alt+j => zi (zoxide recent directory picker)
 else
   bindkey -s '^[j' 'dirs -v\n'                             # Alt+j => dirs -v (if zoxide is not installed)
