@@ -14,7 +14,7 @@ fi
 
 # Text insertion
 bindkey -s '^[C' 'cd '                                     # Alt+Shift+c => Insert text: “cd ”
-bindkey -s '^[D' 'cd Downloads\n'                          # Alt+Shift+d => Insert text: “~/.”
+bindkey -s '^[D' 'cd ~/Downloads\n'                        # Alt+Shift+d => cd ~/Downloads
 bindkey -s '^[G' ' | rg -S '                               # Alt+Shift+g => | rg -S     (grep with smart-case)
 bindkey -s '^[L' ' | less '                                # Alt+Shift+l => | less      (page)
 
