@@ -14,6 +14,9 @@ sh:**/._*
 # Git
 sh:**/.git/
 
+# JavaScript
+*/node_modules/
+
 # ZSH sessions
 */.zsh_sessions/
 
