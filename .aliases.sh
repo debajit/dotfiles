@@ -95,13 +95,13 @@ alias F="find -type f -iname '*.ext'"
 alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
 alias S='systemctl'
-alias SE='systemctl enable'
-alias SD='systemctl disable'
-alias SR='systemctl restart'
-alias SL='systemctl list-units'
-alias SS='systemctl status'
-alias ST='systemctl start'
-alias SP='systemctl stop'
+alias se='systemctl enable'
+alias sd='systemctl disable'
+alias sr='systemctl restart'
+alias sl='systemctl list-units'
+alias ss='systemctl status'
+alias st='systemctl start'
+alias sp='systemctl stop'
 
 # Backup
 backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
@@ -198,7 +198,7 @@ alias isp='curl ifconfig.co/json | jq .asn_org' # Show your ISP (experimental)
 alias start-web-server='python3 -m http.server' # Start a web server from current dir. Port optional: `start-web-server 1111`
 
 # YouTube
-yt() { mpv ytdl://ytsearch:"$*" }                           # YouTube video
+yt() { mpv --ytdl-format="bestvideo[height<=?1080]+bestaudio/best"  ytdl://ytsearch:"$*" }                           # YouTube video
 yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
 
 # Aliases with OS-specific implementations
