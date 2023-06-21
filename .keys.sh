@@ -1,23 +1,29 @@
 # Shell operations
-bindkey -s '^[R' 'source ~/.zshrc\n'                       # Alt+Shift+r => Reload zsh configuration
+bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configuration
 
 # Single-key shortcuts. (Ensure that these do not conflict with the
 # shell’s Emacs-style Meta keybindings you care about).
-bindkey -s '^[l' 'lt\n'                                    # Alt+l => ls
-bindkey -s '^[u' 'cd ..\n'                                 # Alt+u => cd ..
-bindkey -s '^[-' 'cd -\n'                                  # Alt+- => cd -    (Previous directory)
-bindkey -s '^[[114;9u' 'start-server\n'                    # Super+r => run this program or start the server (context-dependent script)
+bindkey -s '^[l' 'lt\n'                    # Alt+l => ls
+bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
+bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous directory)
+
+# Development related
+bindkey -s '^[[114;9u'  'run-app\n'        # Super+r       => Run this program or start the server (polymorphically)
+bindkey -s '^[[108;9u'  'git ll\n'         # Super+l       => git ll
+bindkey -s '^[[108;10u' 'git-log-fzf\n'    # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
+bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
+
 if (( $+commands[zoxide] )); then
-  bindkey -s '^[j' 'zi\n'                                  # Alt+j => zi (zoxide recent directory picker)
+  bindkey -s '^[j' 'zi\n'                  # Alt+j => zi (zoxide recent directory picker)
 else
-  bindkey -s '^[j' 'dirs -v\n'                             # Alt+j => dirs -v (if zoxide is not installed)
+  bindkey -s '^[j' 'dirs -v\n'             # Alt+j => dirs -v (if zoxide is not installed)
 fi
 
 # Text insertion
-bindkey -s '^[C' 'cd '                                     # Alt+Shift+c => Insert text: “cd ”
-bindkey -s '^[D' 'cd ~/Downloads\n'                        # Alt+Shift+d => cd ~/Downloads
-bindkey -s '^[G' ' | rg -S '                               # Alt+Shift+g => | rg -S     (grep with smart-case)
-bindkey -s '^[L' ' | less '                                # Alt+Shift+l => | less      (page)
+bindkey -s '^[C' 'cd '                     # Alt+Shift+c => Insert text: “cd ”
+bindkey -s '^[D' 'cd ~/Downloads\n'        # Alt+Shift+d => cd ~/Downloads
+bindkey -s '^[G' ' | rg -S '               # Alt+Shift+g => | rg -S     (grep with smart-case)
+bindkey -s '^[L' ' | less '                # Alt+Shift+l => | less      (page)
 
 # Jump to directory
 bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
@@ -27,7 +33,6 @@ bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Webs
 # Commands
 bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
 bindkey -s '^[S' 'espanso restart\n'                       # Alt+Shift+s => espanso restart
-bindkey -s '^[^L' 'git-log-fzf\n'                          # Ctrl+Alt+l  => git commit browser (with fzf)
-bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'       # Alt+Shift+nm => Sync music to nas
-bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'    # Ctrl+Alt+nm  => Sync music to cloud
-bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # Alt+Shift+np => Sync pictures to nas
+bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'       # M-s M-m      => Sync music to nas
+bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'      # M-S-s M-S-m  => Sync music to cloud
+bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
