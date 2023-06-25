@@ -36,3 +36,8 @@ bindkey -s '^[S' 'espanso restart\n'                       # Alt+Shift+s => espa
 bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'       # M-s M-m      => Sync music to nas
 bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'      # M-S-s M-S-m  => Sync music to cloud
 bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
+
+# ssh
+bindkey -s '^[s^[n' 'ssh nas\n'               # M-s, M-n => ssh nas
+bindkey -s '^[s^[s' 'mosh tty.sdf.org\n'      # M-s, M-s => mosh tty.sdf.org
+bindkey -s '^[s^[t' 'mosh tilde.institute\n'  # M-s, M-s => mosh tilde.institute
