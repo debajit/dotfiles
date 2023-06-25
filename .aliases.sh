@@ -22,6 +22,7 @@ alias e='emacsclient'                               # Edit file in existing Emac
 alias j='zi'                                        # Jump quickly to recently used directories
 alias u="cd .. && pwd && ls"                        # cd “up” to the parent directory
 alias w='tail -f /dev/null --pid=`pgrep rsync` && ' # Wait for a process
+alias wa='tail -f /dev/null --pid=`pgrep aria2c` && '  # Wait for a process
 alias rme='fd -te -X rm -r'                         # Remove empty directories and files
 
 # Tools
