@@ -66,7 +66,7 @@ alias an='git annex find --not --in b2'
 alias as='git annex sync'
 alias au='git annex unlock'
 alias aw='git annex whereis'
-alias ax='git annex export main --to nas -J24'
+alias ax='git annex export HEAD --to nas -J24'
 
 # Git remotes
 alias GCS="git clone git@git.sr.ht:~debajit/"
