@@ -272,9 +272,12 @@ case "$OSTYPE" in
 
       ubuntu)
         # Package management
+	alias pq='apt search'                                   # Package search
+	alias pi='sudo apt install'                             # Package install
         alias pcu='sudo apt update && apt list --upgradable'    # Package check for updates
         alias pu='sudo apt upgrade'                             # Package upgrade (all)
         alias pc='sudo apt autoremove'                          # Package cleanup unused packages
+	alias pr='sudo apt remove'                              # Package remove
         ;;
     esac
 
