@@ -104,3 +104,14 @@ zle -N bracketed-paste bracketed-paste-url-magic
 
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
+
+#-----------------------------------------------------------------------
+# TrueColor fallback
+#-----------------------------------------------------------------------
+
+# For terminals without TrueColor (24-bit color, or 10-bit color)
+# support, fall back to the nearest color in the 256-color palette.
+# (This can happen on older versions of mosh, for instance). See
+# https://wiki.archlinux.org/title/zsh#Colors
+#
+# [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
