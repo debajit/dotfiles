@@ -16,6 +16,7 @@ alias feh='feh -Zr'             # Fast image viewer
 alias mkdir='mkdir -p'
 alias tmux='TERM=xterm-256color tmux'
 alias vi='vim'
+[[ "$TERM" == 'xterm-kitty' ]] && alias ssh='kitty +kitten ssh'
 
 # General aliases
 alias e='emacsclient'                               # Edit file in existing Emacs server session
