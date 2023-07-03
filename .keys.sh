@@ -5,6 +5,7 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 # with the shell’s Emacs-style Meta keybindings you care about).
 bindkey -s '^[l' 'lt\n'                    # Alt+l => ls
 bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
+bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
 bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous directory)
 bindkey -s '^[e' 'echo '                   # Alt+e => echo
 bindkey -s '^[E' 'echo $'                  # Alt+e => echo $
