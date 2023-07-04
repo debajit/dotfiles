@@ -1,14 +1,12 @@
 #
 # Makefile
 #
-# Copies all the dotfiles in this directory to $HOME.
+# Symlinks all the dotfiles in this directory to $HOME.
 #
 # USAGE:
 #
-#   INSTALLATION. Either of the following will work:
+#   INSTALLATION:
 #     make
-#     make -j     # Run in parallel
-#     make install
 #
 #   UNINSTALLATION:
 #     make uninstall
@@ -19,8 +17,10 @@ SOURCE_FILES = $(shell git ls-files ':!:Makefile' ':!:LICENSE' ':!:README.md')
 INSTALL_DIR = ${HOME}
 TARGET_FILES = $(addprefix $(INSTALL_DIR)/, $(SOURCE_FILES))
 
-.PHONY: install
-install: $(TARGET_FILES)
+# Install all files using GNU Stow
+.PHONE: all
+all:
+	stow -vRt ~ */
 
 # See “Static Pattern Rules”
 # https://www.gnu.org/software/make/manual/make.html#Rule-Example
