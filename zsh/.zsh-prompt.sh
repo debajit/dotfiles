@@ -64,6 +64,7 @@ NEWLINE=$'\n'
 # Syntax documentation: https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 # man zshmisc
 export PROMPT='${NEWLINE}%B%F{#5efcfc}%5~%f%B%F{#f6c177} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+export RPROMPT='%F{#43a0bc}%L%f' # Show shell nesting depth $SHLVL
 
 # Use extended prompt for remote sessions
 if [[ -n "$SESSION_TYPE" ]]; then
