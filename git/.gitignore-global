@@ -1,3 +1,6 @@
+# Backup files
+*.bak
+
 # OS-Generated Files
 .DS_Store
 .Trashes
