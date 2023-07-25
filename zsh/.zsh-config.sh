@@ -42,6 +42,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
 # Show menu when there are several completions to choose from
 zstyle ':completion:*' menu select
 
+# Better SSH/Rsync/SCP Autocomplete
+# Adapted from https://www.codyhiar.com/blog/zsh-autocomplete-with-ssh-config-file/
+zstyle ':completion:*:(scp|rsync|kitty +kitten ssh):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
+zstyle ':completion:*:(ssh|scp|rsync|kitty +kitten ssh):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+zstyle ':completion:*:(ssh|scp|rsync|kitty +kitten ssh):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+
 # Bind Shift+Tab for the previous completion (e.g. in a menu selection)
 # See https://unix.stackexchange.com/a/84869/141850
 zmodload zsh/complist
