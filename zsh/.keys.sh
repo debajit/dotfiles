@@ -33,6 +33,7 @@ bindkey -s '^[L' ' | less '                # Alt+Shift+l => | less      (page)
 bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
 bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /tmp
 bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
+bindkey -s '^[P' 'cd ~/Archive/Pictures/Photography/\n'    # Alt+Shift+p => Photography
 
 # Commands
 bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
