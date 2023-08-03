@@ -1,0 +1,67 @@
+# Rosé Pine Moon Color Scheme.
+#
+# Designed to be used with a TrueColor terminal
+# (like Kitty) running the Rose Pine Moon Theme.
+#
+# by: Debajit Adhikary (https://github.com/debajit)
+# colors from: https://rosepinetheme.com/
+#
+# Colors:
+#
+# (Add 8 to get the bolder fg / slightly brighter bg)
+#
+# Black: 0
+# Red: 1
+# Blue: 2
+# Yellow: 3
+# Cyan: 4
+# Purple: 5
+# Orange: 6
+# White: 7
+# Gray: 8
+
+# Window
+
+set color_win_bg=default
+# set color_win_fg=252
+set color_win_fg=default
+
+set color_win_title_bg=8
+set color_win_title_fg=15
+
+set color_cmdline_bg=default
+set color_cmdline_fg=5
+
+# set color_separator=2
+set color_separator=60
+
+# Bottom status
+
+# Currently playing
+set color_titleline_bg=11
+set color_titleline_fg=8
+
+# Song details and info
+set color_statusline_bg=8
+set color_statusline_fg=15
+
+# Text
+set color_win_cur=3
+set color_win_dir=1
+
+# Menu
+set color_win_sel_bg=9
+set color_win_sel_fg=8
+
+set color_win_inactive_sel_bg=0
+set color_win_inactive_sel_fg=1
+
+set color_win_cur_sel_bg=11
+set color_win_cur_sel_fg=8
+
+set color_win_inactive_cur_sel_bg=0
+set color_win_inactive_cur_sel_fg=11
+
+# Messages
+set color_error=196
+set color_info=11
