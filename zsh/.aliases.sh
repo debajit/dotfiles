@@ -249,8 +249,8 @@ case "$OSTYPE" in
 
         # Audio (PipeWire. See https://wiki.archlinux.org/title/PipeWire)
         alias ao='pactl list sinks short | column -t'                                 # Audio output
-        alias ap='pactl set-default-sink raop_sink.Bose-SoundTouch-20.local.ipv4'     # Airplay
-        alias al='pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo'  # Use local audio output
+        alias ap='pactl set-default-sink raop_sink.'     # Airplay
+        alias al='pactl set-default-sink alsa_output.'   # Use local audio output
         alias ar='systemctl --user restart pipewire'                                  # Restart PipeWire user service
         ;;
 
