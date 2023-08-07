@@ -248,10 +248,10 @@ case "$OSTYPE" in
         alias pc='pacman -Qtdq | sudo pacman -Rns -' # Package cleanup unused packages
 
         # Audio (PipeWire. See https://wiki.archlinux.org/title/PipeWire)
-        alias ao='pactl list sinks short | column -t'                                 # Audio output
+        alias ao='pactl list sinks short | column -t'    # Audio output
         alias ap='pactl set-default-sink raop_sink.'     # Airplay
         alias al='pactl set-default-sink alsa_output.'   # Use local audio output
-        alias ar='systemctl --user restart pipewire'                                  # Restart PipeWire user service
+        alias ar='systemctl --user restart pipewire'     # Restart PipeWire user service
         ;;
 
       manjaro)
@@ -273,12 +273,12 @@ case "$OSTYPE" in
 
       ubuntu)
         # Package management
-	alias pq='apt search'                                   # Package search
-	alias pi='sudo apt install'                             # Package install
+        alias pq='apt search'                                   # Package search
+        alias pi='sudo apt install'                             # Package install
         alias pcu='sudo apt update && apt list --upgradable'    # Package check for updates
         alias pu='sudo apt upgrade'                             # Package upgrade (all)
         alias pc='sudo apt autoremove'                          # Package cleanup unused packages
-	alias pr='sudo apt remove'                              # Package remove
+        alias pr='sudo apt remove'                              # Package remove
         ;;
     esac
 
