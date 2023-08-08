@@ -18,18 +18,18 @@ bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
 bindkey -s '^[[100;9u'  'git d\n'          # Super+d       => git diff
 
 if (( $+commands[zoxide] )); then
-  bindkey -s '^[j' 'zi\n'                  # Alt+j => zi (zoxide recent directory picker)
+  bindkey -s '^[[101;9u' 'zi\n'            # s-e => zi (zoxide recent directory picker)
 else
-  bindkey -s '^[j' 'dirs -v\n'             # Alt+j => dirs -v (if zoxide is not installed)
+  bindkey -s '^[[101;9u' 'dirs -v\n'       # s-e => dirs -v (if zoxide is not installed)
 fi
 
 # Text insertion
-bindkey -s '^[C' 'cd '                     # Alt+Shift+c => Insert text: “cd ”
 bindkey -s '^[D' 'cd ~/Downloads\n'        # Alt+Shift+d => cd ~/Downloads
 bindkey -s '^[G' ' | rg -S '               # Alt+Shift+g => | rg -S     (grep with smart-case)
 bindkey -s '^[L' ' | less '                # Alt+Shift+l => | less      (page)
 
 # Jump to directory
+bindkey -s '^[C' 'cd ~/Projects/Setup/dotfiles\n'          # Alt+Shift+c => dotfiles (configuration)
 bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
 bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /tmp
 bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
@@ -41,6 +41,10 @@ bindkey -s '^[S' 'espanso restart\n'                       # Alt+Shift+s => espa
 bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'       # M-s M-m      => Sync music to nas
 bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'      # M-S-s M-S-m  => Sync music to cloud
 bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
+
+# Logs
+bindkey -s '^[j^[a' 'journalctl -eu pipewire --user'  # M-J M-A  =>  Journal for audio server
+bindkey -s '^[j^[c' 'journalctl -eu cronie'           # M-J M-C  =>  Journal for cron
 
 # ssh
 bindkey -s '^[s^[n' 'ssh nas\n'               # M-s, M-n => ssh nas
