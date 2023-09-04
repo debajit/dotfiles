@@ -18,11 +18,11 @@ bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
 bindkey -s '^[[100;9u'  'git d\n'          # Super+d       => git diff
 
 if (( $+commands[zoxide] )); then
-  # bindkey -s '^[[101;9u' 'zi\n'          # s-e => zi (zoxide recent directory picker)
-  bindkey -s '^[j' 'zi\n'                  # M-e => zi (zoxide recent directory picker)
+  bindkey -s '^[j' 'zi\n'                  # M-j => zi (zoxide recent directory picker)
   bindkey -s '^[[112;10u' 'zi\n'           # C-P => zi (zoxide recent directory picker) (to match my Emacs projects keybinding)
 else
-  bindkey -s '^[[101;9u' 'dirs -v\n'       # s-e => dirs -v (if zoxide is not installed)
+  bindkey -s '^[j' 'dirs -v\n'             # M-j => dirs -v (if zoxide is not installed)
+  bindkey -s '^[[112;10u' 'dirs -v\n'      # C-P => dirs -v
 fi
 
 # Text insertion
@@ -45,8 +45,8 @@ bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Arch
 bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
 
 # Logs
-bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A  =>  Journal for audio server
-bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C  =>  Journal for cron
+bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  Journal for audio server
+bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C (all-caps) =>  Journal for cron
 
 # ssh
 bindkey -s '^[s^[n' 'ssh nas\n'               # M-s, M-n => ssh nas
