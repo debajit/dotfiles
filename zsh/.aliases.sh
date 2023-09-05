@@ -59,7 +59,9 @@ alias GP="git l | gum filter | awk '{ print \$2 }'" # Git: pick commit
 # Git Annex
 alias a='git annex'
 alias aa='git annex add -J24'
-alias ac='git annex find --not --in b2 --print0 | xargs -0 git annex copy --to b2 -J6'
+alias ac='git annex copy --to b2 -J6'
+alias acb='git annex find --not --in b2 --print0 | xargs -0 git annex copy --to b2 -J6'
+alias acn='git annex find --not --in nas --print0 | xargs -0 git annex copy --to nas -J6'
 alias ad='git annex drop -J6'
 alias ae='git annex enableremote'
 alias ag='git annex get -J6'
@@ -69,6 +71,11 @@ alias as='git annex sync'
 alias au='git annex unlock'
 alias aw='git annex whereis'
 alias ax='git annex export HEAD --to nas -J24'
+alias aix='git annex initremote nas \
+    type=rsync \
+    rsyncurl=nas:/volume2/Archive/Software \
+    encryption=none \
+    exporttree=yes'
 
 # Git remotes
 alias GCS="git clone git@git.sr.ht:~debajit/"
