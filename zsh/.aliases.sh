@@ -11,7 +11,7 @@
 # Use saner defaults
 alias cp='cp -iv'
 alias df='df -h'                # Free disk space
-alias du='du -khs'              # Disk usage
+alias du='du -hs'               # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
 alias mkdir='mkdir -p'
 alias vi='vim'
