@@ -2,10 +2,10 @@
 # Aliases.
 #
 # Most of the one-letter or two-letter aliases are generally meant to
-# be used by pressing a Tab after typing them to be able to change
-# their arguments on the fly and have a more meaningful command
-# history. (See .zsh-config in this repo for the Zsh Tab
-# autocompletion features configured).
+# be used by pressing Tab after typing them to be able to change their
+# arguments on the fly and have a more meaningful command history.
+# (See .zsh-config in this repo for the Zsh Tab autocompletion
+# features configured).
 #
 
 # Use saner defaults
@@ -18,42 +18,43 @@ alias vi='vim'
 [[ "$TERM" == 'xterm-kitty' ]] && alias ssh='kitty +kitten ssh'
 
 # General aliases
-alias e='emacsclient'                               # Edit file in existing Emacs server session
-alias j='journalctl'                                # Jump quickly to recently used directories
-alias u="cd .. && pwd && ls"                        # cd “up” to the parent directory
-alias w='tail -f /dev/null --pid=`pgrep rsync` && ' # Wait for a process
-alias wa='tail -f /dev/null --pid=`pgrep aria2c` && '  # Wait for a process
-alias rme='fd -te -X rm -r'                         # Remove empty directories and files
+alias e='emacsclient'         # Edit file in existing Emacs server session
+alias j='journalctl'
+alias u="cd .. && pwd && ls"  # cd “up” to the parent directory. Better is Alt+- (see .keys.sh)
+alias rme='fd -te -X rm -r'   # Remove empty directories and files
+alias tm='tmux a -d'          # Connect to tmux session
 
-# Tools
+# Wait for a process to finish, and then maybe start another
+alias w='tail -f /dev/null --pid=`pgrep rsync` && ' # See .keys.sh for key chords around this
+
+# Misc Tools
 alias f='ranger'                  # File manager
-alias m="mpv"                     # Movie player
 alias i="feh"                     # Image viewer
-alias r='rsync -aPvhs --exclude-from ~/.rsync-exclude.lst'
-alias rl='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst'
-alias kdiff='kitty +kitten diff'  # See https://sw.kovidgoyal.net/kitty/kittens/diff.html
+alias ir='i -z'                   # Display images, in random order
+alias kdiff='kitty +kitten diff'  # Side-by-side diff. See https://sw.kovidgoyal.net/kitty/kittens/diff.html. In a git repo, use git difftool which is configured to use kitty-diff.
 alias icat="kitty +kitten icat"   # See https://sw.kovidgoyal.net/kitty/kittens/icat/
 
 # Git
 alias b='git branch'
 alias c='git checkout'
-alias s='git status'
-alias d='git diff'
+alias s='git status'            # Command+s is faster (see keybindings in .keys.sh)
+alias d='git diff'              # Command+d is faster (see keybindings in .keys.sh)
 alias ds='git diff --staged'
 alias p='git pull --rebase'
-alias q="git q"                 # Quick short git log
+alias q="git q"                 # Quick short git log. For most repos, Command+L (detailed log) or Command+Shift+L (commit picker) is faster and more informative (see .keys.sh)
 alias re='git rebase'
 alias gc='git clone'
 alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
+alias gr='git remote --verbose'
 alias fu='git fetch origin'     # Inspired by Magit’s shortcuts
 alias ro='git rebase origin/master'
 alias ru='git rebase "@{u}"'
 alias tip='git log -1 --name-status'
 alias x='git reset --hard'
-alias GP="git l | gum filter | awk '{ print \$2 }'" # Git: pick commit
+alias GP="git l | gum filter | awk '{ print \$2 }'" # Git: pick commit. Command+Shift+L (commit browser and picker) is more powerful (see .keys.sh)
 
 # Git Annex
 alias a='git annex'
@@ -99,9 +100,9 @@ alias bu='btrfs filesystem usage'                # btrfs disk usage
 alias DF='btrfs filesystem usage . | grep Free'  # btrfs free space available on disk
 
 # Misc
-alias F="find -type f -iname '*.ext'"
-alias FE="find -type f -iname '*.ext' -exec COMMAND --OPTIONS {} \;"
 alias Q='cal -3 && date'        # Quick overview
+
+# Systemctl
 alias S='systemctl'
 alias se='systemctl enable'
 alias sd='systemctl disable'
@@ -111,29 +112,12 @@ alias ss='systemctl status'
 alias st='systemctl start'
 alias sp='systemctl stop'
 
+# Sync
+alias r='rsync -aPvhs --exclude-from ~/.rsync-exclude.lst'
+alias rl='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst'
+alias R="rclone -PL sync --exclude-from ~/.rclone-exclude.lst"
+
 # Backup
-backup_command='borg create -v --stats --progress --exclude-from $HOME/.borg-exclude.lst ::archive-{hostname}-{now} \
-    $HOME/.emacs.d \
-    $HOME/.zsh* \
-    $HOME/.aliases* \
-    $HOME/.env_vars* \
-    $HOME/.paths* \
-    $HOME/.app-config* \
-    $HOME/.config/cmus/* \
-    $HOME/.config/espanso/* \
-    $HOME/.config/ranger/* \
-    $HOME/.config/rclone/* \
-    $HOME/{.config,.local/share}/liferea \
-    $HOME/.hunspell_en_US \
-    $HOME/.local/share/Anki2 \
-    $HOME/.local/share/fonts/* \
-    $HOME/Archive/Knowledge \
-    $HOME/Projects \
-    /etc/hosts \
-    /etc/fstab'
-alias B="${backup_command}"       # Backup
-alias BC="${backup_command}"      # Since B may be overridden in .aliases.local.sh
-alias BD="${backup_command/--stats --progress/--list --dry-run}"
 alias BL='borg list --last 10'
 alias BLG="borg list --last 10 -a '*gnu*'"
 alias BLW="borg list --last 10 -a '*tw*'"
@@ -145,29 +129,6 @@ alias TC='sudo timeshift --check'
 # to extract only paths with the substring 'snippets'
 alias BR='borg extract --list ::'
 alias BRD='borg extract --list --dry-run ::'
-
-# Prune backups
-backup_prune_command='borg prune --stats --progress \
-    --glob-archives "archive-{hostname}-*" \
-    --keep-last=5 \
-    --keep-daily=7 \
-    --keep-weekly=4 \
-    --keep-monthly=6 \
-    --keep-yearly=1'
-alias BP="${backup_prune_command}"                                         # Prune backups
-alias BPD="${backup_prune_command/--stats --progress/-v --list --dry-run}" # Dry-prune backups
-# TODO: Add `borg compact` aliases
-
-# alias B='duplicacy backup -threads 12 -stats'                                         # Backup
-# alias D='duplicacy backup -threads 12 -dry-run -stats'                                # Dry-run backup
-# alias R='duplicacy restore -ignore-owner -threads 12 -r'                              # Restore
-# alias RA='duplicacy restore -ignore-owner -overwrite -delete -threads 12 -r'          # Restore all
-# alias BP='duplicacy prune -threads 12 -keep 360:360 -keep 30:180 -keep 7:30 -keep 1:7' # Prune
-
-# Sync
-alias R="rclone -PL sync --exclude-from ~/.rclone-exclude.lst"
-alias smc='rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'
-alias smn='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni | less'
 
 # ls
 alias ls='exa --group-directories-first'
@@ -192,9 +153,6 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 # Security
 alias en='gpg --symmetric --cipher-algo AES256' # Encrypt
 
-# Shell
-alias Z='source "${HOME}/.zshrc"' # Reload ZSH configuration
-
 # SSH
 alias sshg="ssh-keygen -t ed25519"
 alias ssha="ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519_APP -C ${USER}_APP@${HOSTNAME}"
@@ -206,8 +164,8 @@ alias isp='curl ifconfig.co/json | jq .asn_org' # Show your ISP (experimental)
 alias start-web-server='python3 -m http.server' # Start a web server from current dir. Port optional: `start-web-server 1111`
 
 # YouTube
-yt() { mpv --ytdl-format="bestvideo[height<=?1080]+bestaudio/best"  ytdl://ytsearch:"$*" }                           # YouTube video
-yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }  # YouTube audio
+yt() { mpv --ytdl-format="bestvideo[height<=?1080]+bestaudio/best"  ytdl://ytsearch:"$*" }  # YouTube video
+yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }                                  # YouTube audio
 
 # Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
@@ -310,7 +268,3 @@ case "$OSTYPE" in
     alias gk='sudo spctl --master-disable' # Disable GateKeeper
     ;;
 esac
-
-# Miscellaneous application-specific aliases (experimental)
-alias ir='i -z'                    # Display images, in random order
-alias tm='tmux a -d'               # Connect to tmux session
