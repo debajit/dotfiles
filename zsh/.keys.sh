@@ -16,7 +16,9 @@ bindkey -s '^[[108;9u'  'git ll\n'         # Super+l       => git ll
 bindkey -s '^[[108;10u' 'git-log-fzf\n'    # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
 bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
 bindkey -s '^[[100;9u'  'git d\n'          # Super+d       => git diff
+bindkey -s '^[[98;9u'   'git branch -avv\n' # Super+b      => git branch -avv
 
+# Recent directory picker
 if (( $+commands[zoxide] )); then
   bindkey -s '^[j' 'zi\n'                  # M-j => zi (zoxide recent directory picker)
   bindkey -s '^[[112;10u' 'zi\n'           # C-P => zi (zoxide recent directory picker) (to match my Emacs projects keybinding)
@@ -37,11 +39,20 @@ bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /
 bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
 bindkey -s '^[P' 'cd ~/Archive/Pictures/Photography/\n'    # Alt+Shift+p => Photography
 
+# Wait for a process to finish, and then maybe start another
+bindkey -s '^[w^[a' 'tail -f /dev/null --pid=`pgrep aria2c` && aria2c'  # Wait for aria2c
+bindkey -s '^[w^[r' 'tail -f /dev/null --pid=`pgrep rsync` && rsync'    # Wait for rsync
+bindkey -s '^[w^[y' 'tail -f /dev/null --pid=`pgrep mpv` && yta'        # Wait for yta (CLI YouTube audio streaming)
+
 # Commands
 bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
 bindkey -s '^[S' 'espanso restart\n'                       # Alt+Shift+s => espanso restart
-bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'       # M-s M-m      => Sync music to nas
-bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'      # M-S-s M-S-m  => Sync music to cloud
+
+# Sync
+bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'         # M-s M-m      => Sync music to nas
+bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'        # M-S-s M-S-m  => Sync music to cloud
+bindkey -s '^[[115;13u^[[109;13u' 'time rsync -avhsWL --progress --no-perms --no-owner --no-group --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ ~/Mounts/Flacbox/Music/ -ni'  # C-s-s C-s-m  => Sync music to phone (via USB cable)
+
 bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
 
 # Logs
@@ -49,6 +60,6 @@ bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  J
 bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C (all-caps) =>  Journal for cron
 
 # ssh
-bindkey -s '^[s^[n' 'ssh nas\n'               # M-s, M-n => ssh nas
-bindkey -s '^[s^[s' 'mosh tty.sdf.org\n'      # M-s, M-s => mosh tty.sdf.org
-bindkey -s '^[s^[t' 'mosh tilde.institute\n'  # M-s, M-s => mosh tilde.institute
+bindkey -s '^[s^[n' 'ssh nas\n'              # M-s, M-n => ssh nas
+bindkey -s '^[s^[s' 'ssh tty.sdf.org\n'      # M-s, M-s => ssh tty.sdf.org
+bindkey -s '^[s^[t' 'ssh tilde.institute\n'  # M-s, M-s => ssh tilde.institute
