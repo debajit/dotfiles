@@ -57,7 +57,7 @@ bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive
 
 # Logs
 bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  Journal for audio server
-bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C (all-caps) =>  Journal for cron
+bindkey -s '^[J^[C' 'journalctl -b -1 -eu cronie'     # M-J M-C (all-caps) =>  Journal for cron
 
 # ssh
 bindkey -s '^[s^[n' 'ssh nas\n'              # M-s, M-n => ssh nas
