@@ -131,11 +131,11 @@ alias BR='borg extract --list ::'
 alias BRD='borg extract --list --dry-run ::'
 
 # ls
-alias ls='exa --group-directories-first'
-alias la='exa -lga'              # Show all files, including dotfiles
-alias ll='exa -lg'               # Show long listing
-alias lk='exa -lg --sort size'   # Long listing by size, largest size at the bottom
-alias lt='exa -lg --sort newest' # Lists sorted by date, most recent last
+alias ls='eza --group-directories-first'
+alias la='eza -lga'              # Show all files, including dotfiles
+alias ll='eza -lg'               # Show long listing
+alias lk='eza -lg --sort size'   # Long listing by size, largest size at the bottom
+alias lt='eza -lg --sort newest' # Lists sorted by date, most recent last
 
 # Development
 alias ys='yarn start'
