@@ -33,6 +33,7 @@ alias i="feh"                     # Image viewer
 alias ir='i -z'                   # Display images, in random order
 alias kdiff='kitty +kitten diff'  # Side-by-side diff. See https://sw.kovidgoyal.net/kitty/kittens/diff.html. In a git repo, use git difftool which is configured to use kitty-diff.
 alias icat="kitty +kitten icat"   # See https://sw.kovidgoyal.net/kitty/kittens/icat/
+alias kt='kitty +kitten transfer'
 
 # Git
 alias b='git branch'
@@ -40,6 +41,7 @@ alias c='git checkout'
 alias s='git status'            # Command+s is faster (see keybindings in .keys.sh)
 alias d='git diff'              # Command+d is faster (see keybindings in .keys.sh)
 alias ds='git diff --staged'
+alias l='git log'
 alias p='git pull --rebase'
 alias q="git q"                 # Quick short git log. For most repos, Command+L (detailed log) or Command+Shift+L (commit picker) is faster and more informative (see .keys.sh)
 alias re='git rebase'
@@ -67,7 +69,7 @@ alias ae='git annex enableremote'
 alias ag='git annex get -J6'
 alias al='git annex lock'
 alias an='git annex find --not --in b2'
-alias as='git annex sync'
+alias as='git annex sync --content --notify-finish -J6'
 alias au='git annex unlock'
 alias aw='git annex whereis'
 alias ax='git annex export HEAD --to nas -J24'
