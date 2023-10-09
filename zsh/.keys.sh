@@ -10,6 +10,9 @@ bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous director
 bindkey -s '^[e' 'echo '                   # Alt+e => echo
 bindkey -s '^[E' 'echo $'                  # Alt+e => echo $
 
+# Sudo
+bindkey -s '^[[112;13u' 'sudo $(fc -ln -1)' # Super+Control+p => sudo previous command. See https://askubuntu.com/a/530687/1655230
+
 # Development related
 bindkey -s '^[[114;9u'  'run-app\n'        # Super+r       => Run this program or start the server (polymorphically)
 bindkey -s '^[[108;9u'  'git ll\n'         # Super+l       => git ll
