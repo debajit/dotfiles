@@ -21,10 +21,20 @@ bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
 bindkey -s '^[[100;9u'  'git d\n'          # Super+d       => git diff
 bindkey -s '^[[98;9u'   'git branch -avv\n' # Super+b      => git branch -avv
 
+# Docker
+bindkey -s '^[[100;10u^[[105;10u' 'docker images\n'      # Super+Shift+d Super+Shift+i => docker images
+bindkey -s '^[[100;10u^[[112;10u' 'docker ps\n'          # Super+Shift+d Super+Shift+p  => docker ps
+
+# Docker Compose
+bindkey -s '^[[99;10u^[[117;10u' 'docker compose up -d'      # Super+Shift+c Super+Shift+u => docker compose up -d
+bindkey -s '^[[99;10u^[[100;10u' 'docker compose down'       # Super+Shift+c Super+Shift+d => docker compose down
+bindkey -s '^[[99;10u^[[108;10u' 'docker compose logs\n'     # Super+Shift+c Super+Shift+l => docker compose logs
+bindkey -s '^[[99;10u^[[102;10u' 'docker compose logs -f\n'  # Super+Shift+c Super+Shift+f => docker compose logs -f
+
 # Recent directory picker
 if (( $+commands[zoxide] )); then
   bindkey -s '^[j' 'zi\n'                  # M-j => zi (zoxide recent directory picker)
-  bindkey -s '^[[112;10u' 'zi\n'           # C-P => zi (zoxide recent directory picker) (to match my Emacs projects keybinding)
+  # bindkey -s '^[[112;10u' 'zi\n'           # C-P => zi (zoxide recent directory picker) (to match my Emacs projects keybinding)
 else
   bindkey -s '^[j' 'dirs -v\n'             # M-j => dirs -v (if zoxide is not installed)
   bindkey -s '^[[112;10u' 'dirs -v\n'      # C-P => dirs -v
