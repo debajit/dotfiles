@@ -216,7 +216,7 @@ case "$OSTYPE" in
         alias pc='pacman -Qtdq | sudo pacman -Rns -' # Package cleanup unused packages
 
         # Audio (PipeWire. See https://wiki.archlinux.org/title/PipeWire)
-        alias ao='pactl list sinks short | column -t'    # Audio output
+        alias ao='pactl list sinks short | column -t && echo -e "\nSelected output: $(pactl get-default-sink)"'    # Audio output
         alias ap='pactl set-default-sink raop_sink.'     # Airplay
         alias al='pactl set-default-sink alsa_output.'   # Use local audio output
         alias ar='systemctl --user restart pipewire'     # Restart PipeWire user service
