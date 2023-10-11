@@ -90,8 +90,10 @@ alias GRD='git remote add disroot git@git.disroot.org:debajit/${PWD:t}.git'
 alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Docker
+alias D='docker'
+alias di='docker images'
 alias DS='systemctl status --user docker'
-alias DP='docker ps'
+alias dp='docker ps'
 
 # Btrfs
 alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
