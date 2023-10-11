@@ -116,6 +116,15 @@ alias ss='systemctl status'
 alias st='systemctl start'
 alias sp='systemctl stop'
 
+alias U='systemctl --user'
+alias ue='systemctl --user enable'
+alias ud='systemctl --user disable'
+alias ur='systemctl --user restart'
+alias ul='systemctl --user list-units'
+alias us='systemctl --user status'
+alias ut='systemctl --user start'
+alias up='systemctl --user stop'
+
 # Sync
 alias r='rsync -aPvhs --exclude-from ~/.rsync-exclude.lst'
 alias rl='rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst'
