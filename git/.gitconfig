@@ -286,9 +286,14 @@
 [core]
   attributesfile = ~/.gitattributes-global
   excludesfile = ~/.gitignore-global
+  pager = delta                 # See https://dandavison.github.io/delta/get-started.html
 
 [credential]
   helper = osxkeychain
+
+[delta]
+    side-by-side = true         # See https://dandavison.github.io/delta/side-by-side-view.html
+    navigate = true             # See https://dandavison.github.io/delta/get-started.html
 
 [difftool]
   prompt = false
@@ -306,6 +311,7 @@
 [diff]
   # tool = Kaleidoscope
   # tool = p4merge
+  colorMoved = default          # See https://dandavison.github.io/delta/get-started.html
   tool = kitty
   guitool = kitty.gui
 
@@ -324,12 +330,16 @@
 	# https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
 	defaultBranch = main
 
+[interactive]
+    diffFilter = delta --color-only # See https://dandavison.github.io/delta/get-started.html
+
 [log]
   abbrevCommit = true
   date = relative
   decorate = full
 
 [merge]
+  conflictstyle = diff3         # See https://dandavison.github.io/delta/get-started.html
   tool = Kaleidoscope
   # tool = p4merge
 
