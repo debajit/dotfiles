@@ -222,10 +222,11 @@ case "$OSTYPE" in
         alias pr='sudo pacman -Rs'          # Package remove. See https://wiki.archlinux.org/title/pacman
         alias pu='sudo pacman -Syu && paru && flatpak update' # Package update (all from Arch repo)
         alias pp='pacman -Sii'              # Package info
-        alias pf='pacman -F'                # Package that provides a binary or file
+        alias pf='pacman -F'                # Package that provides a binary or file. "Which package offers this binary?"
         alias pw='pactree -r'               # Which top-level package depends on this package?
 
         alias pl='pacman -Qs'               # Package local. Search for a locally installed package
+        alias pls='pacman -Ql'              # Package list local files. List all the files installed locally by this package.
         alias po='pacman -Qtdq'             # Package orphans (installed as deps but not required by any package)
         alias pc='pacman -Qtdq | sudo pacman -Rns -' # Package cleanup unused packages
 
