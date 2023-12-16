@@ -292,8 +292,10 @@
   helper = osxkeychain
 
 [delta]
-    side-by-side = true         # See https://dandavison.github.io/delta/side-by-side-view.html
-    navigate = true             # See https://dandavison.github.io/delta/get-started.html
+	side-by-side = true         # See https://dandavison.github.io/delta/side-by-side-view.html
+	navigate = true             # See https://dandavison.github.io/delta/get-started.html
+	features = chameleon        # Theme. See
+	true-color = always         # See https://dandavison.github.io/delta/tips-and-tricks/24-bit-color-truecolor.html
 
 [difftool]
   prompt = false
@@ -322,7 +324,8 @@
   autocorrect = 1
 
 [include]
-  path = ~/.gitconfig_local
+	path = ~/.gitconfig_local
+	path = ~/Projects/Setup/dotfiles/git/themes.gitconfig
 
 [init]
 	# Set "main" as the default branch name ("main" also happens to be
