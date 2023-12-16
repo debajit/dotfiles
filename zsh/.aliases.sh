@@ -92,9 +92,13 @@ alias GRG='git remote add github git@github.com:debajit/${PWD:t}.git'
 
 # Docker
 alias D='docker'
-alias di='docker images'
+alias di='docker images -a'
+alias dl='docker context ls'
 alias DS='systemctl status --user docker'
 alias dp='docker ps'
+alias da='docker ps -a'
+alias dk='docker stop'          # Docker stop ("kill")
+alias de='docker exec -it $(pbpaste) /bin/sh'
 
 # Btrfs
 alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
