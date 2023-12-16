@@ -19,6 +19,7 @@ bindkey -s '^[[114;9u'  'run-app\n'        # Super+r       => Run this program o
 bindkey -s '^[[108;9u'  'git ll\n'         # Super+l       => git ll
 bindkey -s '^[[108;10u' 'git-log-fzf\n'    # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
 bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
+bindkey -s '^[[115;10u' 'git show\n'        # Super+Shift+s => git show
 bindkey -s '^[[100;9u'  'git d\n'          # Super+d       => git diff
 bindkey -s '^[[98;9u'   'git branch -avv\n' # Super+b      => git branch -avv
 
