@@ -51,6 +51,7 @@ alias gg='git gg'
 alias ggg='git ggg'
 alias gf='git gf'
 alias gr='git remote --verbose'
+alias gs='git submodule update --recursive --remote'
 alias fu='git fetch origin'     # Inspired by Magit’s shortcuts
 alias ro='git rebase origin/master'
 alias ru='git rebase "@{u}"'
