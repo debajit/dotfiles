@@ -4,6 +4,7 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
 bindkey -s '^[l' 'lt\n'                    # Alt+l => ls
+bindkey -s '^[L' 'tree -dC\n'              # Alt+Shift+l => Show directories only
 bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
 bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
 bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous directory)
