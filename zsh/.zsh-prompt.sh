@@ -46,10 +46,11 @@ precmd() {
 
 # Format the vcs_info_msg_0_ variable
 # Format the vcs_info_msg_0_ variable
-zstyle ':vcs_info:git:*' formats '🌱 %b'
+# zstyle ':vcs_info:git:*' formats '🌱 %b'
 # zstyle ':vcs_info:git:*' formats '🍄 %b'
 # zstyle ':vcs_info:git:*' formats '🐙 %b'
 # zstyle ':vcs_info:git:*' formats '🎃 %b'
+zstyle ':vcs_info:git:*' formats '☃️ %b'
 # zstyle ':vcs_info:git:*' formats '👻 %b'
 
 
