@@ -44,8 +44,8 @@ fi
 
 # Text insertion
 bindkey -s '^[D' 'cd ~/Downloads\n'        # Alt+Shift+d => cd ~/Downloads
-bindkey -s '^[G' ' | rg -S '               # Alt+Shift+g => | rg -S     (grep with smart-case)
-bindkey -s '^[L' ' | less '                # Alt+Shift+l => | less      (page)
+bindkey -s '^[G' ' | rg -S '               # Alt+Shift+g => | rg -S               (grep with smart-case)
+bindkey -s '^[J' ' | jq -C | less -R'      # Alt+Shift+j => | jq -C | less -$     (jq colored and paginated)
 
 # Jump to directory
 bindkey -s '^[C' 'cd ~/Projects/Setup/dotfiles\n'          # Alt+Shift+c => dotfiles (configuration)
