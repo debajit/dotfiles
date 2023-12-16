@@ -278,12 +278,18 @@ case "$OSTYPE" in
 
   # macOS
   darwin*)
+    alias pq="brew search"      # Package query/search/info
     alias pi="brew install"     # Package install
     alias pr="brew uninstall"   # Package remove/uninstall
-    alias pq="brew search"      # Package query/search/info
     alias pu="brew upgrade"     # Upgrade a single package
     alias pp="brew info"        # Package info
+    alias pl="brew list"        # Package local
+    alias pls="brew list -v"    # Package list local files. See all the files installed by this package
 
     alias gk='sudo spctl --master-disable' # Disable GateKeeper
+
+    # Launchctl
+    alias sl='launchctl list | rg -S'
+    alias ss='launchctl list | rg -S'
     ;;
 esac
