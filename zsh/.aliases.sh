@@ -28,7 +28,7 @@ alias rme='fd -te -X rm -r'   # Remove empty directories and files
 alias tm='tmux a -d'          # Connect to tmux session
 
 # Wait for a process to finish, and then maybe start another
-alias w='tail -f /dev/null --pid=`pgrep rsync` && ' # See .keys.sh for key chords around this
+alias w='tail -f /dev/null --pid=$(pgrep -o rsync) && ' # See .keys.sh for key chords around this
 
 # Misc Tools
 alias f='ranger'                  # File manager
