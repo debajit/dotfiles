@@ -20,6 +20,9 @@ alias vi='vim'
 # General aliases
 alias e='emacsclient'         # Edit file in existing Emacs server session
 alias j='journalctl'
+alias ju='journalctl --user -u'
+alias je='journalctl -eu'
+alias jf='journalctl -fu'
 alias u="cd .. && pwd && ls"  # cd “up” to the parent directory. Better is Alt+- (see .keys.sh)
 alias rme='fd -te -X rm -r'   # Remove empty directories and files
 alias tm='tmux a -d'          # Connect to tmux session
