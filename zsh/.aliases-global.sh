@@ -21,8 +21,9 @@ alias -g C='| wc -l'
 alias -g F='| fzf --tac --ansi'
 alias -g T='| column -t'
 alias -g J='| jq'
+alias -g JL='| jq -C | less -R'
 alias -g X='| xargs -0'
-alias -g D='| base64 -d'
+alias -g B='| base64 -d'
 
 # Arguments
 alias -g H='--help'
