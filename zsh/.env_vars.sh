@@ -5,7 +5,7 @@ export MAILDIR="$HOME/.mail"
 # Bat
 export BAT_THEME='gruvbox-dark'
 
-# Docker
+# Docker Rootless. See https://wiki.archlinux.org/title/docker#Rootless_Docker_daemon
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 # Gum
