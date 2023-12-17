@@ -55,9 +55,9 @@ bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Webs
 bindkey -s '^[P' 'cd ~/Archive/Pictures/Photography/\n'    # Alt+Shift+p => Photography
 
 # Wait for a process to finish, and then maybe start another
-bindkey -s '^[w^[a' 'tail -f /dev/null --pid=`pgrep aria2c` && aria2c'  # Wait for aria2c
-bindkey -s '^[w^[r' 'tail -f /dev/null --pid=`pgrep rsync` && rsync'    # Wait for rsync
-bindkey -s '^[w^[y' 'tail -f /dev/null --pid=`pgrep mpv` && yta'        # Wait for yta (CLI YouTube audio streaming)
+bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c'  # M-w M-a => Wait for aria2c
+bindkey -s '^[w^[r' 'tail -f /dev/null --pid=$(pgrep -o rsync) && rsync'    # M-w M-r => Wait for rsync
+bindkey -s '^[w^[y' 'tail -f /dev/null --pid=$(pgrep -o mpv) && yta'        # M-w M-y => Wait for yta (CLI YouTube audio streaming)
 
 # Commands
 bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
