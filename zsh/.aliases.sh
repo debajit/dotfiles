@@ -118,6 +118,7 @@ alias Q='cal -3 && date'        # Quick overview
 alias S='systemctl'
 alias se='systemctl enable'
 alias sd='systemctl disable'
+alias si='systemctl is-enabled'
 alias sr='systemctl restart'
 alias sl='systemctl list-units'
 alias ss='systemctl status'
@@ -127,11 +128,15 @@ alias sp='systemctl stop'
 alias U='systemctl --user'
 alias ue='systemctl --user enable'
 alias ud='systemctl --user disable'
+alias ui='systemctl --user is-enabled'
 alias ur='systemctl --user restart'
 alias ul='systemctl --user list-units'
+alias uu='systemctl --user list-unit-files'
 alias us='systemctl --user status'
 alias ut='systemctl --user start'
 alias up='systemctl --user stop'
+alias ux='systemctl --user daemon-reload'  # x for reset a la x="git reset --hard"
+alias uf='journalctl --user -fu'
 
 # Sync
 alias r='rsync -aPvhs --exclude-from ~/.rsync-exclude.lst'
@@ -223,7 +228,7 @@ case "$OSTYPE" in
         alias pi='sudo pacman -S'           # Package install
         alias pq='pacman -Ss'               # Package query/search in Arch repo
         alias pr='sudo pacman -Rs'          # Package remove. See https://wiki.archlinux.org/title/pacman
-        alias pu='sudo pacman -Syu && paru && flatpak update' # Package update (all from Arch repo)
+        alias pu='sudo pacman -Syu && flatpak update && paru' # Package update (all from Arch repo)
         alias pp='pacman -Sii'              # Package info
         alias pf='pacman -F'                # Package that provides a binary or file. "Which package offers this binary?"
         alias pw='pactree -r'               # Which top-level package depends on this package?
