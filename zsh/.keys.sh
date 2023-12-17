@@ -66,7 +66,7 @@ bindkey -s '^[S' 'espanso restart\n'                       # Alt+Shift+s => espa
 # Sync
 bindkey -s '^[s^[m' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ "nas:/volume2/Music/" -ni'         # M-s M-m      => Sync music to nas
 bindkey -s '^[S^[M' 'rclone -PL sync --exclude-from ~/.rclone-exclude.lst ~/Archive/Music/ "box:Debajit/Music/" -n'        # M-S-s M-S-m  => Sync music to cloud
-bindkey -s '^[[115;13u^[[109;13u' 'time rsync -avhsWL --progress --no-perms --no-owner --no-group --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ ~/Mounts/Flacbox/Music/ -ni'  # C-s-s C-s-m  => Sync music to phone (via USB cable)
+bindkey -s '^[[115;13u^[[109;13u' 'time rsync -avhsWL --progress --no-perms --no-owner --no-group --exclude-from ~/.rsync-exclude.lst ~/Archive/Music/ ~/Mounts/Flacbox/Music/ --delete -ni'  # C-s-s C-s-m  => Sync music to phone (via USB cable)
 
 bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
 
