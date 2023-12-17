@@ -35,6 +35,11 @@ alias -g m='main'
 alias -g n='--no-decorate'
 alias -g om='origin/main'
 
+# Notifications
+alias -g N='notify'
+alias -g ND='notify "Downloaded"'
+alias -g NT='notify "Transferred"'
+
 case "${OSTYPE}" in
   linux*)
     # alias -g P='| xclip -sel c -r'  # For X11
