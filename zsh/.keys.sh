@@ -57,6 +57,7 @@ bindkey -s '^[P' 'cd ~/Archive/Pictures/Photography/\n'    # Alt+Shift+p => Phot
 # Wait for a process to finish, and then maybe start another
 bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c'  # M-w M-a => Wait for aria2c
 bindkey -s '^[w^[r' 'tail -f /dev/null --pid=$(pgrep -o rsync) && rsync'    # M-w M-r => Wait for rsync
+bindkey -s '^[w^[m' 'tail -f /dev/null --pid=$(pgrep -o mpv) && mpv'        # M-w M-m => Wait for mpv
 bindkey -s '^[w^[y' 'tail -f /dev/null --pid=$(pgrep -o mpv) && yta'        # M-w M-y => Wait for yta (CLI YouTube audio streaming)
 
 # Commands
