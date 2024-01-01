@@ -15,13 +15,13 @@ bindkey -s '^[E' 'echo $'                  # Alt+e => echo $
 bindkey -s '^[[112;13u' 'sudo $(fc -ln -1)' # Super+Control+p => sudo previous command. See https://askubuntu.com/a/530687/1655230
 
 # Development related
-bindkey -s '^[[114;9u'  'run-app\n'        # Super+r       => Run this program or start the server (polymorphically)
-bindkey -s '^[[108;9u'  'git ll\n'         # Super+l       => git ll
-bindkey -s '^[[108;10u' 'git-log-fzf\n'    # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
-bindkey -s '^[[115;9u'  'git s\n'          # Super+s       => git status
-bindkey -s '^[[115;10u' 'git show\n'        # Super+Shift+s => git show
-bindkey -s '^[[100;9u'  'git d\n'          # Super+d       => git diff
-bindkey -s '^[[98;9u'   'git branch -avv\n' # Super+b      => git branch -avv
+bindkey -s '^[[114;9u'  'run-app\n'          # Super+r       => Run this program or start the server (polymorphically)
+bindkey -s '^[[108;9u'  'git ll\n'           # Super+l       => git ll
+bindkey -s '^[[108;10u' 'git-log-fzf\n'      # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
+bindkey -s '^[[115;9u'  'git s\n'            # Super+s       => git status
+bindkey -s '^[[115;10u' 'git show\n'         # Super+Shift+s => git show
+bindkey -s '^[[100;9u'  'git diff\n'         # Super+d       => git diff
+bindkey -s '^[[98;9u'   'git branch -avv\n'  # Super+b      => git branch -avv
 
 # Docker
 bindkey -s '^[[100;10u^[[105;10u' 'docker images\n'      # Super+Shift+d Super+Shift+i => docker images
@@ -55,10 +55,10 @@ bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Webs
 bindkey -s '^[P' 'cd ~/Archive/Pictures/Photography/\n'    # Alt+Shift+p => Photography
 
 # Wait for a process to finish, and then maybe start another
-bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c'  # M-w M-a => Wait for aria2c
-bindkey -s '^[w^[r' 'tail -f /dev/null --pid=$(pgrep -o rsync) && rsync'    # M-w M-r => Wait for rsync
-bindkey -s '^[w^[m' 'tail -f /dev/null --pid=$(pgrep -o mpv) && mpv'        # M-w M-m => Wait for mpv
-bindkey -s '^[w^[y' 'tail -f /dev/null --pid=$(pgrep -o mpv) && yta'        # M-w M-y => Wait for yta (CLI YouTube audio streaming)
+bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c '  # M-w M-a => Wait for aria2c
+bindkey -s '^[w^[r' 'tail -f /dev/null --pid=$(pgrep -o rsync) && rsync '    # M-w M-r => Wait for rsync
+bindkey -s '^[w^[m' 'tail -f /dev/null --pid=$(pgrep -o mpv) && mpv '        # M-w M-m => Wait for mpv
+bindkey -s '^[w^[y' 'tail -f /dev/null --pid=$(pgrep -o mpv) && yta '        # M-w M-y => Wait for yta (CLI YouTube audio streaming)
 
 # Commands
 bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
