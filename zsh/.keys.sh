@@ -6,7 +6,7 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 
 # Alt+l => ‘ls’ (if command line empty) or
 #          ‘| less’ if a command was already typed
-function ls_or_pipe_less() {
+function _ls_or_pipe_less() {
   if [[ -z "$BUFFER" ]]; then
     BUFFER="lt"
     zle accept-line
@@ -19,12 +19,12 @@ function ls_or_pipe_less() {
     zle end-of-line
   fi
 }
-zle -N ls_or_pipe_less
-bindkey '^[l' ls_or_pipe_less
+zle -N _ls_or_pipe_less
+bindkey '^[l' _ls_or_pipe_less
 
 # Alt+g => Toggle between ‘rg -S’ and ‘git g’ (if command is empty) or
 #          ‘| rg’ if a command has already been typed
-function rg_or_pipe_grep() {
+function _rg_or_pipe_grep() {
   if [[ -z "$BUFFER" ]]; then
     BUFFER="rg -S "
     zle end-of-line
@@ -43,8 +43,8 @@ function rg_or_pipe_grep() {
     fi
   fi
 }
-zle -N rg_or_pipe_grep
-bindkey '^[g' rg_or_pipe_grep
+zle -N _rg_or_pipe_grep
+bindkey '^[g' _rg_or_pipe_grep
 
 # Alt+e => Toggle between ‘echo "${?}"’ and ‘echo’ (if command is empty) or
 function _echo() {
