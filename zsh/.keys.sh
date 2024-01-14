@@ -46,11 +46,24 @@ function rg_or_pipe_grep() {
 zle -N rg_or_pipe_grep
 bindkey '^[g' rg_or_pipe_grep
 
+# Alt+e => Toggle between ‘echo "${?}"’ and ‘echo’ (if command is empty) or
+function _echo() {
+  if [[ -z "${BUFFER}" || "${BUFFER}" == 'echo ' ]]; then
+    BUFFER='echo "${?}"'
+    zle end-of-line
+    ((CURSOR-=2))
+  elif [[ "${BUFFER}" == 'echo "${?}"' ]]; then
+    BUFFER='echo '
+    zle end-of-line
+  fi
+}
+zle -N _echo
+bindkey '^[e' _echo
+
 bindkey -s '^[L' 'tree -dC\n'              # Alt+Shift+l => Show directories only
 bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
 bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
 bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous directory)
-bindkey -s '^[e' 'echo '                   # Alt+e => echo
 bindkey -s '^[E' 'echo $'                  # Alt+e => echo $
 
 # Sudo
