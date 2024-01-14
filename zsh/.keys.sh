@@ -3,7 +3,49 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
-bindkey -s '^[l' 'lt\n'                    # Alt+l => ls
+
+# Alt+l => ‘ls’ (if command line empty) or
+#          ‘| less’ if a command was already typed
+function ls_or_pipe_less() {
+  if [[ -z "$BUFFER" ]]; then
+    BUFFER="lt"
+    zle accept-line
+  else
+    if [[ ${BUFFER: -1} != ' ' ]]; then # If the rightmost character is not a space
+      BUFFER+=' '
+    fi
+
+    BUFFER+="| less "
+    zle end-of-line
+  fi
+}
+zle -N ls_or_pipe_less
+bindkey '^[l' ls_or_pipe_less
+
+# Alt+g => Toggle between ‘rg -S’ and ‘git g’ (if command is empty) or
+#          ‘| rg’ if a command has already been typed
+function rg_or_pipe_grep() {
+  if [[ -z "$BUFFER" ]]; then
+    BUFFER="rg -S "
+    zle end-of-line
+  else
+    if [[ "${BUFFER}" == "rg -S " ]]; then
+      BUFFER="git g "
+    elif [[ "${BUFFER}" == "git g " ]]; then
+      BUFFER="rg -S "
+    else
+      if [[ ${BUFFER: -1} != ' ' ]]; then # If the rightmost character is not a space
+        BUFFER+=' '
+      fi
+
+      BUFFER+="| rg "
+      zle end-of-line
+    fi
+  fi
+}
+zle -N rg_or_pipe_grep
+bindkey '^[g' rg_or_pipe_grep
+
 bindkey -s '^[L' 'tree -dC\n'              # Alt+Shift+l => Show directories only
 bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
 bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
