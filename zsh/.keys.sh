@@ -7,7 +7,7 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 # with the shell’s Emacs-style Meta keybindings you care about).
 
 # Alt+o => Open polymorphically
-function _open_media_with_mpv() {
+function _open_polymorphically() {
   media_files=(*(.mkv|.flac|.mp4|.m4a))
 
   # Run Hugo and open browser
@@ -30,8 +30,8 @@ function _open_media_with_mpv() {
     zle accept-line
   fi
 }
-zle -N _open_media_with_mpv
-bindkey '^[o' _open_media_with_mpv
+zle -N _open_polymorphically
+bindkey '^[o' _open_polymorphically
 
 # Alt+l => ‘ls’ (if command line empty) or
 #          ‘| less’ if a command was already typed
