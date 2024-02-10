@@ -6,10 +6,26 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
 
+# Alt+o => Open polymorphically
 function _open_media_with_mpv() {
   media_files=(*(.mkv|.flac|.mp4|.m4a))
 
-  if [[ -e "${media_files[1]}" ]]; then
+  # Run Hugo and open browser
+  if [[ -f "./config/_default/hugo.yaml" ]]; then
+    gum spin --spinner points --title "Starting Hugo server..." -- xdg-open "http://localhost:1313" && hugo server -D --cleanDestinationDir
+
+  # Run JS project
+  elif [[ -f "./package-lock.json" ]]; then
+    BUFFER='npm start'
+    zle accept-line
+
+  # Run Makefile
+  elif [[ -f "Makefile" ]]; then
+    BUFFER='make -k'
+    zle accept-line
+
+  # Open media files
+  elif [[ -e "${media_files[1]}" ]]; then
     BUFFER="mpv \"${media_files[1]}\""
     zle accept-line
   fi
@@ -147,7 +163,6 @@ bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  J
 bindkey -s '^[J^[C' 'journalctl -b -1 -eu cronie'     # M-J M-C (all-caps) =>  Journal for cron
 
 # ssh
-bindkey -s '^[h' 'ssh **\t'                  # Alt+h => ssh to known hosts (with fzf host-autocompletion)
 bindkey -s '^[s^[n' 'ssh nas\n'              # M-s, M-n => ssh nas
 bindkey -s '^[s^[s' 'ssh tty.sdf.org\n'      # M-s, M-s => ssh tty.sdf.org
 bindkey -s '^[s^[t' 'ssh tilde.institute\n'  # M-s, M-s => ssh tilde.institute
