@@ -1,8 +1,21 @@
+setopt nullglob
+
 # Shell operations
 bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configuration
 
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
+
+function _open_media_with_mpv() {
+  media_files=(*(.mkv|.flac|.mp4|.m4a))
+
+  if [[ -e "${media_files[1]}" ]]; then
+    BUFFER="mpv \"${media_files[1]}\""
+    zle accept-line
+  fi
+}
+zle -N _open_media_with_mpv
+bindkey '^[o' _open_media_with_mpv
 
 # Alt+l => ‘ls’ (if command line empty) or
 #          ‘| less’ if a command was already typed
@@ -38,7 +51,7 @@ function _rg_or_pipe_grep() {
         BUFFER+=' '
       fi
 
-      BUFFER+="| rg "
+      BUFFER+="| rg -S "
       zle end-of-line
     fi
   fi
