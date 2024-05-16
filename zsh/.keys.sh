@@ -92,6 +92,18 @@ function _echo() {
 zle -N _echo
 bindkey '^[e' _echo
 
+# Alt+z => Unzip latest zip file (or similar)
+function _unzip_latest_zip_file() {
+  zip_files=(*(.zip|.xz|.gz|.rar)(.om))
+
+  if [[ -r "${zip_files[1]}" ]]; then
+    BUFFER="aunpack \"${zip_files[1]}\""
+    zle end-of-line
+  fi
+}
+zle -N _unzip_latest_zip_file
+bindkey '^[z' _unzip_latest_zip_file
+
 bindkey -s '^[L' 'tree -dC\n'              # Alt+Shift+l => Show directories only
 bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
 bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
