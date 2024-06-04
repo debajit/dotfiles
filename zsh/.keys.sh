@@ -8,7 +8,7 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 
 # Alt+o => Open polymorphically
 function _open_polymorphically() {
-  media_files=(*(.mkv|.flac|.mp4|.m4a))
+  media_files=(*(.mkv|.flac|.mp4|.m4a)(.om))
 
   # Run Hugo and open browser
   if [[ -f "./config/_default/hugo.yaml" ]]; then
@@ -26,7 +26,7 @@ function _open_polymorphically() {
 
   # Open media files
   elif [[ -e "${media_files[1]}" ]]; then
-    BUFFER="mpv \"${media_files[1]}\""
+    BUFFER="mpv --hwdec=auto \"${media_files[1]}\""
     zle accept-line
   fi
 }
