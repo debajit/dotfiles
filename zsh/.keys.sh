@@ -32,6 +32,25 @@ function _open_polymorphically() {
 }
 zle -N _open_polymorphically
 bindkey '^[o' _open_polymorphically
+# Alt+b => Open latest text file in dir (cycles through bat -> o -> less)
+function _open_latest_text_file() {
+  _latest_text_files=(*(.csv|.txt|.md|.org|.py)(.om))
+
+  if [[ -e "${_latest_text_files[1]}" ]]; then
+    if [[ -z "${BUFFER}" || "${BUFFER:0:5}" == "less " ]]; then
+      BUFFER="bat \"${_latest_text_files[1]}\""
+      zle end-of-line
+    elif [[ "${BUFFER:0:4}" == "bat " ]]; then
+      BUFFER="o \"${_latest_text_files[1]}\""
+      zle end-of-line
+    elif [[ "${BUFFER:0:2}" == "o " ]]; then
+      BUFFER="less \"${_latest_text_files[1]}\""
+      zle end-of-line
+    fi
+  fi
+}
+zle -N _open_latest_text_file
+bindkey '^[b' _open_latest_text_file
 
 # Alt+l => ‘ls’ (if command line empty) or
 #          ‘| less’ if a command was already typed
