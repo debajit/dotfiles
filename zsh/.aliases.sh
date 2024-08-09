@@ -31,7 +31,6 @@ alias tm='tmux a -d'          # Connect to tmux session
 alias w='tail -f /dev/null --pid=$(pgrep -o rsync) && ' # See .keys.sh for key chords around this
 
 # Misc Tools
-alias f='ranger'                  # File manager
 alias i="feh"                     # Image viewer
 alias ir='i -z'                   # Display images, in random order
 alias kdiff='kitty +kitten diff'  # Side-by-side diff. See https://sw.kovidgoyal.net/kitty/kittens/diff.html. In a git repo, use git difftool which is configured to use kitty-diff.

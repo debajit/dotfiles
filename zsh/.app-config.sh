@@ -34,6 +34,20 @@ export FZF_DEFAULT_OPTS="
     --color=spinner:#f6c177,info:#9ccfd8,separator:#44415a
     --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
+
+# Yazi
+# See https://yazi-rs.github.io/docs/quick-start
+
+function f() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
+
 #
 # zoxide
 # Directory autojump based on frecency.
