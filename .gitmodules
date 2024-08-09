@@ -1,3 +1,6 @@
 [submodule "tmux/.config/tmux/plugins/tpm"]
 	path = tmux/.config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "yazi/.config/yazi/plugins/bookmarks.yazi"]
+	path = yazi/.config/yazi/plugins/bookmarks.yazi
+	url = https://github.com/dedukun/bookmarks.yazi
