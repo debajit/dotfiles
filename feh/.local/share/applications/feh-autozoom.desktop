@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Feh with Autozoom
+Comment=View images with Feh and Autozoom
+Exec=feh --fullscreen --auto-zoom --borderless --start-at %f %d
+Icon=feh
+Terminal=false
+Type=Application
+MimeType=image/jpeg;image/png;image/gif;image/bmp;
+Categories=Graphics;Viewer;
+
