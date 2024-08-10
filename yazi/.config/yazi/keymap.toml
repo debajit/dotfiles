@@ -21,9 +21,18 @@ on = [ "b", "D" ]
 run = "plugin bookmarks --args=delete_all"
 desc = "Delete all bookmarks"
 
-# max-preview.yazi
+
+# max-preview.yazi Plugin
 # https://github.com/yazi-rs/plugins/tree/main/max-preview.yazi
 [[manager.prepend_keymap]]
 on   = "i"
 run  = "plugin --sync max-preview"
 desc = "Maximize or restore preview"
+
+
+# Smart-enter plugin
+# See https://github.com/Ape/smart-enter.yazi
+[[manager.prepend_keymap]]
+on   = "l"
+run  = "plugin --sync smart-enter"
+desc = "Enter the child directory, or open the file"
