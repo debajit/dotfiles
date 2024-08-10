@@ -20,3 +20,10 @@ desc = "Delete a bookmark"
 on = [ "b", "D" ]
 run = "plugin bookmarks --args=delete_all"
 desc = "Delete all bookmarks"
+
+# max-preview.yazi
+# https://github.com/yazi-rs/plugins/tree/main/max-preview.yazi
+[[manager.prepend_keymap]]
+on   = "i"
+run  = "plugin --sync max-preview"
+desc = "Maximize or restore preview"

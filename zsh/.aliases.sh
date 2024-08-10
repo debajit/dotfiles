@@ -190,8 +190,9 @@ alias isp='curl ifconfig.co/json | jq .asn_org' # Show your ISP (experimental)
 alias start-web-server='python3 -m http.server' # Start a web server from current dir. Port optional: `start-web-server 1111`
 
 # YouTube
-yt() { mpv --ytdl-format="bestvideo[height<=?1080]+bestaudio/best"  ytdl://ytsearch:"$*" }  # YouTube video
-yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }                                  # YouTube audio
+yt() { mpv --ytdl-format="bestvideo[height<=?1080]+bestaudio/best" ytdl://ytsearch:"$*" }    # Stream YouTube video (1080p)
+ytb() { mpv --ytdl-format="bestvideo+bestaudio/best"  ytdl://ytsearch:"$*" }                 # Stream YouTube video (any size)
+yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }                                   # Stream YouTube audio
 
 # Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
