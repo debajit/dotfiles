@@ -4,3 +4,6 @@
 [submodule "yazi/.config/yazi/plugins/bookmarks.yazi"]
 	path = yazi/.config/yazi/plugins/bookmarks.yazi
 	url = https://github.com/dedukun/bookmarks.yazi
+[submodule "yazi/.config/yazi/plugins/glow.yazi"]
+	path = yazi/.config/yazi/plugins/glow.yazi
+	url = https://github.com/Reledia/glow.yazi.git
