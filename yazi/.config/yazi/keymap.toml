@@ -29,6 +29,19 @@ on   = "i"
 run  = "plugin --sync max-preview"
 desc = "Maximize or restore preview"
 
+# open-with-cmd.yazi
+# https://github.com/Ape/open-with-cmd.yazi
+
+[[manager.prepend_keymap]]
+on   = "o"
+run  = "plugin open-with-cmd --args=block"
+desc = "Open with command in the terminal"
+
+[[manager.prepend_keymap]]
+on   = "O"
+run  = "plugin open-with-cmd"
+desc = "Open with command"
+
 
 # Smart-enter plugin
 # See https://github.com/Ape/smart-enter.yazi
