@@ -26,7 +26,6 @@ is_in_git_repo() {
 }
 
 # Git log browser
-# TODO: Bind this to a key?
 git-log-fzf() { # fshow - git commit browser
     is_in_git_repo || return
 
@@ -38,7 +37,7 @@ git-log-fzf() { # fshow - git commit browser
     --preview="$_viewGitLogLine" \
     --bind "ctrl-m:execute:
         (grep -o '[a-f0-9]\{7\}' | head -1 |
-        xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+        xargs -I % sh -c 'git show --no-abbrev-commit %') << 'FZF-EOF'
         {}
 FZF-EOF"
 }

@@ -22,7 +22,7 @@
 # ZSH_TARGET_FILES := $(ZSH_SOURCE_FILES:zsh%=${HOME}%)
 
 # Install all files using GNU Stow
-.PHONE: all
+.PHONY: all
 all:
 	stow -vRt ~ */
 

@@ -51,15 +51,20 @@ alias gc='git clone'
 alias g='git g'
 alias gg='git gg'
 alias ggg='git ggg'
+alias ge='git commit --allow-empty -m "Empty commit to kickstart build"'
 alias gf='git gf'
 alias gr='git remote --verbose'
 alias gs='git submodule update --recursive --remote'
-alias fu='git fetch origin'     # Inspired by Magit’s shortcuts
 alias ro='git rebase origin/master'
-alias ru='git rebase "@{u}"'
 alias tip='git log -1 --name-status'
 alias x='git reset --hard'
 alias GP="git l | gum filter | awk '{ print \$2 }'" # Git: pick commit. Command+Shift+L (commit browser and picker) is more powerful (see .keys.sh)
+
+# Git aliases inspired by Magit
+alias fu='git fetch origin'     # Fetch from upstream
+alias ru='git rebase "@{u}"'    # Rebase on upstream
+alias Pu='git push'             # git push to upstream
+alias ce='git amend'            # git commit --amend --no-edit.
 
 # Git Annex
 alias a='git annex'
@@ -102,6 +107,10 @@ alias dp='docker ps'
 alias da='docker ps -a'
 alias dk='docker stop'          # Docker stop ("kill")
 alias de='docker exec -it $(pbpaste) /bin/sh'
+alias cl='docker ps -a | less -S'
+alias CP='docker stop '
+alias cr='docker rm '
+alias ci='docker images -a'
 
 # Btrfs
 alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
@@ -263,6 +272,11 @@ case "$OSTYPE" in
         alias ar='systemctl --user restart pulseaudio'                                # Restart PulseAudio user service
         ;;
 
+      ol)
+        alias pl='dnf list installed | grep ' # Package local. Search for a locally installed package
+        alias pw='sudo dnf repoquery --whatrequires package' # Which package depends on this package? (i.e. what are its downstream dependencies?)
+        ;;
+
       ubuntu)
         # Package management
         alias pq='apt search'                                   # Package search
@@ -291,6 +305,7 @@ case "$OSTYPE" in
     alias pi="brew install"     # Package install
     alias pr="brew uninstall"   # Package remove/uninstall
     alias pu="brew upgrade"     # Upgrade a single package
+    alias pc="brew cleanup -n"  # Package cleanup outdated downloads and old versions of installed formulae
     alias pp="brew info"        # Package info
     alias pl="brew list"        # Package local
     alias pls="brew list -v"    # Package list local files. See all the files installed by this package
@@ -300,5 +315,8 @@ case "$OSTYPE" in
     # Launchctl
     alias sl='launchctl list | rg -S'
     alias ss='launchctl list | rg -S'
+
+    # IntelliJ
+    alias rm-intellij-lock='rm "${HOME}/Library/Application Support/JetBrains/IntelliJIdea2023.2/.lock"'
     ;;
 esac

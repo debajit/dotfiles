@@ -6,8 +6,8 @@
 
 
 [user]
-	name = Your Full Name Here
-	email = your_email@your_domain
+    name = Your Full Name Here
+    email = your_email@your_domain
 
 [alias]
 
@@ -186,15 +186,15 @@
   # (long wordy aliases, to prevent unnecessary
   # reflog resets after an erroneous amend)
 
-	# Amend the current commit with staged changes
-	# without editing the commit message
-	amend = commit --amend --no-edit
+    # Amend the current commit with staged changes
+    # without editing the commit message
+    amend = commit --amend --no-edit
 
-	# Amend commit with current author information
-	amend-author = commit --amend --reset-author --no-edit
+    # Amend commit with current author information
+    amend-author = commit --amend --reset-author --no-edit
 
-	# Backup (Experimental)
-	backup = git push origin "$(git rev-parse --abbrev-ref HEAD)"
+    # Backup (Experimental)
+    backup = git push origin "$(git rev-parse --abbrev-ref HEAD)"
 
 
   #---------------------------------------------------------
@@ -292,21 +292,21 @@
   helper = osxkeychain
 
 [delta]
-	hyperlinks = true
-	side-by-side = true         # See https://dandavison.github.io/delta/side-by-side-view.html
-	navigate = true             # See https://dandavison.github.io/delta/get-started.html
-	features = chameleon        # Theme. See
-	true-color = always         # See https://dandavison.github.io/delta/tips-and-tricks/24-bit-color-truecolor.html
+    hyperlinks = true
+    side-by-side = true         # See https://dandavison.github.io/delta/side-by-side-view.html
+    navigate = true             # See https://dandavison.github.io/delta/get-started.html
+    features = chameleon        # Theme. See
+    true-color = always         # See https://dandavison.github.io/delta/tips-and-tricks/24-bit-color-truecolor.html
 
 [difftool]
   prompt = false
   trustExitCode = true
 
 [difftool "kitty"]
-	cmd = kitty +kitten diff $LOCAL $REMOTE
+    cmd = kitty +kitten diff $LOCAL $REMOTE
 
 [difftool "kitty.gui"]
-	cmd = kitty kitty +kitten diff $LOCAL $REMOTE
+    cmd = kitty kitty +kitten diff $LOCAL $REMOTE
 
 [difftool "Kaleidoscope"]
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
@@ -318,27 +318,24 @@
   tool = kitty
   guitool = kitty.gui
 
-[grep]
-  lineNumber = true
-
 [help]
   autocorrect = 1
 
 [include]
-	path = ~/.gitconfig_local
-	path = ~/Projects/Setup/dotfiles/git/themes.gitconfig
+    path = ~/.gitconfig_local
+    path = ~/Projects/Setup/dotfiles/git/themes.gitconfig
 
 [init]
-	# Set "main" as the default branch name ("main" also happens to be
-	# the default git branch name set by Codeberg). See
-	# https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
-	defaultBranch = main
+    # Set "main" as the default branch name ("main" also happens to be
+    # the default git branch name set by Codeberg). See
+    # https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
+    defaultBranch = main
 
 [interactive]
-	diffFilter = delta --color-only # See https://dandavison.github.io/delta/get-started.html
+    diffFilter = delta --color-only # See https://dandavison.github.io/delta/get-started.html
 
 [log]
-  abbrevCommit = true
+  # abbrevCommit = true
   date = relative
   decorate = full
 
@@ -358,7 +355,7 @@
   status = true
 
 [pull]
-	rebase = true
+    rebase = true
 
 [push]
   default = simple
@@ -371,7 +368,7 @@
   enabled = true
 
 [annex]
-	# Annex binary files.
-	# See https://git-annex.branchable.com/tips/largefiles/
-	# and https://news.ycombinator.com/item?id=33060931
-	largefiles = largerthan=1kb and not (mimeencoding=us-ascii or mimeencoding=utf-8)
+    # Annex binary files.
+    # See https://git-annex.branchable.com/tips/largefiles/
+    # and https://news.ycombinator.com/item?id=33060931
+    largefiles = largerthan=1kb and not (mimeencoding=us-ascii or mimeencoding=utf-8)

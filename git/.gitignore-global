@@ -21,6 +21,9 @@ Thumbs.db
 # TAGS files (ctags, etags)
 TAGS
 
+# IntelliJ artifacts
+*.iml
+
 # TextMate backup files
 ._*
 

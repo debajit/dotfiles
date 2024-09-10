@@ -1,12 +1,13 @@
 export CXXFLAGS='-std=c++20'
-# export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MAILDIR="$HOME/.mail"
 
 # Bat
 export BAT_THEME='gruvbox-dark'
 
-# Docker Rootless. See https://wiki.archlinux.org/title/docker#Rootless_Docker_daemon
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+# Docker
+# export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+# export DOCKER_HOST=unix://$HOME/.rd/docker.sock # Rancher Desktop
 
 # Gum
 export GUM_FILTER_INDICATOR='⏺'

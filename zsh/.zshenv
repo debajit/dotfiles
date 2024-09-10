@@ -12,3 +12,4 @@ else
       ;;
   esac
 fi
+. "$HOME/.cargo/env"

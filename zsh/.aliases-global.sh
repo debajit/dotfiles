@@ -17,12 +17,22 @@ alias -g L='| less'
 alias -g LL='--color=always | less -R'
 alias -g G='| grep'
 alias -g A="| awk '{ print \$1 }'"
+# awk -F, '$3 == "something" {print $1 " " $2 " " $3 " " $7}' | sort | uniq | column -t
+alias -g AA="| awk -F ',' 'NR > 1 {print \$3}'"
+
+# Awk: Rows with non-empty column 8
+# alias -g AF="| awk -F ',' 'NR==1 || \$8 != "
+alias -g AC="| awk -F ',' -v var='VAL' 'NR > 1 || \$4 == var {print \$3}'"
 alias -g C='| wc -l'
+alias -g S='| sort '
+alias -g U='| uniq '
 alias -g F='| fzf --tac --ansi'
 alias -g T='| column -t'
+alias -g T='|& tee /tmp/out.log'
 alias -g J='| jq'
 alias -g JL='| jq -C | less -R'
-alias -g X='| xargs -0'
+alias -g W='| less -S'          # Do not Wrap
+alias -g X='| xargs -n1 '
 alias -g B='| base64 -d'
 
 # Arguments
@@ -31,9 +41,17 @@ alias -g V='--version'
 
 # Options
 alias -g h='HEAD'
-alias -g m='main'
+alias -g m='master'
 alias -g n='--no-decorate'
-alias -g om='origin/main'
+alias -g om='origin/master'
+
+# Output
+alias -g se='2> /dev/null'      # Suppress error (stderr)
+
+# Override options for syntax highlighting.
+# See https://github.com/sharkdp/bat
+# alias -g -- -h='-h 2>&1 | bat --language=help --style=plain' # This breaks commands or aliases like df -h
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # Notifications
 alias -g N='notify'

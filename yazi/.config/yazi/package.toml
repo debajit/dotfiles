@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins#max-preview", commit = "ba2a7d7" }, { use = "dedukun/bookmarks", commit = "748efed" }, { use = "Reledia/glow", commit = "536185a" }, { use = "Ape/smart-enter", commit = "7bf44b7" }, { use = "Ape/open-with-cmd", commit = "8d7abc8" }]
+deps = [{ use = "yazi-rs/plugins#max-preview", commit = "49ec78e" }, { use = "dedukun/bookmarks", commit = "f65fa5e" }, { use = "Reledia/glow", commit = "536185a" }, { use = "Ape/smart-enter", commit = "7bf44b7" }, { use = "Ape/open-with-cmd", commit = "8d7abc8" }]
 
 [flavor]
 deps = []
