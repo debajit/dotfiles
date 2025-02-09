@@ -5,5 +5,5 @@ alias -s {cpp,cc}="g++ -std=c++20"          # This will generate a.out
 alias -s csv='csvlens'
 alias -s json='less'
 alias -s local='bat -l bash'
-alias -s {md,markdown}='glow'
+alias -s {md,markdown}='glow -p'
 alias -s pdf='open'
