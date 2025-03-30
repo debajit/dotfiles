@@ -1,3 +1,4 @@
+--- @since 25.2.7
 -- stylua: ignore
 local SUPPORTED_KEYS = {
 	{ on = "0"}, { on = "1"}, { on = "2"}, { on = "3"}, { on = "4"},
@@ -33,17 +34,18 @@ local _get_real_index = ya.sync(function(state, idx)
 	return nil
 end)
 
-local _get_hovered_file = ya.sync(function()
+local _get_bookmark_file = ya.sync(function(state)
 	local folder = cx.active.current
-	if not folder.hovered then
-		return { url = folder.cwd, is_cwd = true }
+
+	if state.file_pick_mode == "parent" or not folder.hovered then
+		return { url = folder.cwd, is_parent = true }
 	end
-	return { url = folder.hovered.url, is_cwd = false }
+	return { url = folder.hovered.url, is_parent = false }
 end)
 
 local _generate_description = ya.sync(function(state, file)
 	-- if this is true, we don't have information about the folder, so just return the folder url
-	if file.is_cwd then
+	if file.is_parent then
 		return tostring(file.url)
 	end
 
@@ -88,39 +90,63 @@ local _save_state = ya.sync(function(state, bookmarks)
 	ps.pub_to(0, "@bookmarks", save_state)
 end)
 
-local _save_last_directory = ya.sync(function(state, persist)
-	if persist then
-		ps.sub_remote("@bookmarks-lastdir", function(body) state.curr_dir = body end)
+local _load_last = ya.sync(function(state)
+	ps.sub_remote("@bookmarks-last", function(body)
+		state.last_dir = body
+
+		if state.last_mode ~= "dir" then
+			ps.unsub_remote("@bookmarks-last")
+		end
+	end)
+end)
+
+local _save_last = ya.sync(function(state, persist, imediate)
+	local file = _get_bookmark_file()
+
+	local curr = {
+		on = "'",
+		desc = _generate_description(file),
+		path = tostring(file.url),
+		is_parent = file.is_parent,
+	}
+
+	if imediate then
+		state.curr_dir = nil
+		state.last_dir = curr
+	else
+		state.last_dir = state.curr_dir
+		state.curr_dir = curr
 	end
 
-	ps.sub("cd", function()
-		local file = _get_hovered_file()
-		state.last_dir = state.curr_dir
+	if persist and state.last_dir then
+		ps.pub_to(0, "@bookmarks-last", state.last_dir)
+	end
+end)
 
-		if persist and state.last_dir then
-			ps.pub_to(0, "@bookmarks-lastdir", state.last_dir)
-		end
+local get_last_mode = ya.sync(function(state) return state.last_mode end)
 
-		state.curr_dir = {
-			on = "'",
-			desc = _generate_description(file),
-			path = tostring(file.url),
-		}
-	end)
+local save_last_dir = ya.sync(function(state)
+	ps.sub("cd", function() _save_last(state.last_persist, false) end)
 
 	ps.sub("hover", function()
-		local file = _get_hovered_file()
+		local file = _get_bookmark_file()
 		state.curr_dir.desc = _generate_description(file)
 		state.curr_dir.path = tostring(file.url)
 	end)
 end)
 
+local save_last_jump = ya.sync(function(state) _save_last(state.last_persist, true) end)
+
+local save_last_mark = ya.sync(function(state) _save_last(state.last_persist, true) end)
+
+local _is_custom_desc_input_enabled = ya.sync(function(state) return state.custom_desc_input end)
+
 -- ***********************************************
 -- **============= C O M M A N D S =============**
 -- ***********************************************
 
-local save_bookmark = ya.sync(function(state, idx)
-	local file = _get_hovered_file()
+local save_bookmark = ya.sync(function(state, idx, custom_desc)
+	local file = _get_bookmark_file()
 
 	state.bookmarks = state.bookmarks or {}
 
@@ -129,11 +155,39 @@ local save_bookmark = ya.sync(function(state, idx)
 		_idx = #state.bookmarks + 1
 	end
 
+	local bookmark_desc = tostring(file.url)
+	if custom_desc then
+		bookmark_desc = tostring(custom_desc)
+	end
+
 	state.bookmarks[_idx] = {
 		on = SUPPORTED_KEYS[idx].on,
-		desc = _generate_description(file),
+		desc = bookmark_desc,
 		path = tostring(file.url),
+		is_parent = file.is_parent,
 	}
+
+	-- Custom sorting function
+	table.sort(state.bookmarks, function(a, b)
+		local key_a, key_b = a.on, b.on
+
+		-- Numbers first
+		if key_a:match("%d") and not key_b:match("%d") then
+			return true
+		elseif key_b:match("%d") and not key_a:match("%d") then
+			return false
+		end
+
+		-- Uppercase before lowercase
+		if key_a:match("%u") and key_b:match("%l") then
+			return true
+		elseif key_b:match("%u") and key_a:match("%l") then
+			return false
+		end
+
+		-- Regular alphabetical sorting
+		return key_a < key_b
+	end)
 
 	if state.persist then
 		_save_state(state.bookmarks)
@@ -144,6 +198,10 @@ local save_bookmark = ya.sync(function(state, idx)
 		message, _ = message:gsub("<key>", state.bookmarks[_idx].on)
 		message, _ = message:gsub("<folder>", state.bookmarks[_idx].desc)
 		_send_notification(message)
+	end
+
+	if get_last_mode() == "mark" then
+		save_last_mark()
 	end
 end)
 
@@ -191,8 +249,8 @@ local delete_all_bookmarks = ya.sync(function(state)
 end)
 
 return {
-	entry = function(_, args)
-		local action = args[1]
+	entry = function(_, job)
+		local action = job.args[1]
 		if not action then
 			return
 		end
@@ -200,6 +258,19 @@ return {
 		if action == "save" then
 			local key = ya.which { cands = SUPPORTED_KEYS, silent = true }
 			if key then
+				if _is_custom_desc_input_enabled() then
+					local value, event = ya.input {
+						title = "Save with custom description:",
+						position = { "top-center", y = 3, w = 60 },
+						value = tostring(_get_bookmark_file().url),
+					}
+					if event ~= 1 then
+						return
+					end
+
+					save_bookmark(key, value)
+					return
+				end
 				save_bookmark(key)
 			end
 			return
@@ -216,7 +287,15 @@ return {
 		end
 
 		if action == "jump" then
-			ya.manager_emit("reveal", { bookmarks[selected].path })
+			if get_last_mode() == "jump" then
+				save_last_jump()
+			end
+
+			if bookmarks[selected].is_parent then
+				ya.manager_emit("cd", { bookmarks[selected].path })
+			else
+				ya.manager_emit("reveal", { bookmarks[selected].path })
+			end
 		elseif action == "delete" then
 			delete_bookmark(selected)
 		end
@@ -226,12 +305,28 @@ return {
 			return
 		end
 
-		-- TODO: DEPRECATED
-		if args.save_last_directory then
-			_save_last_directory()
-		elseif type(args.last_directory) == "table" then
+		if type(args.last_directory) == "table" then
 			if args.last_directory.enable then
-				_save_last_directory(args.last_directory.persist)
+				if args.last_directory.mode == "mark" then
+					state.last_persist = args.last_directory.persist
+					state.last_mode = "mark"
+				elseif args.last_directory.mode == "jump" then
+					state.last_persist = args.last_directory.persist
+					state.last_mode = "jump"
+				elseif args.last_directory.mode == "dir" then
+					state.last_persist = args.last_directory.persist
+					state.last_mode = "dir"
+					save_last_dir()
+				else
+					-- default
+					state.last_persist = args.last_directory.persist
+					state.last_mode = "dir"
+					save_last_dir()
+				end
+
+				if args.last_directory.persist then
+					_load_last()
+				end
 			end
 		end
 
@@ -244,6 +339,16 @@ return {
 			state.desc_format = "parent"
 		else
 			state.desc_format = "full"
+		end
+
+		if args.file_pick_mode == "parent" then
+			state.file_pick_mode = "parent"
+		else
+			state.file_pick_mode = "hover"
+		end
+
+		if type(args.custom_desc_input) == "boolean" then
+			state.custom_desc_input = args.custom_desc_input
 		end
 
 		state.notify = {

@@ -1,3 +1,20 @@
+# My bookmarks
+
+[[manager.prepend_keymap]]
+on   = [ "g", "a" ]
+run  = "cd ~/Archive"
+desc = "Cd to ~/Archive"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "cd ~/Archive/Music"
+desc = "Cd to ~/Archive/Music"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/Archive/Pictures/Photography"
+desc = "Cd to ~/Archive/Pictures/Photography"
+
 # Bookmarks Plugin
 # https://github.com/dedukun/bookmarks.yazi
 

@@ -1,5 +1,22 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins#max-preview", commit = "49ec78e" }, { use = "dedukun/bookmarks", commit = "f65fa5e" }, { use = "Reledia/glow", commit = "536185a" }, { use = "Ape/smart-enter", commit = "7bf44b7" }, { use = "Ape/open-with-cmd", commit = "8d7abc8" }]
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "c76bf4f"
+hash = "a6b78bf9af5390e3a85a6951fbb7b93"
+
+[[plugin.deps]]
+use = "Ape/smart-enter"
+rev = "7b84c89"
+hash = "43eb1a1f2291795fb5b0b2ce1206ebee"
+
+[[plugin.deps]]
+use = "Ape/open-with-cmd"
+rev = "433cf30"
+hash = "86e0312b01bc5762813c6c1d0517f073"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "95b2c58"
+hash = "17a094653b7d0db4ac68ed531d2e1412"
 
 [flavor]
 deps = []

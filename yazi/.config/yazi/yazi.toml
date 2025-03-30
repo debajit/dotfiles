@@ -4,8 +4,20 @@
 
 
 [manager]
-ratio          = [ 1, 3, 4 ]
+ratio = [ 1, 3, 4 ]
+sort_by = "mtime"
+sort_reverse = true
+sort_dir_first = false
 
+[opener]
+open_image = [
+    { run = 'feh -Zr "$@"', desc = "Open Image" },
+]
+
+[open]
+prepend_rules = [
+  { mime = "image/*", use = [ "open_image", "open" ] }
+]
 
 [plugin]
 prepend_previewers = [
