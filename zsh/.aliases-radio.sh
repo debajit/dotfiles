@@ -16,6 +16,10 @@
 # News
 alias npr="mpv 'http://npr-ice.streamguys1.com/live.mp3'"
 
+# Stories
+# AudioNoir http://audionoir.com/
+alias audionoir='mpv http://streams.audionoir.com:8000/noir'
+
 # 1Live
 # - Site: https://einslive.de/, https://www1.wdr.de/radio/1live/on-air/index.html
 # - Radio browser: https://www.radio-browser.info/#/history/9606f727-0601-11e8-ae97-52543be04c81
