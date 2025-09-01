@@ -129,23 +129,6 @@ function _rg_or_pipe_grep() {
 zle -N _rg_or_pipe_grep
 bindkey '^[g' _rg_or_pipe_grep
 
-# Alt+e => Toggle between ‘echo "${?}"’ and ‘echo’ (if command is empty) or
-function _echo() {
-  echo_var_command='echo "${?}"'
-  echo_command='echo '
-
-  if [[ -z "${BUFFER}" || "${BUFFER}" == "${echo_command}" ]]; then
-    BUFFER="${echo_var_command}"
-    zle end-of-line
-    ((CURSOR-=2))
-  elif [[ "${BUFFER:0:6}" == 'echo "' ]]; then
-    BUFFER="${echo_command}"
-    zle end-of-line
-  fi
-}
-zle -N _echo
-bindkey '^[e' _echo
-
 # Alt+z => Unzip latest zip file (or similar)
 function _unzip_latest_zip_file() {
   zip_files=(*(.zip|.xz|.gz|.rar)(.om))
