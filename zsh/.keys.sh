@@ -3,10 +3,13 @@ source "${HOME}/.keys-functions.sh"
 setopt nullglob
 
 typeset -A _keymap=(
+  ALT_E         '^[e'
   ALT_J         '^[j'
   ALT_K         '^[k'
   ALT_U         '^[u'
+  ALT_MINUS     '^[-'
   ALT_SHIFT_L   '^[L'
+  ALT_SHIFT_U   '^[U'
   SUPER_A       '^[[97;9u'
   SUPER_SHIFT_P '^[[112;10u'
 )
@@ -158,8 +161,11 @@ bindkey '^[z' _unzip_latest_zip_file
 
 _bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
 _bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
+
 _bind_key_to_command        ALT_SHIFT_L   'ls\n'
-_bind_key_to_command        ALT_U         'cd ..\n'
+
+_bind_key_to_command        ALT_U         'cd ..\n'     # Parent directory
+_bind_key_to_command        ALT_MINUS     'cd -\n'      # Previous directory
 
 # Recent directory picker
 if (( $+commands[zoxide] )); then
@@ -168,10 +174,8 @@ else
   _bind_key_to_command      ALT_K         'dirs -v\n'
 fi
 
-# bindkey -s '^[u' 'cd ..\n'               # Alt+u => cd ..
-bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
-bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous directory)
-bindkey -s '^[E' 'echo $'                  # Alt+e => echo $
+_bind_key_to_command        ALT_E          'echo $?'
+_bind_key_to_command        ALT_SHIFT_U    'uname -a\n'
 
 bindkey -s '^[[102;9u' 'y\n'               # Super+f => File manager (Yazi)
 bindkey -s '^[[102;10u' 'br\n'             # Super+Shift+f => br (Fast directory navigator)
