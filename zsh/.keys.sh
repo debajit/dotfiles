@@ -1,4 +1,16 @@
+source "${HOME}/.keys-functions.sh"
+
 setopt nullglob
+
+typeset -A _keymap=(
+  ALT_J         '^[j'
+  ALT_K         '^[k'
+  ALT_U         '^[u'
+  ALT_SHIFT_L   '^[L'
+  SUPER_A       '^[[97;9u'
+  SUPER_SHIFT_P '^[[112;10u'
+)
+
 
 # Shell operations
 bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configuration
@@ -6,38 +18,38 @@ bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configura
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
 
-# Alt+o => Open polymorphically
+# Alt+o   => Open polymorphically
+# Super+r => Run polymorphically
 function _open_polymorphically() {
   media_files=(*(.mkv|.flac|.mp4|.m4a)(.om))
 
   current_dir_name="${PWD##*/}"
 
   if [[ -f "./config/_default/hugo.yaml" ]]; then
-    gum spin --spinner points --title "Starting Hugo server..." -- xdg-open "http://localhost:1313" && hugo server -D --cleanDestinationDir
+    gum spin --spinner points --title "Starting Hugo server..." -- xdg-open "http://localhost:1313" && hugo server -D --cleanDestinationDir --disableFastRender
 
-  # Run JS project
+    # Run JS project
   elif [[ -f "./package-lock.json" ]]; then
     BUFFER='npm start'
     zle accept-line
 
-  # Run Makefile
+    # Run Makefile
   elif [[ -f "Makefile" ]]; then
     BUFFER='make -k'
     zle accept-line
 
-  # Open media files
+    # Open media files
   elif [[ -e "${media_files[1]}" ]]; then
-    BUFFER="mpv --hwdec=auto \"${media_files[1]}\""
+    BUFFER="mpv \"${media_files[1]}\""
     zle accept-line
   fi
 }
 zle -N _open_polymorphically
-bindkey '^[o' _open_polymorphically        # Alt+o
-bindkey '^[[111;9u' _open_polymorphically  # Super+o
-bindkey '^[[114;9u' _open_polymorphically  # Super+r
+bindkey '^[o' _open_polymorphically
+bindkey '^[[114;9u' _open_polymorphically
 
-# Alt+k => Open latest text file in dir (cycles through less -> o -> bat)
-function _open_latest_file() {
+# Alt+k => Open latest doc/text file in dir (cycles through less -> o -> bat)
+function _open_latest_document() {
   _latest_files=(*(.conf|.csv|.json|.txt|.md|.org|.py)(.om))
 
   if [[ -e "${_latest_files[1]}" ]]; then
@@ -53,8 +65,18 @@ function _open_latest_file() {
     fi
   fi
 }
-zle -N _open_latest_file
-bindkey '^[k' _open_latest_file
+zle -N _open_latest_document
+bindkey '^[k' _open_latest_document
+
+function _open_images_and_docs_polymorphically() {
+  image_or_doc_files=(*(.jpg|.webp)(.om))
+  BUFFER="feh -F \"${image_or_doc_files[1]}\" ."
+  zle accept-line
+}
+
+zle -N _open_images_and_docs_polymorphically
+bindkey '^[i' _open_images_and_docs_polymorphically
+
 
 # Alt+l => ‘ls’ (if command line empty) or
 #          ‘| less’ if a command was already typed
@@ -133,11 +155,27 @@ function _unzip_latest_zip_file() {
 zle -N _unzip_latest_zip_file
 bindkey '^[z' _unzip_latest_zip_file
 
-bindkey -s '^[L' 'ls\n'                    # Alt+Shift+l => Regular columnar ls
-bindkey -s '^[u' 'cd ..\n'                 # Alt+u => cd ..
+
+_bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
+_bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
+_bind_key_to_command        ALT_SHIFT_L   'ls\n'
+_bind_key_to_command        ALT_U         'cd ..\n'
+
+# Recent directory picker
+if (( $+commands[zoxide] )); then
+  _bind_key_to_command      ALT_K         'zi\n'
+else
+  _bind_key_to_command      ALT_K         'dirs -v\n'
+fi
+
+# bindkey -s '^[u' 'cd ..\n'               # Alt+u => cd ..
 bindkey -s '^[U' 'uname -a\n'              # Alt+Shift+u => uname -a
 bindkey -s '^[-' 'cd -\n'                  # Alt+- => cd -    (Previous directory)
 bindkey -s '^[E' 'echo $'                  # Alt+e => echo $
+
+bindkey -s '^[[102;9u' 'y\n'               # Super+f => File manager (Yazi)
+bindkey -s '^[[102;10u' 'br\n'             # Super+Shift+f => br (Fast directory navigator)
+bindkey -s '^[[109;9u' 'write-playlists && cmus\n' # Super+m => Music player (cmus)
 
 # Sudo
 bindkey -s '^[[112;13u' 'sudo $(fc -ln -1)' # Super+Control+p => sudo previous command. See https://askubuntu.com/a/530687/1655230
@@ -179,25 +217,15 @@ bindkey -s '^[[99;10u^[[100;10u' 'docker compose down'       # Super+Shift+c Sup
 bindkey -s '^[[99;10u^[[108;10u' 'docker compose logs\n'     # Super+Shift+c Super+Shift+l => docker compose logs
 bindkey -s '^[[99;10u^[[102;10u' 'docker compose logs -f\n'  # Super+Shift+c Super+Shift+f => docker compose logs -f
 
-# Recent directory picker
-if (( $+commands[zoxide] )); then
-  bindkey -s '^[j' 'zi\n'                  # M-j => zi (zoxide recent directory picker)
-  # bindkey -s '^[[112;10u' 'zi\n'           # C-P => zi (zoxide recent directory picker) (to match my Emacs projects keybinding)
-else
-  bindkey -s '^[j' 'dirs -v\n'             # M-j => dirs -v (if zoxide is not installed)
-  bindkey -s '^[[112;10u' 'dirs -v\n'      # C-P => dirs -v
-fi
-
 # Text insertion
 bindkey -s '^[D' 'cd ~/Downloads\n'        # Alt+Shift+d => cd ~/Downloads
 bindkey -s '^[J^[L' 'jq length '
 
 # Jump to directory
-bindkey -s '^[C' 'cd ~/Projects/Setup/dotfiles\n'          # Alt+Shift+c => dotfiles (configuration)
 bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
 bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /tmp
-bindkey -s '^[W' 'cd ~/dev/\n'                             # Alt+Shift+w => Work code
-bindkey -s '^[S' 'cd ~/dev/shepherd\n'                     # Alt+Shift+s => Shepherd code
+bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
+bindkey -s '^[C' 'cd ~/Projects/Setup/dotfiles\n'          # Alt+Shift+c => dotfiles (configuration)
 
 # Utilities
 bindkey -s '^[[99;13u' 'echo && cal -3 && echo && date && echo\n'  # Control+Super+s => Calendar (3 months)
@@ -223,7 +251,11 @@ bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => back
 
 # Logs
 bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  Journal for audio server
-bindkey -s '^[J^[C' 'journalctl -b -1 -eu cronie'     # M-J M-C (all-caps) =>  Journal for cron
+bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C (all-caps) =>  Journal for cron
+
+# Media
+bindkey -s '^[a' 'fd -e flac -e mp3 -e m4a -e m4b -e m4v -e mp4 -e wav | mpv --shuffle --playlist=- --loop-playlist\n' # Alt+a, Shuffle all
+bindkey -s '^[m' 'fd -e flac -e mp3 -e m4a -e m4b -e m4v -e mp4 -e wav\n' # Alt+m, list all media
 
 # ssh
 # bindkey -s '^[h' 'ssh **\t'                  # Alt+h => ssh to known hosts (with fzf host-autocompletion)
