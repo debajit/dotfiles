@@ -6,11 +6,15 @@ typeset -A _keymap=(
   ALT_E         '^[e'
   ALT_J         '^[j'
   ALT_K         '^[k'
+  ALT_O         '^[o'
   ALT_U         '^[u'
   ALT_MINUS     '^[-'
   ALT_SHIFT_L   '^[L'
   ALT_SHIFT_U   '^[U'
   SUPER_A       '^[[97;9u'
+  SUPER_R       '^[[114;9u'
+  SUPER_S       '^[[115;9u'
+  SUPER_U       '^[[117;9u'
   SUPER_SHIFT_P '^[[112;10u'
 )
 
@@ -31,25 +35,34 @@ function _open_polymorphically() {
   if [[ -f "./config/_default/hugo.yaml" ]]; then
     gum spin --spinner points --title "Starting Hugo server..." -- xdg-open "http://localhost:1313" && hugo server -D --cleanDestinationDir --disableFastRender
 
-    # Run JS project
   elif [[ -f "./package-lock.json" ]]; then
+    # Run JS project
     BUFFER='npm start'
     zle accept-line
 
-    # Run Makefile
   elif [[ -f "Makefile" ]]; then
+    # Run Makefile
     BUFFER='make -k'
     zle accept-line
 
-    # Open media files
+  elif [[ -f "PKGBUILD" ]]; then
+    # Build Arch package (sync and install)
+    BUFFER='makepkg -si'
+    zle end-of-line
+
   elif [[ -e "${media_files[1]}" ]]; then
+    # Open media files
     BUFFER="mpv \"${media_files[1]}\""
     zle accept-line
   fi
 }
-zle -N _open_polymorphically
-bindkey '^[o' _open_polymorphically
-bindkey '^[[114;9u' _open_polymorphically
+
+_bind_key_to_function ALT_O _open_polymorphically
+
+# zle -N _open_polymorphically
+# bindkey '^[o' _open_polymorphically
+# bindkey '^[[114;9u' _open_polymorphically
+
 
 # Alt+k => Open latest doc/text file in dir (cycles through less -> o -> bat)
 function _open_latest_document() {
@@ -141,7 +154,11 @@ function _unzip_latest_zip_file() {
 zle -N _unzip_latest_zip_file
 bindkey '^[z' _unzip_latest_zip_file
 
+# Git
 
+_bind_key_to_command        SUPER_S       'git status\n'
+
+_bind_key_to_cycle_commands SUPER_U       'git pull '   'git fetch origin '
 _bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
 _bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
 
@@ -171,7 +188,7 @@ bindkey -s '^[[112;13u' 'sudo $(fc -ln -1)' # Super+Control+p => sudo previous c
 # bindkey -s '^[[114;9u'  'run-app\n'           # Super+r       => Run this program or start the server (polymorphically)
 bindkey -s '^[[108;9u'  'git ll\n'            # Super+l       => git ll
 bindkey -s '^[[108;10u' 'git-log-fzf\n'       # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
-bindkey -s '^[[115;9u'  'git s\n'             # Super+s       => git status
+# bindkey -s '^[[115;9u'  'git s\n'             # Super+s       => git status
 bindkey -s '^[[115;10u' 'git show\n'          # Super+Shift+s => git show
 bindkey -s '^[[100;9u'  'git diff\n'          # Super+d       => git diff
 bindkey -s '^[[100;10u' 'git diff --staged\n' # Super+Shift+d => git diff --staged

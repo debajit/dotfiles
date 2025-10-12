@@ -26,6 +26,20 @@ function _bind_key_to_command() {
 }
 
 
+function _bind_key_to_command2() {
+
+}
+
+function _bind_key_to_function() {
+  local key_name="$1"
+  local function_name="$2"
+
+  local key_binding=$(_get_key_binding "$key_name") || return 1
+
+  zle -N "${function_name}"
+  bindkey "${key_binding}" "${function_name}"
+}
+
 # General-purpose command cycler (cycles through any array of commands)
 function _cycle_commands_with_list() {
   local -a commands=("${(@P)1}")  # Evaluate variable name passed as string
