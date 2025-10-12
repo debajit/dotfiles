@@ -2,6 +2,12 @@ source "${HOME}/.keys-functions.sh"
 
 # Git
 _bind_key_to_command        SUPER_S       'git status\n'
+_bind_key_to_command        SUPER_L       'git ll\n'
+_bind_key_to_command        SUPER_SHIFT_L 'git-log-fzf\n'
+_bind_key_to_command        SUPER_D       'git diff\n'
+_bind_key_to_command        SUPER_SHIFT_D 'git diff --staged\n'
+_bind_key_to_command        SUPER_SHIFT_S 'git show\n'
+_bind_key_to_command        SUPER_B       'git branch -avv\n'
 _bind_key_to_cycle_commands SUPER_U       'git pull '   'git fetch origin '
 _bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
 _bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
@@ -9,12 +15,13 @@ _bind_key_to_cycle_commands ALT_G         'rg -S '      'git grep -i '
 
 # Shell commands
 
-_bind_key_to_command  ALT_SHIFT_L  'ls\n'
-_bind_key_to_command  ALT_U        'cd ..\n'            # Parent directory
-_bind_key_to_command  ALT_MINUS    'cd -\n'             # Previous directory
-_bind_key_to_command  ALT_E        'echo $?'
-_bind_key_to_command  ALT_SHIFT_R  'source ~/.zshrc\n'  # Reload shell configuration
-_bind_key_to_command  ALT_SHIFT_U  'uname -a\n'
+_bind_key_to_command  ALT_SHIFT_L     'ls\n'
+_bind_key_to_command  ALT_U           'cd ..\n'            # Parent directory
+_bind_key_to_command  ALT_MINUS       'cd -\n'             # Previous directory
+_bind_key_to_command  ALT_E           'echo $?'
+_bind_key_to_command  ALT_SHIFT_R     'source ~/.zshrc\n'  # Reload shell configuration
+_bind_key_to_command  ALT_SHIFT_U     'uname -a\n'
+_bind_key_to_command  SUPER_CONTROL_P 'sudo $(fc -ln -1)'  # Sudo previous command
 
 _bind_key_to_empty_or_nonempty_command_line ALT_L 'ls' '| less'
 
@@ -160,21 +167,6 @@ function _unzip_latest_zip_file() {
 zle -N _unzip_latest_zip_file
 bindkey '^[z' _unzip_latest_zip_file
 
-
-
-
-# Sudo
-bindkey -s '^[[112;13u' 'sudo $(fc -ln -1)' # Super+Control+p => sudo previous command. See https://askubuntu.com/a/530687/1655230
-
-# Development related
-# bindkey -s '^[[114;9u'  'run-app\n'           # Super+r       => Run this program or start the server (polymorphically)
-bindkey -s '^[[108;9u'  'git ll\n'            # Super+l       => git ll
-bindkey -s '^[[108;10u' 'git-log-fzf\n'       # Super+Shift+l => git-log-fzf (commit browser with fuzzy find)
-# bindkey -s '^[[115;9u'  'git s\n'             # Super+s       => git status
-bindkey -s '^[[115;10u' 'git show\n'          # Super+Shift+s => git show
-bindkey -s '^[[100;9u'  'git diff\n'          # Super+d       => git diff
-bindkey -s '^[[100;10u' 'git diff --staged\n' # Super+Shift+d => git diff --staged
-bindkey -s '^[[98;9u'   'git branch -avv\n'   # Super+b       => git branch -avv
 
 # Super + Control + s => Toggle between ‘git show’ and ‘git -c delta.side-by-side=false show’
 function _git_show_default_or_unified() {
