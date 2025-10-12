@@ -13,9 +13,12 @@ typeset -A _keymap=(
   ALT_SHIFT_R   '^[R'
   ALT_SHIFT_U   '^[U'
   SUPER_A       '^[[97;9u'
+  SUPER_F       '^[[102;9u'
+  SUPER_M       '^[[109;9u'
   SUPER_R       '^[[114;9u'
   SUPER_S       '^[[115;9u'
   SUPER_U       '^[[117;9u'
+  SUPER_SHIFT_F '^[[102;10u'
   SUPER_SHIFT_P '^[[112;10u'
 )
 

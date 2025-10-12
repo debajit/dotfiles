@@ -20,11 +20,15 @@ _bind_key_to_empty_or_nonempty_command_line ALT_L 'ls' '| less'
 
 # Recent directory picker
 if (( $+commands[zoxide] )); then
-  _bind_key_to_command      ALT_K         'zi\n'
+  _bind_key_to_command  ALT_K  'zi\n'      # Open recent directory
 else
-  _bind_key_to_command      ALT_K         'dirs -v\n'
+  _bind_key_to_command  ALT_K  'dirs -v\n' # List recent directories that we can jump to
 fi
 
+# Apps
+_bind_key_to_command  SUPER_F        'y\n'                        # File manager (Yazi)
+_bind_key_to_command  SUPER_SHIFT_F  'br\n'                       # br (Fast directory navigator)
+_bind_key_to_command  SUPER_M        'write-playlists && cmus\n'  # Music player (cmus)
 
 
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
@@ -158,9 +162,6 @@ bindkey '^[z' _unzip_latest_zip_file
 
 
 
-bindkey -s '^[[102;9u' 'y\n'               # Super+f => File manager (Yazi)
-bindkey -s '^[[102;10u' 'br\n'             # Super+Shift+f => br (Fast directory navigator)
-bindkey -s '^[[109;9u' 'write-playlists && cmus\n' # Super+m => Music player (cmus)
 
 # Sudo
 bindkey -s '^[[112;13u' 'sudo $(fc -ln -1)' # Super+Control+p => sudo previous command. See https://askubuntu.com/a/530687/1655230
