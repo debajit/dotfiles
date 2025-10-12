@@ -1,26 +1,31 @@
 source "${HOME}/.keys-functions.sh"
 
-setopt nullglob
+# Git
+_bind_key_to_command        SUPER_S       'git status\n'
+_bind_key_to_cycle_commands SUPER_U       'git pull '   'git fetch origin '
+_bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
+_bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
+_bind_key_to_cycle_commands ALT_G         'rg -S '      'git grep -i '
 
-typeset -A _keymap=(
-  ALT_E         '^[e'
-  ALT_J         '^[j'
-  ALT_K         '^[k'
-  ALT_O         '^[o'
-  ALT_U         '^[u'
-  ALT_MINUS     '^[-'
-  ALT_SHIFT_L   '^[L'
-  ALT_SHIFT_U   '^[U'
-  SUPER_A       '^[[97;9u'
-  SUPER_R       '^[[114;9u'
-  SUPER_S       '^[[115;9u'
-  SUPER_U       '^[[117;9u'
-  SUPER_SHIFT_P '^[[112;10u'
-)
+# Shell commands
+
+_bind_key_to_command  ALT_SHIFT_L  'ls\n'
+_bind_key_to_command  ALT_U        'cd ..\n'            # Parent directory
+_bind_key_to_command  ALT_MINUS    'cd -\n'             # Previous directory
+_bind_key_to_command  ALT_E        'echo $?'
+_bind_key_to_command  ALT_SHIFT_R  'source ~/.zshrc\n'  # Reload shell configuration
+_bind_key_to_command  ALT_SHIFT_U  'uname -a\n'
+
+_bind_key_to_empty_or_nonempty_command_line ALT_L 'ls' '| less'
+
+# Recent directory picker
+if (( $+commands[zoxide] )); then
+  _bind_key_to_command      ALT_K         'zi\n'
+else
+  _bind_key_to_command      ALT_K         'dirs -v\n'
+fi
 
 
-# Shell operations
-bindkey -s '^[R' 'source ~/.zshrc\n'       # Alt+Shift+r => Reload zsh configuration
 
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
@@ -57,32 +62,29 @@ function _open_polymorphically() {
   fi
 }
 
-_bind_key_to_function ALT_O _open_polymorphically
-
-# zle -N _open_polymorphically
-# bindkey '^[o' _open_polymorphically
-# bindkey '^[[114;9u' _open_polymorphically
+_bind_key_to_function ALT_O   _open_polymorphically
+_bind_key_to_function SUPER_R _open_polymorphically
 
 
-# Alt+k => Open latest doc/text file in dir (cycles through less -> o -> bat)
-function _open_latest_document() {
-  _latest_files=(*(.conf|.csv|.json|.txt|.md|.org|.py)(.om))
+# # Alt+k => Open latest doc/text file in dir (cycles through less -> o -> bat)
+# function _open_latest_document() {
+#   _latest_files=(*(.conf|.csv|.json|.txt|.md|.org|.py)(.om))
 
-  if [[ -e "${_latest_files[1]}" ]]; then
-    if [[ -z "${BUFFER}" || "${BUFFER:0:4}" == "bat " ]]; then
-      BUFFER="less \"${_latest_files[1]}\""
-      zle end-of-line
-    elif [[ "${BUFFER:0:5}" == "less " ]]; then
-      BUFFER="o \"${_latest_files[1]}\""
-      zle end-of-line
-    elif [[ "${BUFFER:0:2}" == "o " ]]; then
-      BUFFER="bat \"${_latest_files[1]}\""
-      zle end-of-line
-    fi
-  fi
-}
-zle -N _open_latest_document
-bindkey '^[k' _open_latest_document
+#   if [[ -e "${_latest_files[1]}" ]]; then
+#     if [[ -z "${BUFFER}" || "${BUFFER:0:4}" == "bat " ]]; then
+#       BUFFER="less \"${_latest_files[1]}\""
+#       zle end-of-line
+#     elif [[ "${BUFFER:0:5}" == "less " ]]; then
+#       BUFFER="o \"${_latest_files[1]}\""
+#       zle end-of-line
+#     elif [[ "${BUFFER:0:2}" == "o " ]]; then
+#       BUFFER="bat \"${_latest_files[1]}\""
+#       zle end-of-line
+#     fi
+#   fi
+# }
+# zle -N _open_latest_document
+# bindkey '^[k' _open_latest_document
 
 function _open_images_and_docs_polymorphically() {
   image_or_doc_files=(*(.jpg|.webp)(.om))
@@ -94,53 +96,53 @@ zle -N _open_images_and_docs_polymorphically
 bindkey '^[i' _open_images_and_docs_polymorphically
 
 
-# Alt+l => ‘ls’ (if command line empty) or
-#          ‘| less’ if a command was already typed
-function _ls_or_pipe_less() {
-  if [[ -z "$BUFFER" ]]; then
-    BUFFER="lt"
-    zle accept-line
-  else
-    if [[ ${BUFFER: -1} != ' ' ]]; then # If the rightmost character is not a space
-      BUFFER+=' '
-    fi
+# # Alt+l => ‘ls’ (if command line empty) or
+# #          ‘| less’ if a command was already typed
+# function _ls_or_pipe_less() {
+#   if [[ -z "$BUFFER" ]]; then
+#     BUFFER="lt"
+#     zle accept-line
+#   else
+#     if [[ ${BUFFER: -1} != ' ' ]]; then # If the rightmost character is not a space
+#       BUFFER+=' '
+#     fi
 
-    BUFFER+="| less "
-    zle end-of-line
-  fi
-}
-zle -N _ls_or_pipe_less
-bindkey '^[l' _ls_or_pipe_less
+#     BUFFER+="| less "
+#     zle end-of-line
+#   fi
+# }
+# zle -N _ls_or_pipe_less
+# bindkey '^[l' _ls_or_pipe_less
 
-# Alt+g => Toggle between ‘rg -S’ and ‘git g’ (if command is empty) or
-#          ‘| rg’ if a command has already been typed
-function _rg_or_pipe_grep() {
-  if [[ -z "$BUFFER" ]]; then
-    BUFFER="rg -S ''"
-    zle end-of-line
-    ((CURSOR -= 1))
-  else
-    if [[ "${BUFFER:0:5}" == "rg -S" ]]; then
-      BUFFER="git grep -i ''"
-      zle end-of-line
-      ((CURSOR -= 1))
-    elif [[ "${BUFFER:0:11}" == "git grep -i" ]]; then
-      BUFFER="rg -S ''"
-      zle end-of-line
-      ((CURSOR -= 1))
-    else
-      if [[ ${BUFFER: -1} != ' ' ]]; then # If the rightmost character is not a space
-        BUFFER+=' '
-      fi
+# # Alt+g => Toggle between ‘rg -S’ and ‘git g’ (if command is empty) or
+# #          ‘| rg’ if a command has already been typed
+# function _rg_or_pipe_grep() {
+#   if [[ -z "$BUFFER" ]]; then
+#     BUFFER="rg -S ''"
+#     zle end-of-line
+#     ((CURSOR -= 1))
+#   else
+#     if [[ "${BUFFER:0:5}" == "rg -S" ]]; then
+#       BUFFER="git grep -i ''"
+#       zle end-of-line
+#       ((CURSOR -= 1))
+#     elif [[ "${BUFFER:0:11}" == "git grep -i" ]]; then
+#       BUFFER="rg -S ''"
+#       zle end-of-line
+#       ((CURSOR -= 1))
+#     else
+#       if [[ ${BUFFER: -1} != ' ' ]]; then # If the rightmost character is not a space
+#         BUFFER+=' '
+#       fi
 
-      BUFFER+="| rg -S "
-      zle end-of-line
-      ((CURSOR -= 1))
-    fi
-  fi
-}
-zle -N _rg_or_pipe_grep
-bindkey '^[g' _rg_or_pipe_grep
+#       BUFFER+="| rg -S "
+#       zle end-of-line
+#       ((CURSOR -= 1))
+#     fi
+#   fi
+# }
+# zle -N _rg_or_pipe_grep
+# bindkey '^[g' _rg_or_pipe_grep
 
 # Alt+z => Unzip latest zip file (or similar)
 function _unzip_latest_zip_file() {
@@ -154,28 +156,7 @@ function _unzip_latest_zip_file() {
 zle -N _unzip_latest_zip_file
 bindkey '^[z' _unzip_latest_zip_file
 
-# Git
 
-_bind_key_to_command        SUPER_S       'git status\n'
-
-_bind_key_to_cycle_commands SUPER_U       'git pull '   'git fetch origin '
-_bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
-_bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
-
-_bind_key_to_command        ALT_SHIFT_L   'ls\n'
-
-_bind_key_to_command        ALT_U         'cd ..\n'     # Parent directory
-_bind_key_to_command        ALT_MINUS     'cd -\n'      # Previous directory
-
-# Recent directory picker
-if (( $+commands[zoxide] )); then
-  _bind_key_to_command      ALT_K         'zi\n'
-else
-  _bind_key_to_command      ALT_K         'dirs -v\n'
-fi
-
-_bind_key_to_command        ALT_E          'echo $?'
-_bind_key_to_command        ALT_SHIFT_U    'uname -a\n'
 
 bindkey -s '^[[102;9u' 'y\n'               # Super+f => File manager (Yazi)
 bindkey -s '^[[102;10u' 'br\n'             # Super+Shift+f => br (Fast directory navigator)

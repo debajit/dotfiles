@@ -1,9 +1,25 @@
-# typeset -A _keymap=(
-#   SUPER_A       '^[[97;9u'
-#   SUPER_SHIFT_P '^[[112;10u'
-# )
+setopt nullglob
 
-function _get_key_binding() {
+typeset -A _keymap=(
+  ALT_E         '^[e'
+  ALT_G         '^[g'
+  ALT_J         '^[j'
+  ALT_K         '^[k'
+  ALT_L         '^[l'
+  ALT_O         '^[o'
+  ALT_U         '^[u'
+  ALT_MINUS     '^[-'
+  ALT_SHIFT_L   '^[L'
+  ALT_SHIFT_R   '^[R'
+  ALT_SHIFT_U   '^[U'
+  SUPER_A       '^[[97;9u'
+  SUPER_R       '^[[114;9u'
+  SUPER_S       '^[[115;9u'
+  SUPER_U       '^[[117;9u'
+  SUPER_SHIFT_P '^[[112;10u'
+)
+
+_get_key_binding() {
   local key_name="$1"
 
   local key_binding="${_keymap[$key_name]}"
@@ -16,7 +32,7 @@ function _get_key_binding() {
 }
 
 
-function _bind_key_to_command() {
+_bind_key_to_command() {
   local key_name="$1"
   local command="$2"
 
@@ -26,11 +42,11 @@ function _bind_key_to_command() {
 }
 
 
-function _bind_key_to_command2() {
+_bind_key_to_command2() {
 
 }
 
-function _bind_key_to_function() {
+_bind_key_to_function() {
   local key_name="$1"
   local function_name="$2"
 
@@ -41,7 +57,7 @@ function _bind_key_to_function() {
 }
 
 # General-purpose command cycler (cycles through any array of commands)
-function _cycle_commands_with_list() {
+_cycle_commands_with_list() {
   local -a commands=("${(@P)1}")  # Evaluate variable name passed as string
   local i next_index
 
@@ -76,7 +92,7 @@ function _cycle_commands_with_list() {
 zle -N _cycle_commands_with_list
 
 # Generic function to create a cycle function with custom commands and key binding
-function _bind_key_to_cycle_commands() {
+_bind_key_to_cycle_commands() {
   local key_name="$1"
   shift 1
 
@@ -103,4 +119,37 @@ function _bind_key_to_cycle_commands() {
   # Register with zle and bind key
   zle -N "$func_name"
   bindkey "$key_binding" "$func_name"
+}
+
+_bind_key_to_empty_or_nonempty_command_line() {
+  local key_name="$1"
+  local empty_cmd="$2"
+  local full_cmd="$3"
+
+  local key_binding="${_keymap[$key_name]}"
+
+  # Create a widget function with a unique name based on the key name
+  local widget_name="_empty_or_full_command_widget_${key_name}"
+
+  # Create the actual widget function
+  eval "${widget_name}() {
+    if [[ -z \"\$BUFFER\" ]]; then
+      BUFFER='${empty_cmd}'
+      zle accept-line
+    else
+      # If the rightmost char is not a space
+      if [[ \"\${BUFFER: -1}\" != ' ' ]]; then
+        BUFFER+=' '
+      fi
+
+      BUFFER+='${full_cmd}'
+      zle end-of-line
+    fi
+  }"
+
+  # Register the widget
+  zle -N "${widget_name}"
+
+  # Bind the key to the widget
+  bindkey "${key_binding}" "${widget_name}"
 }
