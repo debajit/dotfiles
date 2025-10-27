@@ -1,36 +1,36 @@
 # My bookmarks
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "a" ]
 run  = "cd ~/Archive"
 desc = "Cd to ~/Archive"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "b" ]
 run  = "cd ~/Archive/Bookshelf/Books"
 desc = "Cd to ~/Archive/Bookshelf/Books"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "m" ]
 run  = "cd ~/Archive/Music"
 desc = "Cd to ~/Archive/Music"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "n" ]
 run  = "cd ~/Archive/Knowledge/Notes"
 desc = "Cd to ~/Archive/Knowledge/Notes"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "p" ]
 run  = "cd ~/Archive/Pictures/Photography"
 desc = "Cd to ~/Archive/Pictures/Photography"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "r" ]
 run  = "cd ~/Archive/Receipts"
 desc = "Cd to ~/Archive/Receipts"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "s" ]
 run  = "cd ~/Pictures/Screenshots"
 desc = "Cd to ~/Pictures/Screenshots"
@@ -39,22 +39,22 @@ desc = "Cd to ~/Pictures/Screenshots"
 # Bookmarks Plugin
 # https://github.com/dedukun/bookmarks.yazi
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "m" ]
 run = "plugin bookmarks --args=save"
 desc = "Save current position as a bookmark"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "'" ]
 run = "plugin bookmarks --args=jump"
 desc = "Jump to a bookmark"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "b", "d" ]
 run = "plugin bookmarks --args=delete"
 desc = "Delete a bookmark"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "b", "D" ]
 run = "plugin bookmarks --args=delete_all"
 desc = "Delete all bookmarks"
@@ -62,7 +62,7 @@ desc = "Delete all bookmarks"
 
 # max-preview.yazi Plugin
 # https://github.com/yazi-rs/plugins/tree/main/max-preview.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = "i"
 run  = "plugin --sync max-preview"
 desc = "Maximize or restore preview"
@@ -70,12 +70,12 @@ desc = "Maximize or restore preview"
 # open-with-cmd.yazi
 # https://github.com/Ape/open-with-cmd.yazi
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = "o"
 run  = "plugin open-with-cmd --args=block"
 desc = "Open with command in the terminal"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = "O"
 run  = "plugin open-with-cmd"
 desc = "Open with command"
@@ -83,7 +83,7 @@ desc = "Open with command"
 
 # Smart-enter plugin
 # See https://github.com/Ape/smart-enter.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = "l"
 run  = "plugin --sync smart-enter"
 desc = "Enter the child directory, or open the file"
