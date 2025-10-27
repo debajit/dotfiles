@@ -6,14 +6,35 @@ run  = "cd ~/Archive"
 desc = "Cd to ~/Archive"
 
 [[manager.prepend_keymap]]
+on   = [ "g", "b" ]
+run  = "cd ~/Archive/Bookshelf/Books"
+desc = "Cd to ~/Archive/Bookshelf/Books"
+
+[[manager.prepend_keymap]]
 on   = [ "g", "m" ]
 run  = "cd ~/Archive/Music"
 desc = "Cd to ~/Archive/Music"
 
 [[manager.prepend_keymap]]
+on   = [ "g", "n" ]
+run  = "cd ~/Archive/Knowledge/Notes"
+desc = "Cd to ~/Archive/Knowledge/Notes"
+
+[[manager.prepend_keymap]]
 on   = [ "g", "p" ]
 run  = "cd ~/Archive/Pictures/Photography"
 desc = "Cd to ~/Archive/Pictures/Photography"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "r" ]
+run  = "cd ~/Archive/Receipts"
+desc = "Cd to ~/Archive/Receipts"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "s" ]
+run  = "cd ~/Pictures/Screenshots"
+desc = "Cd to ~/Pictures/Screenshots"
+
 
 # Bookmarks Plugin
 # https://github.com/dedukun/bookmarks.yazi
