@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail  # Exit on error, undefined vars, pipe failures
+
+PARU_DIR="${1:-$HOME/tmp/Software/paru}"  # Use argument or default
+
+# Runs the given command with xtrace enabled, without printing the set commands
+run_with_diag() {
+    set -x
+    "$@"
+    set +x
+}
+
+# Clone or update the paru git repo
+if [[ ! -d "${PARU_DIR}" ]]; then
+    echo "🟡 paru was not found. Git-cloning the paru repo into '${PARU_DIR}'..."
+    mkdir -p "$(dirname "$PARU_DIR")"
+    run_with_diag git clone https://aur.archlinux.org/paru.git "${PARU_DIR}"
+else
+    echo "🟢 paru is already cloned in '${PARU_DIR}'. Pulling in the latest changes from git..."
+    run_with_diag git -C "${PARU_DIR}" pull --progress --verbose
+fi
+
+echo "🔵 Installing paru..."
+run_with_diag makepkg -D "${PARU_DIR}" -si --noconfirm
+echo "✅ paru installed successfully"

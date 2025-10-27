@@ -21,20 +21,18 @@
 # ZSH_SOURCE_FILES := $(shell find $(ZSH_DIR) -type f)
 # ZSH_TARGET_FILES := $(ZSH_SOURCE_FILES:zsh%=${HOME}%)
 
+# # Path where paru will be cloned
+# PARU_DIR := $${HOME}/tmp/Software/paru
+
+.PHONY: all paru
+
 # Install all files using GNU Stow
-.PHONY: all
 all:
 	stow -vRt ~ */
 
-# .PHONY: zsh
-# $(ZSH_TARGET_FILES): ${HOME}/%: $(ZSH_SOURCE_FILES)
-#	@echo $
-
-
-# # See “Static Pattern Rules”
-# # https://www.gnu.org/software/make/manual/make.html#Rule-Example
-# $(TARGET_FILES): $(INSTALL_DIR)/%: %
-#	cp $< $@
+# Install paru
+paru:
+	time ./scripts/install-paru "$(PARU_DIR)"
 
 # .PHONY: uninstall
 # uninstall:
