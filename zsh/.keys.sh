@@ -1,23 +1,7 @@
 source "${HOME}/.keys-functions.sh"
 
-# Git
-_bind_key_to_command        SUPER_S         'git status\n'
-_bind_key_to_command        SUPER_L         'git ll\n'
-_bind_key_to_command        SUPER_SHIFT_L   'git-log-fzf\n'
-_bind_key_to_command        SUPER_D         'git diff\n'
-_bind_key_to_command        SUPER_SHIFT_D   'git diff --staged\n'
-_bind_key_to_command        SUPER_SHIFT_S   'git show\n'
-_bind_key_to_command        SUPER_SHIFT_C   'git cim ""'
-_bind_key_to_command        SUPER_B         'git branch -avv\n'
-_bind_key_to_command        SUPER_T         'git ll -2\n'
-_bind_key_to_cycle_commands SUPER_U         'git pull '   'git fetch origin '
-_bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'
-_bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
-_bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
-_bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
-
 # Shell commands
-
+_bind_key_to_empty_or_nonempty_command_line ALT_L 'lt' '| less'
 _bind_key_to_command  ALT_SHIFT_L     'ls\n'
 _bind_key_to_command  ALT_U           'cd ..\n'            # Parent directory
 _bind_key_to_command  ALT_MINUS       'cd -\n'             # Previous directory
@@ -26,7 +10,27 @@ _bind_key_to_command  ALT_SHIFT_R     'source ~/.zshrc\n'  # Reload shell config
 _bind_key_to_command  ALT_SHIFT_U     'uname -a\n'
 _bind_key_to_command  SUPER_CONTROL_P 'sudo $(fc -ln -1)'  # Sudo previous command
 
-_bind_key_to_empty_or_nonempty_command_line ALT_L 'lt' '| less'
+# Git
+_bind_key_to_command        SUPER_S         'git status\n'
+_bind_key_to_command        SUPER_L         'git ll\n'
+_bind_key_to_command        SUPER_SHIFT_L   'git-log-fzf\n'
+_bind_key_to_command        SUPER_D         'git diff\n'
+_bind_key_to_command        SUPER_SHIFT_D   'git diff --staged\n'
+_bind_key_to_command        SUPER_SHIFT_S   'git show\n'
+_bind_key_to_command        SUPER_CONTROL_C 'git cim ""'
+_bind_key_to_command        SUPER_B         'git branch -avv\n'
+_bind_key_to_command        SUPER_T         'git ll -2\n'
+_bind_key_to_cycle_commands SUPER_U         'git pull '   'git fetch origin '
+_bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'
+_bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
+_bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
+_bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
+
+# Utilities
+
+# Show the calendar + current local and UTC time
+_bind_key_to_command SUPER_CONTROL_T 'echo && cal -3 && echo && date && date -u\n'
+
 
 # Recent directory picker
 if (( $+commands[zoxide] )); then
@@ -190,9 +194,6 @@ bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
 bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /tmp
 bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
 bindkey -s '^[C' 'cd ~/Projects/Setup/dotfiles\n'          # Alt+Shift+c => dotfiles (configuration)
-
-# Utilities
-bindkey -s '^[[99;13u' 'echo && cal -3 && echo && date && echo\n'  # Control+Super+s => Calendar (3 months)
 
 # Wait for a process to finish, and then maybe start another
 bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c '  # M-w M-a => Wait for aria2c
