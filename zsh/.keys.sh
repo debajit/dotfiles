@@ -1,17 +1,20 @@
 source "${HOME}/.keys-functions.sh"
 
 # Git
-_bind_key_to_command        SUPER_S       'git status\n'
-_bind_key_to_command        SUPER_L       'git ll\n'
-_bind_key_to_command        SUPER_SHIFT_L 'git-log-fzf\n'
-_bind_key_to_command        SUPER_D       'git diff\n'
-_bind_key_to_command        SUPER_SHIFT_D 'git diff --staged\n'
-_bind_key_to_command        SUPER_SHIFT_S 'git show\n'
-_bind_key_to_command        SUPER_B       'git branch -avv\n'
-_bind_key_to_cycle_commands SUPER_U       'git pull '   'git fetch origin '
-_bind_key_to_cycle_commands SUPER_A       'git add -u ' 'git add .' 'git amend'
-_bind_key_to_cycle_commands SUPER_SHIFT_P 'git push   ' 'git push --force-with-lease'
-_bind_key_to_cycle_commands ALT_G         'rg -S '      'git grep -i '
+_bind_key_to_command        SUPER_S         'git status\n'
+_bind_key_to_command        SUPER_L         'git ll\n'
+_bind_key_to_command        SUPER_SHIFT_L   'git-log-fzf\n'
+_bind_key_to_command        SUPER_D         'git diff\n'
+_bind_key_to_command        SUPER_SHIFT_D   'git diff --staged\n'
+_bind_key_to_command        SUPER_SHIFT_S   'git show\n'
+_bind_key_to_command        SUPER_SHIFT_C   'git cim ""'
+_bind_key_to_command        SUPER_B         'git branch -avv\n'
+_bind_key_to_command        SUPER_T         'git ll -2\n'
+_bind_key_to_cycle_commands SUPER_U         'git pull '   'git fetch origin '
+_bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'
+_bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
+_bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
+_bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
 
 # Shell commands
 
@@ -23,7 +26,7 @@ _bind_key_to_command  ALT_SHIFT_R     'source ~/.zshrc\n'  # Reload shell config
 _bind_key_to_command  ALT_SHIFT_U     'uname -a\n'
 _bind_key_to_command  SUPER_CONTROL_P 'sudo $(fc -ln -1)'  # Sudo previous command
 
-_bind_key_to_empty_or_nonempty_command_line ALT_L 'ls' '| less'
+_bind_key_to_empty_or_nonempty_command_line ALT_L 'lt' '| less'
 
 # Recent directory picker
 if (( $+commands[zoxide] )); then
@@ -166,23 +169,6 @@ function _unzip_latest_zip_file() {
 }
 zle -N _unzip_latest_zip_file
 bindkey '^[z' _unzip_latest_zip_file
-
-
-# Super + Control + s => Toggle between ‘git show’ and ‘git -c delta.side-by-side=false show’
-function _git_show_default_or_unified() {
-  git_show_command='git show '
-  git_show_unified_command='git -c delta.side-by-side=false show '
-
-  if [[ -z "${BUFFER}" || "${BUFFER}" == "${git_show_unified_command}" ]]; then
-    BUFFER="${git_show_command}"
-  elif [[ "${BUFFER}" == "${git_show_command}" ]]; then
-    BUFFER="${git_show_unified_command}"
-  fi
-
-  zle end-of-line
-}
-zle -N _git_show_default_or_unified
-bindkey '^[[115;13u' _git_show_default_or_unified
 
 
 # Docker

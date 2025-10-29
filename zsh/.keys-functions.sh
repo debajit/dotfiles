@@ -20,13 +20,16 @@ typeset -A _keymap=(
   SUPER_M       '^[[109;9u'
   SUPER_R       '^[[114;9u'
   SUPER_S       '^[[115;9u'
+  SUPER_T       '^[[116;9u'
   SUPER_U       '^[[117;9u'
+  SUPER_SHIFT_C '^[[99;10u'
   SUPER_SHIFT_D '^[[100;10u'
   SUPER_SHIFT_F '^[[102;10u'
   SUPER_SHIFT_L '^[[108;10u'
   SUPER_SHIFT_P '^[[112;10u'
   SUPER_SHIFT_S '^[[115;10u'
   SUPER_CONTROL_P '^[[112;13u'
+  SUPER_CONTROL_S '^[[115;13u'
 )
 
 _get_key_binding() {
