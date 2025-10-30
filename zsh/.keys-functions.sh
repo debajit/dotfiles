@@ -168,3 +168,32 @@ _bind_key_to_empty_or_nonempty_command_line() {
   # Bind the key to the widget
   bindkey "${key_binding}" "${widget_name}"
 }
+
+_bind_key_to_command_and_move_cursor_left() {
+  local key_name="$1"
+  local cmd="$2"
+  local cursor_left_steps="$3"
+
+  local key_binding="${_keymap[$key_name]}"
+
+  if [[ -z $key_binding ]]; then
+    echo "❌ Error: Unknown key name '$key_name'" >&2
+    return 1
+  fi
+
+  # Create a widget function with a unique name based on the key name
+  local widget_name="_command_and_move_cursor_left_widget_${key_name}"
+
+  # Create the actual widget function
+  eval "${widget_name}() {
+    BUFFER='${cmd}'
+    zle end-of-line
+    ((CURSOR -= ${cursor_left_steps}))
+  }"
+
+  # Register the widget
+  zle -N "${widget_name}"
+
+  # Bind the key to the widget
+  bindkey "${key_binding}" "${widget_name}"
+}

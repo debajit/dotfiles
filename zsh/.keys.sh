@@ -17,7 +17,6 @@ _bind_key_to_command        SUPER_SHIFT_L   'git-log-fzf\n'
 _bind_key_to_command        SUPER_D         'git diff\n'
 _bind_key_to_command        SUPER_SHIFT_D   'git diff --staged\n'
 _bind_key_to_command        SUPER_SHIFT_S   'git show\n'
-_bind_key_to_command        SUPER_CONTROL_C 'git cim ""'
 _bind_key_to_command        SUPER_B         'git branch -avv\n'
 _bind_key_to_command        SUPER_T         'git ll -2\n'
 _bind_key_to_cycle_commands SUPER_U         'git pull '   'git fetch origin '
@@ -25,6 +24,7 @@ _bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'
 _bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
 _bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
 _bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
+_bind_key_to_command_and_move_cursor_left SUPER_CONTROL_C 'git cim ""' 1
 
 # Utilities
 
