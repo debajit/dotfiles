@@ -13,6 +13,7 @@ alias cp='cp -iv'
 alias df='df -h'                # Free disk space
 alias du='du -hs'               # Disk usage
 alias feh='feh -Zr'             # Fast image viewer
+alias ip='ip -c'                # Use color for ip
 alias mkdir='mkdir -p'
 alias vi='vim'
 [[ "$TERM" == 'xterm-kitty' ]] && alias ssh='kitty +kitten ssh'
