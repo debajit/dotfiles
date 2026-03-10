@@ -1,5 +1,15 @@
+# EDITOR.
+#
+# Edit files in an existing Emacs GUI window.
+#
+# --reuse-frame: reuse existing Emacs frame instead of creating a new one.
+#         -a '': auto-start server if not running (or start manually:
+#                M-x server-start, or add (server-start) to .emacs)
+#
+export EDITOR="emacsclient --reuse-frame -a ''"
+
 export CXXFLAGS='-std=c++20'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'" # For macOS
 export MAILDIR="$HOME/.mail"
 
 # Bat
