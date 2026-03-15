@@ -29,6 +29,7 @@
 # Install all files using GNU Stow
 all:
 	stow -vRt ~ */
+	mkdir -p ~/.codex && ln -sfn ~/.claude/skills ~/.codex/skills
 
 # Install paru
 paru:
