@@ -49,8 +49,10 @@ precmd() {
 # zstyle ':vcs_info:git:*' formats '🌱 %b'
 # zstyle ':vcs_info:git:*' formats '🍄 %b'
 # zstyle ':vcs_info:git:*' formats '🐙 %b'
+# zstyle ':vcs_info:git:*' formats '📸 %b'
+zstyle ':vcs_info:git:*' formats '☀️ %b'
 # zstyle ':vcs_info:git:*' formats '🎃 %b'
-zstyle ':vcs_info:git:*' formats '☃️ %b'
+# zstyle ':vcs_info:git:*' formats '☃️ %b'
 # zstyle ':vcs_info:git:*' formats '👻 %b'
 
 
@@ -64,7 +66,14 @@ NEWLINE=$'\n'
 # Default prompt
 # Syntax documentation: https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 # man zshmisc
-export PROMPT='${NEWLINE}%B%F{#5efcfc}%5~%f%B%F{#f6c177} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+
+# For Rose Moon Pine (Debajit) Kitty theme
+# export PROMPT='${NEWLINE}%B%F{#5efcfc}%5~%f%B%F{#f6c177} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+
+# For Gruvbox Dark Hard Kitty theme
+# Prompt color = Warm Dusty Mauve #c49fc4
+export PROMPT='${NEWLINE}%B%F{#c49fc4}%5~%f%B%F{#f6c177} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
+
 export RPROMPT='%F{#43a0bc}%L%f' # Show shell nesting depth $SHLVL
 
 # Use extended prompt for remote sessions
