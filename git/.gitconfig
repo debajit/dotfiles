@@ -12,8 +12,15 @@
 [alias]
 
   ## Spelunking
+
+  # findpath: search all historical file paths ever seen in repo history by substring
+  #    usage: git findpath <substring>
   findpath = "!f() { git log --all --name-only --pretty=format: |\n  sort -u | rg -i \"$1\"; }; f"
+
+  # pathlog: show commit history for a specific repo-relative path
+  #   usage: git pathlog <path>
   pathlog = log --all --
+
 
   ## Status
   s = status
