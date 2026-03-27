@@ -11,6 +11,10 @@
 
 [alias]
 
+  ## Spelunking
+  findpath = "!f() { git log --all --name-only --pretty=format: |\n  sort -u | rg -i \"$1\"; }; f"
+  pathlog = log --all --
+
   ## Status
   s = status
 
