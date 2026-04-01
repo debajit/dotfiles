@@ -1,97 +1,165 @@
 ---
 name: commit
-description: Prepare a commit workflow without mutating history. Use when the user wants to stage intended changes, inspect git status, detect unrelated staged files, and propose a commit message for review before committing.
-allowed-tools: Read, Grep, Glob, Bash(git status), Bash(git diff *), Bash(git log *), Bash(git branch *), Bash(git add *), Bash(git reset *)
+description: Inspect repo state, infer the intended change set, stage only when safe, propose a commit message using repo-local rules, ask for confirmation, and create the local commit without pushing.
+allowed-tools: Read, Grep, Glob, Bash(git status), Bash(git diff *), Bash(git log *), Bash(git branch *), Bash(git add *), Bash(git reset *), Bash(git commit *)
 ---
 
 # Commit
 
-Use this skill to prepare a safe commit step before any commit or push.
+Use this skill to create a safe local commit.
 
-The goal is to make the intended change set explicit, identify risky or
-unrelated staged files, and propose a commit message the user can review.
-When the intended change set updates one or more skills, use a commit
-message prefixed with `skills: `.
+The goal is to figure out what should be committed, make the planned commit
+set explicit, propose the right commit message for this repository, ask for
+confirmation, and then run the local `git commit`.
+
+This skill owns the local commit workflow only. It must not push. Use
+`/commit-and-push` for the publish step.
 
 ## Default Intent
 
-When the user asks to prepare a commit workflow:
+When the user asks to commit:
 
 - Inspect the repository state first.
-- Figure out which changes are intended for this task.
-- Stage only the intended files when the user explicitly asked for
-  staging, or when the intended scope is already unambiguous.
-- Detect unrelated staged changes before moving forward.
-- Propose a commit message and stop before any commit or push.
-- For changes to one or more skills, propose a commit message prefixed
-  with `skills: `.
+- Infer the intended change set from the task context plus staged and
+  unstaged git state.
+- Bucket files into `will commit`, `excluded`, and `suspicious`.
+- Auto-stage only when the intended set is unambiguous.
+- Generate a commit message from repo-local rules.
+- Show the exact planned commit and ask for explicit confirmation before
+  mutating local history.
+- Create the local commit after approval.
 
-If the target repository or intended change set is ambiguous, ask one
-precise question before staging or proposing a message.
+If the intended change set is ambiguous, ask one precise question before
+staging or committing.
 
 ## Priority
 
 Prioritize:
 
-- Preventing accidental commits of unrelated files
-- Showing the exact staged set
-- Flagging risky repository state, such as mixed staged and unstaged
-  work that looks unrelated
-- Proposing a clean, specific commit message that matches local branch
-  conventions
-- Applying the `skills: ` prefix for commits that update one or more
-  skills
+- Preventing accidental inclusion of unrelated files
+- Making the exact commit set explicit before confirmation
+- Detecting suspicious mixed staged and unstaged work
+- Following repo-local commit conventions before falling back to defaults
+- Requiring explicit confirmation before running `git commit`
 
-Do not commit. Do not push. Do not create a PR.
+Do not push. Do not create a pull request.
+
+## Commit Message Rules
+
+Use this precedence order when generating the commit message:
+
+1. Explicit user instruction
+2. Repo-local documented rules or templates
+3. Strong recent-history conventions in the current repository
+4. Conventional Commits as the default fallback
+
+Default fallback format:
+
+```text
+<type>[optional scope]: <description>
+```
+
+Support repo-local overrides such as:
+
+- allowed types
+- allowed scopes
+- header length limits
+- subject casing or tense rules
+- body requirements
+- footer requirements
+
+Special-case rule for skill updates:
+
+- When the intended change set updates one or more skills and the repository
+  convention is to use `skills: ...`, treat `skills:` as the preferred
+  repo-local prefix instead of forcing a Conventional Commit header.
+
+Do not invent repo-local message rules without evidence.
+
+## Auto-Staging Rules
+
+Auto-stage the intended files only when all of the following are true:
+
+- the intended file set is obvious from the task and current git state
+- there are no suspicious unrelated staged files
+- there are no untracked or modified files that materially compete with the
+  inferred scope
+- the commit can be explained clearly before confirmation
+
+Do not auto-stage when:
+
+- unrelated changes are already staged
+- the repository contains mixed unrelated work
+- untracked files may or may not belong in the commit
+- the correct scope depends on a user choice
+
+In those cases, show the buckets and ask one precise question.
 
 ## Workflow
 
 1. Identify the target repository and current branch.
 2. Inspect `git status --short`.
 3. Inspect staged and unstaged diffs as needed to understand scope.
-4. If the user asked to stage changes, stage only the intended files.
-5. Check for unrelated staged files and call them out clearly.
-6. Propose a commit message. If the intended change set updates one or
-   more skills, prefix it with `skills: `.
-7. Show the exact next step for the user to approve or execute.
+4. Infer the intended change set from the user request and repository state.
+5. Bucket files into:
+   - `will commit`
+   - `excluded`
+   - `suspicious`
+6. If the intended set is unambiguous, stage only the `will commit` files.
+7. If ambiguity remains, ask one precise question and stop.
+8. Generate the proposed commit message using the commit message rules.
+9. Show the exact planned commit, including buckets, staging action, and the
+   proposed message.
+10. Ask for explicit confirmation before running `git commit`.
+11. After confirmation, run the local commit.
+12. Report the commit hash, final message, and that no push has occurred.
 
 ## Output Format
 
-Return a concise preparation summary with:
+Before confirmation, return a concise commit summary with:
 
 - Repository path
 - Current branch
-- Staged files
-- Unstaged relevant files, if any
-- Unrelated staged files, if any
+- `will commit`
+- `excluded`
+- `suspicious`
+- Whether auto-staging occurred
 - Proposed commit message
-- Clear next step
+- Clear confirmation request
 
 If the repository is not ready to commit, say why and what must be fixed
 first.
+
+After a successful commit, report:
+
+- Repository path
+- Branch
+- Commit hash
+- Final commit message
+- Confirmation that no push has occurred
 
 ## Safety Rules
 
 Do not:
 
-- Commit
+- Commit without explicit confirmation
 - Push
 - Create a pull request
-- Quietly include unrelated staged files
-- Assume a ticket prefix if local conventions require one and it cannot
-  be derived
-- Omit the `skills: ` prefix when preparing a commit message for skill
+- Auto-stage ambiguous files
+- Quietly include suspicious or unrelated staged files
+- Invent repo-local commit rules without evidence
+- Omit the `skills: ` prefix when that is the established rule for skill
   changes
 
 ## Prompt Pattern
 
 Use prompts like:
 
-- Prepare this repo for commit. Stage only the intended files, show me
-  the exact staged set, and propose a commit message. Do not commit or
-  push.
-- Check whether this repo is ready to commit. Call out unrelated staged
-  files and propose the commit message I should approve.
-- Prepare this skill update for commit. Stage only the intended files,
-  show me the exact staged set, and propose a `skills: ...` commit
-  message. Do not commit or push.
+- Commit this change safely. Figure out what belongs in the commit, show me
+  `will commit`, `excluded`, and `suspicious`, propose the commit message,
+  and ask before committing.
+- Make the local commit for this task. Stage only what is clearly part of
+  the task, stop if the scope is ambiguous, and do not push.
+- Commit this skill update. Use the repository's `skills: ...` commit style
+  if it applies, show the planned commit, and ask for confirmation before
+  creating the local commit.
