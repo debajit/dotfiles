@@ -1,12 +1,12 @@
 ---
-name: ship-it
+name: commit-and-push
 description: Execute the final commit-and-push workflow after review. Use when the user has approved the commit message and wants to commit the intended staged files and push the current branch upstream.
 allowed-tools: Read, Grep, Glob, Bash(git status), Bash(git diff *), Bash(git branch *), Bash(git commit *), Bash(git push *), Bash(git remote *), Bash(git reset *)
 ---
 
-# Ship It
+# Commit and Push
 
-Use this skill to execute the final shipping step after the user has
+Use this skill to execute the final commit-and-push step after the user has
 reviewed the intended change set and commit message.
 
 The goal is to commit only the intended staged changes, push the current
@@ -14,7 +14,7 @@ branch upstream, and clearly report the result.
 
 ## Default Intent
 
-When the user asks to ship after approval:
+When the user asks to commit and push after approval:
 
 - Verify the target repository and current branch.
 - Verify the currently staged files match the intended change set.
@@ -70,7 +70,7 @@ Do not:
 
 Use prompts like:
 
-- Ship this now using the approved commit message. Commit only the
+- Commit and push this now using the approved commit message. Commit only the
   intended staged files and push the current branch upstream.
 - Commit and push the currently staged shipping set. Stop if unrelated
   staged files are present.
