@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+print_path_only="false"
+if [[ "${1:-}" == "--print-path-only" ]]; then
+  print_path_only="true"
+  shift
+fi
+
 raw_input="${*:-}"
 if [[ -z "$raw_input" ]]; then
   echo "Error: expected input like 'OPS-123 update schema'." >&2
@@ -186,6 +192,11 @@ $trimmed_input
 
 - Keep task artifacts for this work under this directory.
 SPEC
+fi
+
+if [[ "$print_path_only" == "true" ]]; then
+  printf '%s\n' "$worktree_path"
+  exit 0
 fi
 
 printf 'status=%s

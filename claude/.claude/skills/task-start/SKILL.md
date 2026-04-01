@@ -54,6 +54,9 @@ When invoked:
 3. Report whether the task workspace was created or reused.
 4. Always return the canonical task key, task ref, worktree path, and spec
    path.
+5. Do not claim the helper changed the caller's working directory unless the
+   host explicitly confirms it did. The helper runs as a child process and
+   cannot `cd` the parent shell by itself.
 
 ## Idempotency rules
 
@@ -92,6 +95,24 @@ Return a concise summary that includes:
 - spec path
 - current branch
 - a short next step telling the user to `cd` into the worktree if needed
+
+If the user specifically wants one-command shell ergonomics, explain that the
+portable solution is a shell wrapper or function that calls the helper and then
+executes `cd` in the current shell. The helper supports this via:
+
+```bash
+bash "$HOME"/.claude/skills/task-start/scripts/task_start.sh --print-path-only "$ARGUMENTS"
+```
+
+Example zsh/bash wrapper:
+
+```bash
+task-start() {
+  local worktree_path
+  worktree_path="$(bash "$HOME"/.claude/skills/task-start/scripts/task_start.sh --print-path-only "$*")" || return
+  cd "$worktree_path"
+}
+```
 
 ## Safety rules
 
