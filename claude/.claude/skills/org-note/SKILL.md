@@ -1,9 +1,9 @@
 ---
-name: note
+name: org-note
 description: Create or update a note in Org Mode in the personal knowledge base at ~/Archive/Knowledge/Notes/
 ---
 
-# Note: Create or Update an Org-Mode Note
+# Org-Note: Create or Update an Org-Mode Note
 
 You are helping the user manage their personal knowledge base.
 
