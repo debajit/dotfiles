@@ -1,6 +1,6 @@
 ---
 name: task-start
-description: Start or resume a task workspace by creating a git worktree and a task plan directory under .sisyphus/plans/<task_ref>/ with an initial spec.md.
+description: Start or resume a task workspace by creating a git worktree and a task spec directory under specs/<task_ref>/ with an initial spec.md.
 allowed-tools: Bash(bash "$HOME"/.claude/skills/task-start/scripts/task_start.sh *)
 ---
 
@@ -10,9 +10,9 @@ Use this skill to start or resume a task workspace for a ticket-like task
 reference such as `OPS-123`.
 
 The goal is to create a predictable git worktree under `worktrees/<task_ref>`
-and a task-scoped planning directory under `.sisyphus/plans/<task_ref>/`
+and a task-scoped spec directory under `specs/<task_ref>/`
 inside that worktree. All process artifacts for the task can live in that
-plan directory alongside `spec.md`.
+spec directory alongside `spec.md`.
 
 ## Expected input
 
@@ -44,12 +44,12 @@ When invoked:
 2. The helper script must:
    - validate that the current directory is inside a git worktree
    - resolve the repository root
-   - look for an existing task by scanning `worktrees/*/.sisyphus/plans/*/spec.md`
+   - look for an existing task by scanning `worktrees/*/specs/*/spec.md`
      for matching `task_key` frontmatter
    - reuse the existing task workspace if the task key already exists
    - otherwise create a new branch and linked worktree at
      `worktrees/<task_ref>`
-   - create `.sisyphus/plans/<task_ref>/spec.md` inside the worktree
+   - create `specs/<task_ref>/spec.md` inside the worktree
    - write frontmatter including `task_key`, `task_ref`, and `slug`
 3. Report whether the task workspace was created or reused.
 4. Always return the canonical task key, task ref, worktree path, and spec
@@ -75,14 +75,14 @@ The initial `spec.md` should contain YAML frontmatter with at least:
 - `slug`
 - `status: active`
 
-The plan directory may also contain related task artifacts such as:
+The spec directory may also contain related task artifacts such as:
 
 - `report.md`
 - `research.md`
 - `notes.md`
 - `qa.md`
 
-Keep all task process artifacts in `.sisyphus/plans/<task_ref>/`.
+Keep all task process artifacts in `specs/<task_ref>/`.
 
 ## Output requirements
 

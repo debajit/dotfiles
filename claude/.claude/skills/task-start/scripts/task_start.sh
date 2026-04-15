@@ -69,7 +69,7 @@ while IFS= read -r spec_path; do
   if grep -Eq "^task_key:[[:space:]]*$task_key$" "$spec_path"; then
     matching_specs+=("$spec_path")
   fi
-done < <(find "$worktrees_root" -path '*/.sisyphus/plans/*/spec.md' -type f 2>/dev/null | sort)
+done < <(find "$worktrees_root" -path '*/specs/*/spec.md' -type f 2>/dev/null | sort)
 
 if (( ${#matching_specs[@]} > 1 )); then
   echo "Error: multiple task specs found for task key $task_key:" >&2
@@ -84,7 +84,7 @@ if (( ${#matching_specs[@]} == 1 )); then
   existing_spec="${matching_specs[0]}"
   existing_plan_dir="$(dirname "$existing_spec")"
   existing_task_ref="$(basename "$existing_plan_dir")"
-  worktree_path="${existing_spec%%/.sisyphus/plans/*}"
+  worktree_path="${existing_spec%%/specs/*}"
   spec_path="$existing_spec"
   task_ref="$existing_task_ref"
 
@@ -126,7 +126,7 @@ else
   task_ref="$proposed_task_ref"
   branch_name="$task_ref"
   worktree_path="$worktrees_root/$task_ref"
-  spec_dir="$worktree_path/.sisyphus/plans/$task_ref"
+  spec_dir="$worktree_path/specs/$task_ref"
   spec_path="$spec_dir/spec.md"
 
   if [[ -e "$worktree_path" ]]; then
