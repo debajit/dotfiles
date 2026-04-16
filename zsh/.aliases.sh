@@ -113,6 +113,11 @@ alias CP='docker stop '
 alias cr='docker rm '
 alias ci='docker images -a'
 
+# Kubernetes
+alias k='kubectl '
+alias kc='kubectl config '
+alias kg='kubectl get '
+
 # Btrfs
 alias bl='sudo btrfs subvolume list -t .'        # btrfs list subvolumes
 alias bm='findmnt -t btrfs'                      # btrfs mounts (useful to see runtime mounts like for TimeShift)
