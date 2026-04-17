@@ -115,6 +115,7 @@ alias ci='docker images -a'
 
 # Kubernetes
 alias k='kubectl '
+alias ka='kubectl apply -f '
 alias kc='kubectl config '
 alias kg='kubectl get '
 
