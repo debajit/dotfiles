@@ -1,6 +1,6 @@
 ---
 name: task-start
-description: Start or resume a task workspace by creating a git worktree and a task spec directory under specs/<task_ref>/ with an initial spec.md.
+description: Start or resume a task workspace by creating a git worktree and an agent task spec directory under .agents/specs/TASK_REF with an initial spec.md.
 allowed-tools: Bash(bash "$HOME"/.claude/skills/task-start/scripts/task_start.sh *)
 ---
 
@@ -10,7 +10,7 @@ Use this skill to start or resume a task workspace for a ticket-like task
 reference such as `OPS-123`.
 
 The goal is to create a predictable git worktree under `worktrees/<task_ref>`
-and a task-scoped spec directory under `specs/<task_ref>/`
+and a task-scoped spec directory under `.agents/specs/<task_ref>/`
 inside that worktree. All process artifacts for the task can live in that
 spec directory alongside `spec.md`.
 
@@ -44,12 +44,12 @@ When invoked:
 2. The helper script must:
    - validate that the current directory is inside a git worktree
    - resolve the repository root
-   - look for an existing task by scanning `worktrees/*/specs/*/spec.md`
+   - look for an existing task by scanning `worktrees/*/.agents/specs/*/spec.md`
      for matching `task_key` frontmatter
    - reuse the existing task workspace if the task key already exists
    - otherwise create a new branch and linked worktree at
      `worktrees/<task_ref>`
-   - create `specs/<task_ref>/spec.md` inside the worktree
+   - create `.agents/specs/<task_ref>/spec.md` inside the worktree
    - write frontmatter including `task_key`, `task_ref`, and `slug`
 3. Report whether the task workspace was created or reused.
 4. Always return the canonical task key, task ref, worktree path, and spec
@@ -82,7 +82,7 @@ The spec directory may also contain related task artifacts such as:
 - `notes.md`
 - `qa.md`
 
-Keep all task process artifacts in `specs/<task_ref>/`.
+Keep all task process artifacts in `.agents/specs/<task_ref>/`.
 
 ## Output requirements
 
