@@ -42,6 +42,11 @@ on   = "<A-k>"
 run  = "plugin zoxide"
 desc = "Jump to a recent directory via zoxide"
 
+[[mgr.prepend_keymap]]
+on   = "<C-t>"
+run  = "plugin fzf"
+desc = "Pick files via fzf"
+
 
 # Bookmarks Plugin
 # https://github.com/dedukun/bookmarks.yazi
