@@ -72,12 +72,12 @@ run = "plugin bookmarks --args=delete_all"
 desc = "Delete all bookmarks"
 
 
-# max-preview.yazi Plugin
-# https://github.com/yazi-rs/plugins/tree/main/max-preview.yazi
+# toggle-pane.yazi Plugin
+# https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi
 [[mgr.prepend_keymap]]
 on   = "i"
-run  = "plugin --sync max-preview"
-desc = "Maximize or restore preview"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
 
 # open-with-cmd.yazi
 # https://github.com/Ape/open-with-cmd.yazi
