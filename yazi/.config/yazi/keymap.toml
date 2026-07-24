@@ -35,6 +35,13 @@ on   = [ "g", "s" ]
 run  = "cd ~/Pictures/Screenshots"
 desc = "Cd to ~/Pictures/Screenshots"
 
+# Recent directories
+
+[[mgr.prepend_keymap]]
+on   = "<A-k>"
+run  = "plugin zoxide"
+desc = "Jump to a recent directory via zoxide"
+
 
 # Bookmarks Plugin
 # https://github.com/dedukun/bookmarks.yazi
