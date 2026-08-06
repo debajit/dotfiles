@@ -1,89 +1,52 @@
-[opener]
+#
+# yazi.toml
+# Yazi configuration.
+#
+# Yazi merges its default configuration in
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
+# with this file.
+#
+#     [open] → Routing
+#   [opener] → Command
+#
+# To change how a file is opened, add a prepend rule so that we can control the routing
+#
 
+[mgr]
+sort_by = "mtime"
+sort_reverse = true
+sort_dir_first = false
+
+[opener]
 open_html = [
     { run = 'open %s', desc = "Open in browser", for = "macos" },
     { run = 'xdg-open %s1', desc = "Open in browser", for = "linux" },
+]
+
+open_image = [
+    { run = 'feh -Zr "$@"', desc = "Open Image" },
 ]
 
 play = [
   { run = "xdg-open %s1", orphan = true, desc = "Play" },
 ]
 
-
 tag = [
     { run = 'easytag "$@"', orphan = true, desc = 'Tag' }
 ]
 
-
 [open]
-
 prepend_rules = [
   { url = "*.{htm,html}", use = [ "open_html" ] },
+  { url = "*.md", use = [ "edit", "open", "reveal" ] },
+  { url = "*.markdown", use = [ "edit", "open", "reveal" ] },
   { mime = 'audio/*', use = [ 'play', 'tag', 'reveal' ] },
 ]
 
-# # [opener]
-# # play = [
-# #   { run = 'xdg-open "$@"', desc = "Play", for = "unix" }
-# # ]
+append_rules = [
+  { mime = "image/*", use = [ "open_image", "open" ] }
+]
 
-# # [open]
-# # rules = [
-# #   { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
-# # ]
-
-# # For reference, see
-# # - https://yazi-rs.github.io/docs/configuration/yazi
-# # - https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi.toml
-
-
-[mgr]
-ratio = [ 1, 3, 4 ]
-sort_by = "mtime"
-sort_reverse = true
-sort_dir_first = false
-
-# [opener]
-
-# open_image = [
-#     { run = 'feh -Zr "$@"', desc = 'Open with Feh' }
-# ]
-
-# open_image_with_gthumb = [
-#     { run = 'gthumb "$0"', orphan = true, desc = 'Open with gThumb' }
-# ]
-
-# open_in_nautilus = [
-#     { run = 'nautilus "$@"', orphan = true, desc = 'Open in Nautilus' }
-# ]
-
-# open_in_geeqie = [
-#     { run = 'geeqie "$@"', orphan = true, desc = 'Open with Geeqie' }
-# ]
-
-# tag = [
-#     { run = 'easytag "$@"', orphan = true, desc = 'Tag' }
-# ]
-
-# loop = [
-#     { run = 'mpv --loop "$@"', orphan = true, desc = 'Loop' }
-# ]
-
-# [open]
-
-# prepend_rules = [
-#   { mime = 'image/*', use = ['open_image', 'open_in_geeqie', 'open_image_with_gthumb'] },
-#   { mime = 'audio/*', use = ['play', 'reveal', 'tag'] },
-#   { mime = 'inode/directory', use = ['open', 'open_in_nautilus', 'open_in_geeqie'] }
-# ]
-
-# append_rules = [
-#   { mime = 'video/m4v', use = ['loop'] },
-#   { mime = 'video/mp4', use = ['loop'] }
-# ]
-
-# [plugin]
-
-# prepend_previewers = [
-#   { name = '*.md', run = 'glow' },
-# ]
+[[plugin.prepend_previewers]]
+url = "*.md"
+run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
