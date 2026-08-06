@@ -11,6 +11,11 @@ run  = "cd ~/Archive/Bookshelf/Books"
 desc = "Cd to ~/Archive/Bookshelf/Books"
 
 [[mgr.prepend_keymap]]
+on   = [ "g", "B" ]
+run  = "cd ~/Work/Knowledge/Bookmarks/"
+desc = "Cd to ~/Work/Knowledge/Bookmarks/"
+
+[[mgr.prepend_keymap]]
 on   = [ "g", "m" ]
 run  = "cd ~/Archive/Music"
 desc = "Cd to ~/Archive/Music"
@@ -26,6 +31,11 @@ run  = "cd ~/Archive/Pictures/Photography"
 desc = "Cd to ~/Archive/Pictures/Photography"
 
 [[mgr.prepend_keymap]]
+on   = [ "g", "P" ]
+run  = "cd ~/Archive/Knowledge/Papers/"
+desc = "Cd to ~/Archive/Knowledge/Papers/"
+
+[[mgr.prepend_keymap]]
 on   = [ "g", "r" ]
 run  = "cd ~/Archive/Receipts"
 desc = "Cd to ~/Archive/Receipts"
@@ -35,8 +45,10 @@ on   = [ "g", "s" ]
 run  = "cd ~/Pictures/Screenshots"
 desc = "Cd to ~/Pictures/Screenshots"
 
-# Recent directories
 
+# Navigation Keys
+
+# Recent directories
 [[mgr.prepend_keymap]]
 on   = "<A-k>"
 run  = "plugin zoxide"
@@ -46,6 +58,13 @@ desc = "Jump to a recent directory via zoxide"
 on   = "<C-t>"
 run  = "plugin fzf"
 desc = "Pick files via fzf"
+
+# Navigate to a nested directory, just like with fzf on the shell
+[[mgr.prepend_keymap]]
+on   = "<A-c>"
+run  = '''shell --block -- dir="$(fd --type d --hidden --follow --exclude .git --absolute-path | fzf)" && [ -n "$dir" ] && ya emit cd
+"$dir"; exit 0'''
+desc = "Cd to a directory via fzf"
 
 
 # Bookmarks Plugin
