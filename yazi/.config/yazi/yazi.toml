@@ -1,5 +1,10 @@
 [opener]
 
+open_html = [
+    { run = 'open %s', desc = "Open in browser", for = "macos" },
+    { run = 'xdg-open %s1', desc = "Open in browser", for = "linux" },
+]
+
 play = [
   { run = "xdg-open %s1", orphan = true, desc = "Play" },
 ]
@@ -13,6 +18,7 @@ tag = [
 [open]
 
 prepend_rules = [
+  { url = "*.{htm,html}", use = [ "open_html" ] },
   { mime = 'audio/*', use = [ 'play', 'tag', 'reveal' ] },
 ]
 
