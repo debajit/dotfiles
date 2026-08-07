@@ -65,10 +65,12 @@ run  = "plugin fzf"
 desc = "Pick files via fzf"
 
 # Navigate to a nested directory, just like with fzf on the shell
+# Keep `ya emit cd "$dir"` on one line because TOML preserves newlines in this
+# literal string, and the shell would otherwise treat "$dir" as a new command.
+# Exit successfully when fzf is canceled so Yazi does not report a process error.
 [[mgr.prepend_keymap]]
 on   = "<A-c>"
-run  = '''shell --block -- dir="$(fd --type d --hidden --follow --exclude .git --absolute-path | fzf)" && [ -n "$dir" ] && ya emit cd
-"$dir"; exit 0'''
+run  = '''shell --block -- dir="$(fd --type d --hidden --follow --exclude .git --absolute-path | fzf)" || exit 0; [ -n "$dir" ] && ya emit cd "$dir"; exit 0'''
 desc = "Cd to a directory via fzf"
 
 
