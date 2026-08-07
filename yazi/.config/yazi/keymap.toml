@@ -11,7 +11,12 @@ run  = "cd ~/Archive/Bookshelf/Books"
 desc = "Cd to ~/Archive/Bookshelf/Books"
 
 [[mgr.prepend_keymap]]
-on   = [ "g", "B" ]
+on   = [ "g", "b" ]
+run  = "cd ~/Archive/Knowledge/Bookmarks/"
+desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
+
+[[mgr.prepend_keymap]]
+on   = [ "w", "b" ]
 run  = "cd ~/Work/Knowledge/Bookmarks/"
 desc = "Cd to ~/Work/Knowledge/Bookmarks/"
 
