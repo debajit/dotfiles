@@ -17,14 +17,23 @@ _bind_key_to_command        SUPER_SHIFT_L   'git-log-fzf\n'
 _bind_key_to_command        SUPER_D         'git diff\n'
 _bind_key_to_command        SUPER_SHIFT_D   'git diff --staged\n'
 _bind_key_to_command        SUPER_SHIFT_S   'git show\n'
-_bind_key_to_command        SUPER_B         'git branch -avv\n'
+# _bind_key_to_command        SUPER_B         'git branch -avv\n'
 _bind_key_to_command        SUPER_T         'git ll -2\n'
 _bind_key_to_cycle_commands SUPER_U         'git pull '   'git fetch origin '
-_bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'
+_bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'  'git add .'
 _bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
+_bind_key_to_cycle_commands SUPER_SHIFT_X   'git reset --hard ' 'git reset --hard @{u}'
 _bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
 _bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
+_bind_key_to_function       SUPER_K         git-co-fzf
 _bind_key_to_command_and_move_cursor_left SUPER_CONTROL_C 'git cim ""' 1
+_bind_key_to_command_and_move_cursor_left ALT_W 'git worktree add -b review/ ../ops-central- origin/master' 30
+
+# AI Coding Agents
+_bind_key_to_command         SUPER_I        'codex\n'
+_bind_key_to_command         SUPER_O        'opencode\n'
+_bind_key_to_cycle_commands  SUPER_SHIFT_I  'codex app ' 'codex resume --last ' 'opencode --continue '
+
 
 # Utilities
 
@@ -39,6 +48,9 @@ else
   _bind_key_to_command  ALT_K  'dirs -v\n' # List recent directories that we can jump to
 fi
 
+# Cycle among commonly used directories
+_bind_key_to_cycle_commands ALT_SHIFT_K 'clear && cd ~/dev/ops-central/ops-registry-service\n' 'clear && cd ~/dev/ops-central/ops-central\n'
+
 # Apps
 _bind_key_to_command  SUPER_F        'y\n'                        # File manager (Yazi)
 _bind_key_to_command  SUPER_SHIFT_F  'br\n'                       # br (Fast directory navigator)
@@ -47,6 +59,28 @@ _bind_key_to_command  SUPER_M        'write-playlists && cmus\n'  # Music player
 
 # Core/frequently-used shortcuts. (Ensure that these do not conflict
 # with the shell’s Emacs-style Meta keybindings you care about).
+
+function _build_polymorphically() {
+  current_dir_name="${PWD##*/}"
+
+  if [[ -f "pom.xml" ]]; then
+    BUFFER='time mvn -U clean install -T1C -DskipTests '
+    zle end-of-line
+
+  # Build yarn project
+  elif [[ -f "yarn.lock" ]]; then
+    BUFFER='yarn '
+    zle end-of-line
+
+  # Make project
+  elif [[ -f "Makefile" ]]; then
+    BUFFER='make -k'
+    zle end-of-line
+
+  fi
+}
+
+_bind_key_to_function SUPER_B _build_polymorphically
 
 # Alt+o   => Open polymorphically
 # Super+r => Run polymorphically
@@ -193,7 +227,8 @@ bindkey -s '^[J^[L' 'jq length '
 bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
 bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /tmp
 bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
-bindkey -s '^[C' 'cd ~/Projects/Setup/dotfiles\n'          # Alt+Shift+c => dotfiles (configuration)
+bindkey -s '^[C' 'cd ~/src/setup/dotfiles\n'               # Alt+Shift+c => dotfiles (configuration)
+bindkey -s '^[B' 'cd ~/Archive/Knowledge/Bookmarks\n'      # Alt+Shift+b => bookmarks
 
 # Wait for a process to finish, and then maybe start another
 bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c '  # M-w M-a => Wait for aria2c
@@ -202,7 +237,7 @@ bindkey -s '^[w^[m' 'tail -f /dev/null --pid=$(pgrep -o mpv) && mpv '        # M
 bindkey -s '^[w^[y' 'tail -f /dev/null --pid=$(pgrep -o mpv) && yta '        # M-w M-y => Wait for yta (CLI YouTube audio streaming)
 
 # Commands
-bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
+# bindkey -s '^[B' 'backup'                                  # Alt+Shift+b => backup
 
 
 # bindkey -s '^[b' 'bat '                                  # Alt+b => bat
