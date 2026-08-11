@@ -25,7 +25,7 @@ _bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with
 _bind_key_to_cycle_commands SUPER_SHIFT_X   'git reset --hard ' 'git reset --hard @{u}'
 _bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
 _bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
-_bind_key_to_function       SUPER_K         git-co-fzf
+# _bind_key_to_function       SUPER_K         git-co-fzf
 _bind_key_to_command_and_move_cursor_left SUPER_CONTROL_C 'git cim ""' 1
 _bind_key_to_command_and_move_cursor_left ALT_W 'git worktree add -b review/ ../ops-central- origin/master' 30
 
@@ -36,6 +36,9 @@ _bind_key_to_cycle_commands  SUPER_SHIFT_I  'codex app ' 'codex resume --last ' 
 
 
 # Utilities
+
+# Open web bookmark
+_bind_key_to_command SUPER_K 'open-bookmark "$(kitten choose-files)"\n'
 
 # Show the calendar + current local and UTC time
 _bind_key_to_command SUPER_CONTROL_T 'echo && cal -3 && echo && date && date -u\n'
@@ -48,13 +51,6 @@ else
   _bind_key_to_command  ALT_K  'dirs -v\n' # List recent directories that we can jump to
 fi
 
-# Alt+Shift+K directory cycle. Add, remove, or reorder entries here.
-typeset -ga ALT_SHIFT_K_DIRECTORIES=(
-  "$HOME/dev/ops-central/ops-central"
-  "$HOME/dev/ops-central/ops-registry-service"
-  "$HOME/dev/puffin/service-catalog"
-)
-_bind_key_to_cycle_directories ALT_SHIFT_K ALT_SHIFT_K_DIRECTORIES
 
 # Apps
 _bind_key_to_command  SUPER_F        'y\n'                        # File manager (Yazi)
@@ -226,7 +222,7 @@ bindkey -s '^[[99;10u^[[102;10u' 'docker compose logs -f\n'  # Super+Shift+c Sup
 
 # Text insertion
 bindkey -s '^[D' 'cd ~/Downloads\n'        # Alt+Shift+d => cd ~/Downloads
-bindkey -s '^[J^[L' 'jq length '
+# bindkey -s '^[J^[L' 'jq length '
 
 # Jump to directory
 bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
@@ -255,8 +251,8 @@ bindkey -s '^[w^[y' 'tail -f /dev/null --pid=$(pgrep -o mpv) && yta '        # M
 # bindkey -s '^[s^[p' 'rsync -aPvhsL --exclude-from ~/.rsync-exclude.lst ~/Archive/Pictures/ "nas:/volume2/Pictures/" -ni' # M-s M-p      => Sync pictures to nas
 
 # Logs
-bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  Journal for audio server
-bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C (all-caps) =>  Journal for cron
+# bindkey -s '^[J^[A' 'journalctl -eu pipewire --user'  # M-J M-A (all-caps) =>  Journal for audio server
+# bindkey -s '^[J^[C' 'journalctl -eu cronie'           # M-J M-C (all-caps) =>  Journal for cron
 
 # Media
 bindkey -s '^[a' 'fd -e flac -e mp3 -e m4a -e m4b -e m4v -e mp4 -e wav | mpv --shuffle --playlist=- --loop-playlist\n' # Alt+a, Shuffle all
