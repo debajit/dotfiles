@@ -79,6 +79,68 @@ _bind_key_to_function() {
   bindkey "${key_binding}" "${function_name}"
 }
 
+# Maps generated ZLE widget names to the arrays that hold their directories.
+# This lets every directory cycle share one small, reusable widget function.
+typeset -gA _directory_cycle_widgets
+
+# Change to the directory after PWD in the named array. If PWD is not in the
+# array, start at its first directory; after the last directory, wrap around.
+_cycle_directories_with_list() {
+  local directory_list_name="$1"
+  local -a directories=("${(@P)directory_list_name}")
+  local current_directory="${PWD:A}"
+  local next_directory
+  local i
+
+  if (( ${#directories[@]} == 0 )); then
+    zle -M "Cannot cycle directories: '${directory_list_name}' is empty"
+    return 1
+  fi
+
+  next_directory="${directories[1]}"
+
+  for (( i = 1; i <= ${#directories[@]}; i++ )); do
+    if [[ "${current_directory}" == "${directories[i]:A}" ]]; then
+      next_directory="${directories[$(( (i % ${#directories[@]}) + 1 ))]}"
+      break
+    fi
+  done
+
+  if [[ ! -d "${next_directory}" ]]; then
+    zle -M "Cannot cycle directories: not found: ${next_directory}"
+    return 1
+  fi
+
+  builtin cd -- "${next_directory}" || return 1
+  zle reset-prompt
+}
+
+# The shared ZLE widget looks up the directory-array name registered for the
+# key that invoked it.
+_cycle_directories_widget() {
+  local directory_list_name="${_directory_cycle_widgets[$WIDGET]}"
+  _cycle_directories_with_list "${directory_list_name}"
+}
+
+# Bind a key from _keymap to an ordered array of directories. To add another
+# independent cycle, declare another global array and call this function with
+# its key name and array name.
+_bind_key_to_cycle_directories() {
+  local key_name="$1"
+  local directory_list_name="$2"
+  local key_binding=$(_get_key_binding "${key_name}") || return 1
+  local widget_name="_cycle_directories_widget_${key_name}"
+
+  if (( ! ${+parameters[$directory_list_name]} )); then
+    echo "Error: Unknown directory list '${directory_list_name}'" >&2
+    return 1
+  fi
+
+  _directory_cycle_widgets[$widget_name]="${directory_list_name}"
+  zle -N "${widget_name}" _cycle_directories_widget
+  bindkey "${key_binding}" "${widget_name}"
+}
+
 # General-purpose command cycler (cycles through any array of commands)
 _cycle_commands_with_list() {
   local -a commands=("${(@P)1}")  # Evaluate variable name passed as string

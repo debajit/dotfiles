@@ -48,8 +48,13 @@ else
   _bind_key_to_command  ALT_K  'dirs -v\n' # List recent directories that we can jump to
 fi
 
-# Cycle among commonly used directories
-_bind_key_to_cycle_commands ALT_SHIFT_K 'clear && cd ~/dev/ops-central/ops-registry-service\n' 'clear && cd ~/dev/ops-central/ops-central\n'
+# Alt+Shift+K directory cycle. Add, remove, or reorder entries here.
+typeset -ga ALT_SHIFT_K_DIRECTORIES=(
+  "$HOME/dev/ops-central/ops-central"
+  "$HOME/dev/ops-central/ops-registry-service"
+  "$HOME/dev/puffin/service-catalog"
+)
+_bind_key_to_cycle_directories ALT_SHIFT_K ALT_SHIFT_K_DIRECTORIES
 
 # Apps
 _bind_key_to_command  SUPER_F        'y\n'                        # File manager (Yazi)
