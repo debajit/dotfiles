@@ -12,12 +12,6 @@ unset dir
 case "$OSTYPE" in
   linux*)
 
-    # Ruby Gems. See https://wiki.archlinux.org/title/Ruby#Setup
-    if (( $+commands[ruby] )); then
-      export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-      path=(${path} "${GEM_HOME}/bin")
-    fi
-
     # Use the systemd user ssh-agent (systemctl --user enable --now ssh-agent.socket).
     # Combined with `AddKeysToAgent yes` in ~/.ssh/config, keys load on first use.
     if [[ -n "${XDG_RUNTIME_DIR}" && -S "${XDG_RUNTIME_DIR}/ssh-agent.socket" ]]; then
