@@ -35,3 +35,7 @@ case "$OSTYPE" in
     fi
     ;;
 esac
+
+# Machine-specific login settings (e.g. workplace env vars). Not tracked in this
+# repo. Sourced last so it can override anything set above.
+[[ -f "${HOME}/.zprofile.local" ]] && source "${HOME}/.zprofile.local"
