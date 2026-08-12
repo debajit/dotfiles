@@ -1,7 +1,13 @@
-# Personal scripts and binaries
-for dir in "${HOME}/.local/bin" "${HOME}/bin"; do
-  [[ -d "${dir}" ]] && export PATH="${PATH}:${dir}"
+# Executes commands at login, before .zshrc. This file owns all PATH
+# additions; `typeset -U path` in .zshenv keeps them unique, so
+# re-sourcing this file is harmless.
+
+# Personal scripts and binaries, ahead of the system paths so they take
+# precedence over same-named system commands.
+for dir in "${HOME}/bin" "${HOME}/.local/bin"; do
+  [[ -d "${dir}" ]] && path=("${dir}" ${path})
 done
+unset dir
 
 case "$OSTYPE" in
   linux*)
@@ -9,12 +15,14 @@ case "$OSTYPE" in
     # Ruby Gems. See https://wiki.archlinux.org/title/Ruby#Setup
     if (( $+commands[ruby] )); then
       export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-      export PATH="$PATH:$GEM_HOME/bin"
+      path=(${path} "${GEM_HOME}/bin")
     fi
 
     # Use the systemd user ssh-agent (systemctl --user enable --now ssh-agent.socket).
     # Combined with `AddKeysToAgent yes` in ~/.ssh/config, keys load on first use.
-    [[ -S "${XDG_RUNTIME_DIR}/ssh-agent.socket" ]] && export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+    if [[ -n "${XDG_RUNTIME_DIR}" && -S "${XDG_RUNTIME_DIR}/ssh-agent.socket" ]]; then
+      export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+    fi
 
     # Graphical passphrase prompt instead of a TTY prompt, when a display is present
     if [[ -n "${DISPLAY}${WAYLAND_DISPLAY}" && -x /usr/lib/gcr4-ssh-askpass ]]; then
@@ -25,17 +33,27 @@ case "$OSTYPE" in
 
   darwin*)
 
-    # Homebrew
-    [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+    # Homebrew. Apple Silicon installs under /opt/homebrew, Intel under /usr/local.
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+      eval "$(/usr/local/bin/brew shellenv)"
+    fi
 
-    # sdkman
+    # sdkman. Set SDKMAN_DIR only once we know the init script is really there,
+    # so a missing formula does not leave a bogus path exported.
     if (( $+commands[brew] )); then
-      export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-      [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+      sdkman_dir="$(brew --prefix sdkman-cli 2>/dev/null)/libexec"
+      if [[ -s "${sdkman_dir}/bin/sdkman-init.sh" ]]; then
+        export SDKMAN_DIR="${sdkman_dir}"
+        source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+      fi
+      unset sdkman_dir
     fi
     ;;
 esac
 
-# Machine-specific login settings (e.g. workplace env vars). Not tracked in this
-# repo. Sourced last so it can override anything set above.
+# Machine-specific login settings (e.g. workplace env vars). Not
+# tracked in this repo. Sourced last so it can override anything set
+# above.
 [[ -f "${HOME}/.zprofile.local" ]] && source "${HOME}/.zprofile.local"

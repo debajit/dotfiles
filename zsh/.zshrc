@@ -34,8 +34,7 @@ source_dotfile ".aliases-radio.sh"                 # Play radio from the command
 source_dotfile ".aliases.private.sh"               # Private aliases
 source_dotfile ".aliases.local.sh"                 # Local aliases
 source_dotfile ".keys.sh"                          # Key chords and keybindings for various common shell operations
-source_dotfile ".paths"                            # Global path settings
-source_dotfile ".paths.local"                      # Global path settings
+source_dotfile ".paths.local"                      # Machine-specific path settings
 source_dotfile '.app-config.sh'
 source_dotfile ".nix-profile/etc/profile.d/nix.sh" # Setup nix
 source_dotfile ".zshrc.local.sh"                   # Local config (e.g. workplace-specific)

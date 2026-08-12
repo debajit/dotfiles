@@ -1,3 +1,8 @@
+# Keep PATH free of duplicates. This attribute sticks to the array for
+# the life of the shell, so every later addition (.zprofile, .zshrc,
+# cargo, nix) is deduplicated automatically.
+typeset -U path
+
 #-----------------------------------------------------------------------
 # Set SESSION_TYPE
 # Adapted from https://unix.stackexchange.com/a/9607/141850 by mkhatib
@@ -13,17 +18,7 @@ else
   esac
 fi
 
-# Homebrew
-if [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -x /usr/local/bin/brew ]]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-fi
-
-# Personal scripts and binaries
-for dir in "${HOME}/.local/bin" "${HOME}/bin"; do
-  [[ -d "${dir}" ]] && export PATH="${PATH}:${dir}"
-done
-
+# Homebrew and the personal bin directories live in .zprofile, which owns
+# all PATH additions.
 
 [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

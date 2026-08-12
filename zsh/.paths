@@ -1,4 +1,0 @@
-# Personal scripts and binaries
-for dir in "${HOME}/.local/bin" "${HOME}/bin"; do
-  [[ -d "${dir}" ]] && export PATH="${PATH}:${dir}"
-done
