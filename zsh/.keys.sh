@@ -86,7 +86,7 @@ _bind_key_to_function SUPER_B _build_polymorphically
 # Alt+o   => Open polymorphically
 # Super+r => Run polymorphically
 function _open_polymorphically() {
-  media_files=(*(.mkv|.flac|.mp4|.m4a)(.om))
+  media_files=(*(.mkv|.flac|.mp4|.m4a)(.omN))
 
   current_dir_name="${PWD##*/}"
 
@@ -140,7 +140,7 @@ _bind_key_to_function SUPER_R _open_polymorphically
 # bindkey '^[k' _open_latest_document
 
 function _open_images_and_docs_polymorphically() {
-  image_or_doc_files=(*(.jpg|.webp)(.om))
+  image_or_doc_files=(*(.jpg|.webp)(.omN))
   BUFFER="feh -F \"${image_or_doc_files[1]}\" ."
   zle accept-line
 }
@@ -199,7 +199,7 @@ bindkey '^[i' _open_images_and_docs_polymorphically
 
 # Alt+z => Unzip latest zip file (or similar)
 function _unzip_latest_zip_file() {
-  zip_files=(*(.zip|.xz|.gz|.rar)(.om))
+  zip_files=(*(.zip|.xz|.gz|.rar)(.omN))
 
   if [[ -r "${zip_files[1]}" ]]; then
     BUFFER="aunpack \"${zip_files[1]}\""

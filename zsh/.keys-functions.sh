@@ -1,5 +1,3 @@
-setopt nullglob
-
 typeset -A _keymap=(
   ALT_E         '^[e'
   ALT_G         '^[g'
@@ -139,30 +137,32 @@ _bind_key_to_cycle_directories() {
 }
 
 # General-purpose command cycler (cycles through any array of commands)
+# Note: the array is named command_list, not commands, because $commands is
+# a zsh special parameter mapping command names to their paths.
 _cycle_commands_with_list() {
-  local -a commands=("${(@P)1}")  # Evaluate variable name passed as string
+  local -a command_list=("${(@P)1}")  # Evaluate variable name passed as string
   local i next_index
 
   # Handle empty command list
-  if [[ ${#commands[@]} -eq 0 ]]; then
+  if [[ ${#command_list[@]} -eq 0 ]]; then
     return 1
   fi
 
   if [[ -z "$BUFFER" ]]; then
-    BUFFER="${commands[1]}"
+    BUFFER="${command_list[1]}"
   else
     # Find current command in the list
-    for i in {1..${#commands[@]}}; do
-      if [[ "$BUFFER" == "${commands[i]}" ]]; then
-        next_index=$(( (i % ${#commands[@]}) + 1 ))
-        BUFFER="${commands[next_index]}"
+    for i in {1..${#command_list[@]}}; do
+      if [[ "$BUFFER" == "${command_list[i]}" ]]; then
+        next_index=$(( (i % ${#command_list[@]}) + 1 ))
+        BUFFER="${command_list[next_index]}"
         break
       fi
     done
 
     # If current buffer doesn't match any command, start from the beginning
     if [[ -z "$next_index" ]]; then
-      BUFFER="${commands[1]}"
+      BUFFER="${command_list[1]}"
     fi
   fi
 
@@ -170,8 +170,6 @@ _cycle_commands_with_list() {
   zle end-of-line
   zle redisplay  # Forces the command line to refresh, which can help with display issues in some terminals
 }
-
-zle -N _cycle_commands_with_list
 
 # Generic function to create a cycle function with custom commands and key binding
 _bind_key_to_cycle_commands() {
@@ -185,15 +183,17 @@ _bind_key_to_cycle_commands() {
     return 1
   fi
 
-  local -a commands=("$@")
+  local -a command_list=("$@")
 
   # Generate a unique function name based on key binding
   local func_name="cycle_func_${key_name}"
 
-  # Create the function dynamically with eval
+  # Create the function dynamically with eval. (q) quotes each element for
+  # re-parsing, which hand-rolled '%s' quoting got wrong for any command
+  # containing an apostrophe, and unlike $(printf ...) it forks no subshell.
   eval "
       function ${func_name}() {
-        local -a cmd_list=($(printf "'%s' " "${commands[@]}"))
+        local -a cmd_list=(${(j: :)${(@q)command_list}})
         _cycle_commands_with_list cmd_list
       }
     "
@@ -209,6 +209,10 @@ _bind_key_to_empty_or_nonempty_command_line() {
   local full_cmd="$3"
 
   local key_binding="${_keymap[$key_name]}"
+  if [[ -z $key_binding ]]; then
+    echo "Error: Unknown key name '$key_name'" >&2
+    return 1
+  fi
 
   # Create a widget function with a unique name based on the key name
   local widget_name="_empty_or_full_command_widget_${key_name}"
@@ -244,7 +248,7 @@ _bind_key_to_command_and_move_cursor_left() {
   local key_binding="${_keymap[$key_name]}"
 
   if [[ -z $key_binding ]]; then
-    echo "❌ Error: Unknown key name '$key_name'" >&2
+    echo "Error: Unknown key name '$key_name'" >&2
     return 1
   fi
 
