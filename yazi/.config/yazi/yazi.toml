@@ -41,6 +41,7 @@ open_bookmark = [
 
 copy_bookmark = [
   { run = 'copy-bookmark %s1', desc = "Copy bookmark" },
+  { run = 'copy-bookmark-as-markdown %s1', desc = "Copy as Markdown" },
 ]
 
 [open]
