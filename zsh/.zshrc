@@ -7,22 +7,18 @@
 
 # Sources the given file, if it exists.
 function source_file() {
-    filename="${1}"
+    local filename="${1}"
     [[ -f ${filename} ]] && source "${filename}"
 }
 
 # Sources the given dotfile from the home directory, if the dotfile exists.
 function source_dotfile() {
-    filename="$HOME/${1}"
+    local filename="$HOME/${1}"
     source_file "${filename}"
 }
 
 source_dotfile ".zsh-config.sh"    # My custom ZSH configuration
-
-# Prompt
-# eval "$(starship init zsh)"        # Uncomment this line to enable Starship. I find it be slow on older machines, so I wrote my own prompt (next line)
 source_dotfile ".zsh-prompt.sh"
-
 source_dotfile ".env_vars.sh"                      # Environment variables
 source_dotfile ".env_vars.local.sh"                # Custom environment variables
 source_dotfile ".env_vars.secret.sh"               # Secret environment variables
@@ -38,5 +34,3 @@ source_dotfile ".paths.local"                      # Machine-specific path setti
 source_dotfile '.app-config.sh'
 source_dotfile ".nix-profile/etc/profile.d/nix.sh" # Setup nix
 source_dotfile ".zshrc.local.sh"                   # Local config (e.g. workplace-specific)
-
-cal
