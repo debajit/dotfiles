@@ -16,9 +16,35 @@ bindkey -e
 # Completion
 #----------------------------------------
 
-# Initialize completion system
+# Initialize completion system.
+#
+# A full compinit rescans fpath and audits those directories for unsafe
+# permissions, about 17ms of startup. -C skips both and trusts the
+# existing ~/.zcompdump instead. Trusting it is
+# safe when a completion's contents change, since function bodies are
+# autoloaded from disk on first use, but a completion for a newly
+# installed command stays invisible until the dump is rebuilt. So run the
+# full scan once a day and trust the cache in between.
+#
+# The test must be an assignment rather than [[ ]], which performs no
+# filename generation: the widely-copied `[[ -n ~/.zcompdump(#qN.mh+24) ]]`
+# is just a non-empty literal string and is therefore always true.
+# Qualifiers: N = no match is not an error, . = regular file, mh+24 =
+# modified more than 24 hours ago. A missing dump takes the -C branch,
+# which still builds one when none exists.
 autoload -Uz compinit
-compinit
+_zcompdump=${ZDOTDIR:-$HOME}/.zcompdump
+_zcompdump_stale=(${_zcompdump}(N.mh+24))
+if (( ${#_zcompdump_stale} )); then
+  compinit
+  # compinit leaves the dump alone when it finds nothing new, so its mtime
+  # would stay old and this branch would then run for every shell. Restart
+  # the clock explicitly. Costs one touch a day.
+  touch -- ${_zcompdump}
+else
+  compinit -C
+fi
+unset _zcompdump _zcompdump_stale
 
 # Autocomplete the following with Tab:
 # - aliases
