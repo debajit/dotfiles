@@ -39,13 +39,17 @@ open_bookmark = [
   { run = 'open-bookmark "$@"', orphan = true, desc = "Open bookmark" },
 ]
 
+copy_bookmark = [
+  { run = 'copy-bookmark %s1', desc = "Copy bookmark", for = "macos" },
+]
+
 [open]
 prepend_rules = [
   { url = "*.{htm,html}", use = [ "open_html" ] },
   { url = "*.md", use = [ "edit", "open", "reveal" ] },
   { url = "*.markdown", use = [ "edit", "open", "reveal" ] },
   { mime = 'audio/*', use = [ 'play', 'tag', 'reveal' ] },
-  { url = "*.bookmark", use = "open_bookmark" },
+  { url = "*.bookmark", use = [ "open_bookmark", "copy_bookmark" ] },
 ]
 
 append_rules = [
