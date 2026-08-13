@@ -40,7 +40,7 @@ open_bookmark = [
 ]
 
 copy_bookmark = [
-  { run = 'copy-bookmark %s1', desc = "Copy bookmark", for = "macos" },
+  { run = 'copy-bookmark %s1', desc = "Copy bookmark" },
 ]
 
 [open]
