@@ -41,25 +41,3 @@ export GUM_FILTER_INDICATOR='⏺'
 # demands-attention, and the Grand Theft Focus extension turns that into a real
 # focus switch.
 unset DESKTOP_STARTUP_ID
-
-# OS-specific customization
-case "$OSTYPE" in
-  linux*) # GNU/Linux
-
-    distro=$(grep -ioP '^ID=\K.+' /etc/os-release 2> /dev/null) # See https://unix.stackexchange.com/a/671133
-
-    case "${distro}" in
-      arch)
-        export HOSTNAME="$(hostnamectl hostname)"
-        ;;
-
-      *) # All other GNU/Linux flavors
-        export HOSTNAME="$(hostname)"
-        ;;
-    esac
-    ;;
-
-  darwin*) # macOS
-    export HOSTNAME="$(hostname)"
-    ;;
-esac
