@@ -16,9 +16,14 @@ run  = "cd ~/Archive/Knowledge/Bookmarks/"
 desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
 
 [[mgr.prepend_keymap]]
-on   = [ "w", "b" ]
-run  = "cd ~/Work/Knowledge/Bookmarks/"
-desc = "Cd to ~/Work/Knowledge/Bookmarks/"
+on   = [ "b", "b" ]
+run  = "cd ~/Archive/Knowledge/Bookmarks/"
+desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
+
+[[mgr.prepend_keymap]]
+on   = "<A-b>"
+run  = "cd ~/Archive/Knowledge/Bookmarks/"
+desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
 
 [[mgr.prepend_keymap]]
 on   = [ "g", "m" ]
@@ -63,6 +68,11 @@ desc = "Jump to a recent directory via zoxide"
 on   = "<C-t>"
 run  = "plugin fzf"
 desc = "Pick files via fzf"
+
+[[mgr.prepend_keymap]]
+on   = "<D-k>"
+run  = "shell --block -- kitten choose_files >/dev/null"
+desc = "Pick files via Kitty's chooser"
 
 # Navigate to a nested directory, just like with fzf on the shell
 # Keep `ya emit cd "$dir"` on one line because TOML preserves newlines in this
