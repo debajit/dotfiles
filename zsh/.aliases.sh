@@ -237,7 +237,14 @@ case "$OSTYPE" in
     alias open="xdg-open"
 
     # Package management
-    distro=$(grep -ioP '^ID=\K.+' /etc/os-release 2> /dev/null) # See https://unix.stackexchange.com/a/671133
+    #
+    # /etc/os-release is shell-syntax by design, so read ID directly:
+    # $(<file) is special-cased by zsh and forks no process, unlike
+    # $(grep ...), which costs ~2.5ms per shell. (f) splits the file
+    # into lines, [(r)ID=*] picks the ID line (patterns are anchored,
+    # so BUILD_ID and VERSION_ID do not match), and (Q) strips the
+    # quotes the os-release spec allows around values.
+    distro=${(Q)${${(f)"$(</etc/os-release)"}[(r)ID=*]}#ID=}
 
     case "${distro}" in
       arch)
@@ -294,6 +301,7 @@ case "$OSTYPE" in
         alias pr='sudo apt remove'                              # Package remove
         ;;
     esac
+    unset distro
 
     # Synology GNU/Linux
     if [[ -d /usr/syno ]]; then
