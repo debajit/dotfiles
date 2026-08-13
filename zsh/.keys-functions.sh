@@ -171,7 +171,20 @@ _cycle_commands_with_list() {
   zle redisplay  # Forces the command line to refresh, which can help with display issues in some terminals
 }
 
-# Generic function to create a cycle function with custom commands and key binding
+# Maps generated ZLE widget names to the arrays holding their commands. This
+# lets every command cycle share one small widget function, the same way
+# _directory_cycle_widgets does above, instead of generating a function per
+# key with eval. Generating them meant quoting shell source by hand, which
+# silently produced a broken widget for any command containing an apostrophe.
+typeset -gA _command_cycle_widgets
+
+# The shared ZLE widget looks up the command-array name registered for the
+# key that invoked it.
+_cycle_commands_widget() {
+  _cycle_commands_with_list "${_command_cycle_widgets[$WIDGET]}"
+}
+
+# Bind a key from _keymap to an ordered list of commands to cycle through.
 _bind_key_to_cycle_commands() {
   local key_name="$1"
   shift 1
@@ -183,24 +196,19 @@ _bind_key_to_cycle_commands() {
     return 1
   fi
 
-  local -a command_list=("$@")
+  # Keep the cycle_func_* widget name, so bindings read the same as before
+  local widget_name="cycle_func_${key_name}"
+  local command_list_name="_command_cycle_list_${key_name}"
 
-  # Generate a unique function name based on key binding
-  local func_name="cycle_func_${key_name}"
-
-  # Create the function dynamically with eval. (q) quotes each element for
-  # re-parsing, which hand-rolled '%s' quoting got wrong for any command
-  # containing an apostrophe, and unlike $(printf ...) it forks no subshell.
-  eval "
-      function ${func_name}() {
-        local -a cmd_list=(${(j: :)${(@q)command_list}})
-        _cycle_commands_with_list cmd_list
-      }
-    "
+  # Hold this key's commands in a global array, and record which array the
+  # shared widget should read when this key is pressed.
+  typeset -ga "${command_list_name}"
+  set -A "${command_list_name}" "$@"
+  _command_cycle_widgets[$widget_name]="${command_list_name}"
 
   # Register with zle and bind key
-  zle -N "$func_name"
-  bindkey "$key_binding" "$func_name"
+  zle -N "${widget_name}" _cycle_commands_widget
+  bindkey "${key_binding}" "${widget_name}"
 }
 
 _bind_key_to_empty_or_nonempty_command_line() {
