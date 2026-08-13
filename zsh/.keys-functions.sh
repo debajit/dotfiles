@@ -43,38 +43,29 @@ typeset -A _keymap=(
   SUPER_CONTROL_T '^[[116;13u'
 )
 
-_get_key_binding() {
-  local key_name="$1"
-
-  local key_binding="${_keymap[$key_name]}"
-  if [[ -z ${key_binding} ]]; then
-    echo "Error: Unknown key name '$key_name'" >&2
-    return 1
-  fi
-
-  echo "${key_binding}"
-}
-
-
 _bind_key_to_command() {
   local key_name="$1"
   local command="$2"
 
-  local key_binding=$(_get_key_binding "$key_name") || return 1
+  local key_binding="${_keymap[$key_name]}"
+  if [[ -z $key_binding ]]; then
+    echo "Error: Unknown key name '$key_name'" >&2
+    return 1
+  fi
 
   bindkey -s "${key_binding}" "${command}"
 }
 
 
-_bind_key_to_command2() {
-
-}
-
 _bind_key_to_function() {
   local key_name="$1"
   local function_name="$2"
 
-  local key_binding=$(_get_key_binding "$key_name") || return 1
+  local key_binding="${_keymap[$key_name]}"
+  if [[ -z $key_binding ]]; then
+    echo "Error: Unknown key name '$key_name'" >&2
+    return 1
+  fi
 
   zle -N "${function_name}"
   bindkey "${key_binding}" "${function_name}"
@@ -129,8 +120,13 @@ _cycle_directories_widget() {
 _bind_key_to_cycle_directories() {
   local key_name="$1"
   local directory_list_name="$2"
-  local key_binding=$(_get_key_binding "${key_name}") || return 1
   local widget_name="_cycle_directories_widget_${key_name}"
+
+  local key_binding="${_keymap[$key_name]}"
+  if [[ -z $key_binding ]]; then
+    echo "Error: Unknown key name '$key_name'" >&2
+    return 1
+  fi
 
   if (( ! ${+parameters[$directory_list_name]} )); then
     echo "Error: Unknown directory list '${directory_list_name}'" >&2
