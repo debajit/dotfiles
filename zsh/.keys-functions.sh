@@ -8,6 +8,7 @@ typeset -A _keymap=(
   ALT_U         '^[u'
   ALT_W         '^[w'
   ALT_0         '^[0'
+  ALT_COMMA     '^[,'
   ALT_MINUS     '^[-'
   ALT_SHIFT_J   '^[J'
   ALT_SHIFT_K   '^[K'

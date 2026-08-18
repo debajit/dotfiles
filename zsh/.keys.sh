@@ -17,15 +17,13 @@ _bind_key_to_command        SUPER_SHIFT_L   'git-log-fzf\n'
 _bind_key_to_command        SUPER_D         'git diff\n'
 _bind_key_to_command        SUPER_SHIFT_D   'git diff --staged\n'
 _bind_key_to_command        SUPER_SHIFT_S   'git show\n'
-# _bind_key_to_command        SUPER_B         'git branch -avv\n'
 _bind_key_to_command        SUPER_T         'git ll -2\n'
 _bind_key_to_cycle_commands SUPER_U         'git pull '   'git fetch origin '
 _bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'  'git add .'
 _bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
 _bind_key_to_cycle_commands SUPER_SHIFT_X   'git reset --hard ' 'git reset --hard @{u}'
-_bind_key_to_cycle_commands ALT_G           'rg -S '      'git grep -i '
+_bind_key_to_cycle_commands ALT_G           'rg -S '    'git grep -i '
 _bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
-# _bind_key_to_function       SUPER_K         git-co-fzf
 _bind_key_to_command_and_move_cursor_left SUPER_CONTROL_C 'git cim ""' 1
 _bind_key_to_command_and_move_cursor_left ALT_W 'git worktree add -b review/ ../ops-central- origin/master' 30
 
@@ -36,6 +34,14 @@ _bind_key_to_cycle_commands  SUPER_SHIFT_I  'codex app ' 'codex resume --last ' 
 
 
 # Utilities
+
+# Insert first word. See
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
+insert-first-word() {
+  zle insert-last-word -- -1 1 -
+}
+
+_bind_key_to_function ALT_COMMA insert-first-word
 
 # Open web bookmark
 _bind_key_to_command SUPER_K 'open-bookmark "$(kitten choose-files)"\n'
