@@ -28,9 +28,18 @@ _bind_key_to_command_and_move_cursor_left SUPER_CONTROL_C 'git cim ""' 1
 _bind_key_to_command_and_move_cursor_left ALT_W 'git worktree add -b review/ ../ops-central- origin/master' 30
 
 # AI Coding Agents
-_bind_key_to_command         SUPER_I        'codex\n'
+_bind_key_to_command         SUPER_I        'claude\n'
 _bind_key_to_command         SUPER_O        'opencode\n'
-_bind_key_to_cycle_commands  SUPER_SHIFT_I  'codex app ' 'codex resume --last ' 'opencode --continue '
+_bind_key_to_cycle_commands  SUPER_SHIFT_I  'claude --resume '  'opencode --continue '
+
+# Jump to directory
+_bind_key_to_command ALT_SHIFT_H 'cd\n'
+_bind_key_to_command ALT_SHIFT_D 'cd ~/Downloads\n'
+_bind_key_to_command ALT_SHIFT_T 'cd /tmp\n'
+_bind_key_to_command ALT_SHIFT_C 'cd ~/src/setup/dotfiles\n'
+_bind_key_to_command ALT_SHIFT_N 'cd ~/Archive/Knowledge/Notes\n'
+_bind_key_to_command ALT_SHIFT_B 'cd ~/Archive/Knowledge/Bookmarks\n'
+_bind_key_to_command ALT_SHIFT_W 'cd ~/Projects/Code/debajit.com-hugo/\n'
 
 
 # Utilities
@@ -225,17 +234,6 @@ bindkey -s '^[[99;10u^[[117;10u' 'docker compose up -d'      # Super+Shift+c Sup
 bindkey -s '^[[99;10u^[[100;10u' 'docker compose down'       # Super+Shift+c Super+Shift+d => docker compose down
 bindkey -s '^[[99;10u^[[108;10u' 'docker compose logs\n'     # Super+Shift+c Super+Shift+l => docker compose logs
 bindkey -s '^[[99;10u^[[102;10u' 'docker compose logs -f\n'  # Super+Shift+c Super+Shift+f => docker compose logs -f
-
-# Text insertion
-bindkey -s '^[D' 'cd ~/Downloads\n'        # Alt+Shift+d => cd ~/Downloads
-# bindkey -s '^[J^[L' 'jq length '
-
-# Jump to directory
-bindkey -s '^[H' 'cd\n'                                    # Alt+Shift+h => cd
-bindkey -s '^[T' 'cd /tmp\n'                               # Alt+Shift+t => cd /tmp
-bindkey -s '^[W' 'cd ~/Projects/Code/debajit.com-hugo/\n'  # Alt+Shift+w => Website
-bindkey -s '^[C' 'cd ~/src/setup/dotfiles\n'               # Alt+Shift+c => dotfiles (configuration)
-bindkey -s '^[B' 'cd ~/Archive/Knowledge/Bookmarks\n'      # Alt+Shift+b => bookmarks
 
 # Wait for a process to finish, and then maybe start another
 bindkey -s '^[w^[a' 'tail -f /dev/null --pid=$(pgrep -o aria2c) && aria2c '  # M-w M-a => Wait for aria2c
