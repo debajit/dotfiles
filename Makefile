@@ -33,8 +33,8 @@ all:
 
 # Remove existing dotfile symlinks and recreate them from this checkout.
 reinstall:
-	find "$(HOME)" -maxdepth 1 -type l -lname '*dotfiles*' -print -delete
-	find "$(HOME)/.config" "$(HOME)/.local" "$(HOME)/.claude" -maxdepth 5 -type l -lname '*dotfiles*' -print -delete 2>/dev/null || true
+	find "$(HOME)" -maxdepth 1 -type l -lname '*dotfiles/*' -print -delete
+	find "$(HOME)/.config" "$(HOME)/.local" "$(HOME)/.claude" -maxdepth 5 -type l -lname '*dotfiles/*' -print -delete 2>/dev/null || true
 	$(MAKE) all
 
 # Install paru
