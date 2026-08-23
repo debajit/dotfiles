@@ -300,7 +300,8 @@
   pager = delta                 # See https://dandavison.github.io/delta/get-started.html
 
 [credential]
-  helper = osxkeychain
+  # helper = osxkeychain          # macOS
+  helper = store
 
 [delta]
     hyperlinks = true
@@ -334,7 +335,7 @@
 
 [include]
     path = ~/.gitconfig_local
-    path = ~/Projects/Setup/dotfiles/git/themes.gitconfig
+    path = ~/src/setup/dotfiles/git/themes.gitconfig
 
 [init]
     # Set "main" as the default branch name ("main" also happens to be
