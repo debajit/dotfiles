@@ -34,6 +34,11 @@ case "$OSTYPE" in
       eval "$(/usr/local/bin/brew shellenv)"
     fi
 
+    # Command-line tools bundled with the macOS Emacs application.
+    emacs_app_bin=/Applications/Emacs.app/Contents/MacOS/bin
+    [[ -d "${emacs_app_bin}" ]] && path=("${emacs_app_bin}" ${path})
+    unset emacs_app_bin
+
     # sdkman. Set SDKMAN_DIR only once we know the init script is really there,
     # so a missing formula does not leave a bogus path exported.
     if (( $+commands[brew] )); then
