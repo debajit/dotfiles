@@ -16,6 +16,7 @@ alias feh='feh -Zr'             # Fast image viewer
 alias ip='ip -c'                # Use color for ip
 alias mkdir='mkdir -p'
 alias vi='vim'
+alias rg='rg --hyperlink-format=kitty'
 [[ "$TERM" == 'xterm-kitty' ]] && alias ssh='kitty +kitten ssh'
 
 # General aliases
