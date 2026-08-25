@@ -15,6 +15,7 @@ typeset -A _keymap=(
   ALT_SHIFT_B   '^[B'
   ALT_SHIFT_C   '^[C'
   ALT_SHIFT_D   '^[D'
+  ALT_SHIFT_E   '^[E'
   ALT_SHIFT_H   '^[H'
   ALT_SHIFT_J   '^[J'
   ALT_SHIFT_K   '^[K'
