@@ -24,19 +24,23 @@ open_html = [
 ]
 
 open_image = [
-    { run = 'feh -Zr "$@"', desc = "Open Image" },
+    { run = 'feh -Zr %s', desc = "Open Image" },
 ]
 
 play = [
   { run = "xdg-open %s1", orphan = true, desc = "Play" },
 ]
 
+# EasyTAG treats its argument as a place to browse, not a file to open: it
+# navigates to the parent directory and then selects the first file in the
+# list, ignoring the filename it was given. There is no flag, D-Bus method,
+# or setting that changes this. See specs/issues-found.md.
 tag = [
-    { run = 'easytag "$@"', orphan = true, desc = 'Tag' }
+    { run = 'easytag %s1', orphan = true, desc = 'Tag' }
 ]
 
 open_bookmark = [
-  { run = 'open-bookmark "$@"', orphan = true, desc = "Open bookmark" },
+  { run = 'open-bookmark %s', orphan = true, desc = "Open bookmark" },
 ]
 
 copy_bookmark = [
