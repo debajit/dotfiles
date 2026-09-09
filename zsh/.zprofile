@@ -4,7 +4,7 @@
 
 # Personal scripts and binaries, ahead of the system paths so they take
 # precedence over same-named system commands.
-for dir in "${HOME}/bin" "${HOME}/.local/bin"; do
+for dir in "${HOME}/bin" "${HOME}/.local/bin" "${HOME}/go/bin"; do
   [[ -d "${dir}" ]] && path=("${dir}" ${path})
 done
 unset dir
