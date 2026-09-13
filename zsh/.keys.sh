@@ -49,7 +49,7 @@ _bind_key_to_command ALT_SHIFT_W 'cd ~/Projects/Code/debajit.com-hugo/\n'
 # Insert first word. See
 # https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 insert-first-word() {
-  zle insert-last-word -- -1 1 -
+  zle insert-last-word -- -1 1
 }
 
 _bind_key_to_function ALT_COMMA insert-first-word
