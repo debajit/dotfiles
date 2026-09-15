@@ -1,12 +1,11 @@
-# EDITOR.
-#
-# Edit files in an existing Emacs GUI window.
-#
-# --reuse-frame: reuse existing Emacs frame instead of creating a new one.
-#         -a '': auto-start server if not running (or start manually:
-#                M-x server-start, or add (server-start) to .emacs)
-#
-export EDITOR="emacsclient --reuse-frame -a ''"
+# Editor commands must be a single executable name. Yazi expands $EDITOR
+# through Zsh, which does not split scalar parameters into a command and its
+# arguments. Emacsclient natively reads ALTERNATE_EDITOR as its -a value, so an
+# empty value keeps the auto-start-daemon fallback without embedding arguments
+# in EDITOR or VISUAL.
+export EDITOR=emacsclient
+export VISUAL=emacsclient
+export ALTERNATE_EDITOR=''
 
 export CXXFLAGS='-std=c++20'
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'" # For macOS
