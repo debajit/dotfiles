@@ -39,6 +39,10 @@ tag = [
     { run = 'easytag %s1', orphan = true, desc = 'Tag' }
 ]
 
+spectrogram = [
+    { run = 'spek %s1', orphan = true, desc = 'Show spectrogram' }
+]
+
 edit_pdf = [
     { run = 'xournalpp %s1', orphan = true, desc = "Edit", for = "linux" },
 ]
@@ -57,7 +61,7 @@ prepend_rules = [
   { url = "*.{htm,html}", use = [ "open_html" ] },
   { url = "*.md", use = [ "edit", "open", "reveal" ] },
   { url = "*.markdown", use = [ "edit", "open", "reveal" ] },
-  { mime = 'audio/*', use = [ 'play', 'tag', 'reveal' ] },
+  { mime = 'audio/*', use = [ 'play', 'tag', 'spectrogram', 'reveal' ] },
   { mime = "application/pdf", use = [ "open", "edit_pdf", "reveal" ] },
   { url = "*.bookmark", use = ['open_bookmark', 'copy_bookmark', 'edit'] },
 ]
