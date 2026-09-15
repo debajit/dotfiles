@@ -26,7 +26,7 @@ run  = "cd ~/Archive/Knowledge/Bookmarks/"
 desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
 
 [[mgr.prepend_keymap]]
-on   = [ "g", "m" ]
+on   = "<A-m>"
 run  = "cd ~/Archive/Music"
 desc = "Cd to ~/Archive/Music"
 
