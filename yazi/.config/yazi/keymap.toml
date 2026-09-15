@@ -74,6 +74,12 @@ on   = "<D-k>"
 run  = "shell --block -- kitten choose_files >/dev/null"
 desc = "Pick files via Kitty's chooser"
 
+# Sorting
+[[mgr.prepend_keymap]]
+on   = "<A-d>"
+run  = "plugin toggle-dir-first"
+desc = "Toggle directories first"
+
 # Navigate to a nested directory, just like with fzf on the shell
 # Keep `ya emit cd "$dir"` on one line because TOML preserves newlines in this
 # literal string, and the shell would otherwise treat "$dir" as a new command.
