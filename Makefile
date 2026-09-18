@@ -41,6 +41,10 @@ reinstall:
 paru:
 	time ./scripts/install-paru "$(PARU_DIR)"
 
+.PHONY: dict
+dict:
+	./scripts/install-dict
+
 # .PHONY: uninstall
 # uninstall:
 #	rm -f $(TARGET_FILES)

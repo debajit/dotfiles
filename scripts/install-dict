@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+# Install a local DICT server and dictionaries for Emacs.
+set -euo pipefail
+
+die() { printf 'install-dict: %s\n' "$*" >&2; exit 1; }
+need() { command -v "$1" >/dev/null 2>&1 || die "Required command not found: $1"; }
+
+[[ $# == 0 ]] || die "Usage: install-dict (or make dict)"
+[[ $EUID != 0 ]] || die "Run as your normal user; sudo is used only where needed."
+
+install_macos() {
+    need brew
+    need curl
+    local root="$HOME/.dictd" label=local.dictd
+    local domain plist="$HOME/Library/LaunchAgents/local.dictd.plist"
+    domain="gui/$(id -u)"
+    local snapshot=e12f3f30f78bf176a7f168cb1038f7bb124a684d
+    local name ext arg prefix config_root
+    local dictionaries=(gcide wn moby-thesaurus devils jargon foldoc)
+
+    # Check the login session before installing anything.
+    launchctl print "$domain" >/dev/null || die "Run from a logged-in macOS desktop session."
+    if ! launchctl print "$domain/$label" >/dev/null 2>&1 &&
+        lsof -nP -iTCP:2628 -sTCP:LISTEN >/dev/null 2>&1; then
+        die "Port 2628 is already in use. Stop the existing DICT server before running this installer."
+    fi
+    HOMEBREW_NO_INSTALL_CLEANUP=1 brew install dict
+    prefix=$(brew --prefix dict)
+    mkdir -p "$root" "$(dirname "$plist")"
+    dict_tmp=$(mktemp -d "$root/.install.XXXXXX")
+    trap 'rm -rf -- "$dict_tmp"' EXIT
+
+    # Download ready-made data, pinned to a snapshot. Reuse complete pairs.
+    for name in "${dictionaries[@]}"; do
+        if [[ -s "$root/$name.dict" && -s "$root/$name.index" ]]; then
+            continue
+        fi
+        printf 'Downloading %s...\n' "$name"
+        for ext in dict index; do
+            curl --fail --location --silent --show-error --retry 3 \
+                "https://raw.githubusercontent.com/ferdnyc/dictd-dicts/$snapshot/$name.$ext" \
+                -o "$dict_tmp/$name.$ext"
+            [[ -s "$dict_tmp/$name.$ext" ]] || die "Empty download: $name.$ext"
+        done
+        mv "$dict_tmp/$name.dict" "$dict_tmp/$name.index" "$root/"
+    done
+
+    # Quote paths for dictd; plutil handles XML escaping in the LaunchAgent.
+    config_root=${root//\\/\\\\}
+    config_root=${config_root//\"/\\\"}
+    for name in "${dictionaries[@]}"; do
+        printf 'database "%s" {\n  data "%s/%s.dict"\n  index "%s/%s.index"\n}\n' \
+            "$name" "$config_root" "$name" "$config_root" "$name"
+    done > "$dict_tmp/local.conf"
+
+    plutil -create xml1 "$dict_tmp/service.plist"
+    plutil -insert Label -string "$label" "$dict_tmp/service.plist"
+    plutil -insert ProgramArguments -array "$dict_tmp/service.plist"
+    for arg in "$prefix/sbin/dictd" -dnodetach --listen-to 127.0.0.1 \
+        --pid-file "$root/dictd.pid" -c "$root/local.conf"; do
+        plutil -insert ProgramArguments -string "$arg" -append "$dict_tmp/service.plist"
+    done
+    plutil -insert RunAtLoad -bool true "$dict_tmp/service.plist"
+    plutil -insert KeepAlive -bool true "$dict_tmp/service.plist"
+    plutil -insert StandardOutPath -string "$root/dictd.log" "$dict_tmp/service.plist"
+    plutil -insert StandardErrorPath -string "$root/dictd-error.log" "$dict_tmp/service.plist"
+    plutil -lint "$dict_tmp/service.plist"
+
+    if launchctl print "$domain/$label" >/dev/null 2>&1; then
+        launchctl bootout "$domain/$label"
+    fi
+    mv "$dict_tmp/local.conf" "$root/local.conf"
+    mv "$dict_tmp/service.plist" "$plist"
+    launchctl enable "$domain/$label"
+    launchctl bootstrap "$domain" "$plist"
+    dict_client="$prefix/bin/dict"
+    printf 'Enabled macOS login service. Logs: %s/dictd*.log\n' "$root"
+}
+
+install_arch() {
+    need pacman
+    need paru
+    need systemctl
+    sudo pacman -S --needed dictd
+    paru -S --needed dict-gcide dict-wn dict-moby-thesaurus dict-devils dict-jargon dict-foldoc
+    sudo systemctl enable --now dictd
+    sudo systemctl restart dictd
+    dict_client=$(command -v dict)
+}
+
+case "$(uname -s)" in
+    Darwin) install_macos ;;
+    Linux)
+        [[ -f /etc/arch-release ]] || die "Supported platforms: macOS and Arch Linux (including Manjaro)."
+        install_arch
+        ;;
+    *) die "Supported platforms: macOS and Arch Linux." ;;
+esac
+
+# Wait for service startup and verify real lookups, not just an open port.
+for ((attempt = 0; attempt < 15; attempt++)); do
+    if "$dict_client" -h 127.0.0.1 -d gcide dictionary >/dev/null 2>&1; then
+        "$dict_client" -h 127.0.0.1 -D
+        printf '\nReady. In Emacs: (setopt dictionary-server "127.0.0.1")\n'
+        exit 0
+    fi
+    sleep 1
+done
+die "The DICT server did not answer a lookup on 127.0.0.1:2628. Check the service logs."
