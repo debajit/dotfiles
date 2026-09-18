@@ -1,0 +1,32 @@
+# feh key bindings.
+#
+# Format: action [key1 [key2 [key3]]], where each key is an X11 keysym as
+# reported by xev(1), optionally prefixed with modifiers: C- (Control),
+# S- (Shift), 1- (Alt/Mod1), 4- (Super/Mod4). Listing an action replaces
+# all of its default bindings; listing it with no keys unbinds it.
+# Comments must be on a line of their own.
+
+# Scroll with hjkl, keeping the default keypad and Ctrl+arrow bindings
+scroll_left        h KP_Left  C-Left
+scroll_down        j KP_Down  C-Down
+scroll_up          k KP_Up    C-Up
+scroll_right       l KP_Right C-Right
+
+# Scroll a page at a time with HJKL, keeping the default Alt+arrows
+scroll_left_page   H 1-Left
+scroll_down_page   J 1-Down
+scroll_up_page     K 1-Up
+scroll_right_page  L 1-Right
+
+# Zoom with + and - (= is the unshifted +, for convenience)
+zoom_in            plus  equal KP_Add
+zoom_out           minus       KP_Subtract
+
+# Move the actions displaced above, so that nothing is bound twice:
+# pause was h, keep-viewport was k, save-filelist was L,
+# reload delay +/- were + and -
+toggle_pause       C-h
+toggle_keep_vp     C-k
+save_filelist      C-l
+reload_plus        1-plus
+reload_minus       1-minus
