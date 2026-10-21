@@ -51,6 +51,10 @@ edit_pdf = [
     { run = 'xournalpp %s1', orphan = true, desc = "Edit", for = "linux" },
 ]
 
+open_pdfcraft = [
+    { run = 'pdfcraft %s1', orphan = true, desc = "Open in PdfCraft", for = "linux" },
+]
+
 open_bookmark = [
   { run = 'open-bookmark %s', orphan = true, desc = "Open bookmark" },
 ]
@@ -66,7 +70,7 @@ prepend_rules = [
   { url = "*.md", use = [ "edit", "open", "reveal" ] },
   { url = "*.markdown", use = [ "edit", "open", "reveal" ] },
   { mime = 'audio/*', use = [ 'play', 'tag', 'spectrogram', 'reveal' ] },
-  { mime = "application/pdf", use = [ "open", "edit_pdf", "reveal" ] },
+  { mime = "application/pdf", use = [ "open", "open_pdfcraft", "edit_pdf", "reveal" ] },
   { url = "*.bookmark", use = ['open_bookmark', 'copy_bookmark', 'edit'] },
 ]
 
