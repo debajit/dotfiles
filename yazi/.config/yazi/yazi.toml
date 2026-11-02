@@ -53,6 +53,7 @@ edit_pdf = [
 
 open_pdfcraft = [
     { run = 'pdfcraft %s1', orphan = true, desc = "Open in PdfCraft", for = "linux" },
+    { run = 'open -a PdfCraft %s1', orphan = true, desc = "Open in PdfCraft", for = "macos" },
 ]
 
 open_bookmark = [
