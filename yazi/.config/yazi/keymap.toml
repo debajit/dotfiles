@@ -6,6 +6,12 @@ run  = '''shell -- file=%h; [ -f "$file" ] && pbcopy < "$file"'''
 desc = "Copy file contents to clipboard"
 for  = "macos"
 
+[[mgr.prepend_keymap]]
+on   = [ "c", "t" ]
+run  = '''shell -- file=%h; [ -f "$file" ] && wl-copy < "$file"'''
+desc = "Copy file contents to clipboard"
+for  = "linux"
+
 
 # My bookmarks
 
