@@ -32,19 +32,37 @@ You are helping the user manage their personal knowledge base.
    concise, match the existing style of the file, and wrap Org prose to
    72 columns using Org-mode fill behavior.
 
-4. **If no matching note exists:** create a new file named `Title.org`
-   (title-cased, spaces allowed, no timestamp prefix) with this
-   structure:
-   ```org
-   #+TITLE: Title
+4. **If no matching note exists:** create the note the way org-roam's
+   default capture template does, so it matches the existing notes and
+   org-roam indexes it as a node.
+   - **Filename:** `<timestamp>-<slug>.org` in the notes directory,
+     where the timestamp is the current local time as `%Y%m%d%H%M%S`
+     (`date +%Y%m%d%H%M%S`).
+   - **Slug:** made from the title the way `org-roam-node-slug` does:
+     strip accents (`é` → `e`), replace each run of characters that are
+     not letters or digits with `_`, collapse repeated `_`, trim `_`
+     from both ends, and lowercase. For example, `Emacs Lisp (Elisp)`
+     becomes `emacs_lisp_elisp`.
+   - **ID:** a new lowercase UUID (`cat /proc/sys/kernel/random/uuid`).
+   - **Structure:**
+     ```org
+     :PROPERTIES:
+     :ID:       <uuid>
+     :END:
 
-   * <appropriate first heading>
+     #+title: Title
 
-   <content>
-   ```
+     * <appropriate first heading>
+
+     <content>
+     ```
+     The `:ID:` value starts at column 11, after `:ID:` and 7 spaces,
+     as org-roam writes it.
 
 5. **Org-mode formatting conventions** (match the existing notes style):
-   - File header: `#+TITLE: Title` (space after colon, title-cased)
+   - File header: `#+title: Title` (lowercase keyword, space after the
+     colon, title-cased while keeping names as they are spelled, e.g.
+     `eMudhra`)
    - Headings: `*`, `**`, `***` etc.
    - Links: `[[url][description]]`
    - Bold: `*bold*`, italic: `/italic/`
