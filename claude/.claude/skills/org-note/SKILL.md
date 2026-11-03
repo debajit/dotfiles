@@ -23,7 +23,7 @@ You are helping the user manage their personal knowledge base.
    - A URL or reference to capture
    - Freeform text to file under an appropriate topic
 
-2. **Search for an existing note.** Use Glob or Grep to find a matching file in `~/Archive/Knowledge/Notes/`. Match on the filename and `#+TITLE:` / `#+title:` header. Prefer fuzzy/partial matches. If multiple candidates exist, pick the best one and tell the user.
+2. **Search for an existing note.** Notes use Org Roam and are prefixed with a timestamp (e.g., `20250710010608-driving.org`). Search with a broad glob pattern like `**/*driving*.org` or grep for `#+title:` containing the topic. Match on the filename stem (after the timestamp) and `#+TITLE:` / `#+title:` header. Prefer fuzzy/partial matches. If multiple candidates exist, pick the best one and tell the user. **Always search before creating.**
 
 3. **If a matching note exists:** append the new content under the
    most appropriate existing heading, or create a new heading if none
