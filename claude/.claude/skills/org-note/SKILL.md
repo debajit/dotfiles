@@ -47,7 +47,12 @@ You are helping the user manage their personal knowledge base.
    - File header: `#+TITLE: Title` (space after colon, title-cased)
    - Headings: `*`, `**`, `***` etc.
    - Links: `[[url][description]]`
-   - Bold: `*bold*`, italic: `/italic/`, code: `=code=`
+   - Bold: `*bold*`, italic: `/italic/`
+   - Code: `~code~` for commands, flags, program and package names,
+     and config options (e.g. `~paccache -rk2~`, `~CleanAfter~`)
+   - Verbatim: `=verbatim=` for file paths and other literal text
+     (e.g. `=/etc/paru.conf=`, `=[options]=`). Use `=` for anything
+     that itself contains `~`, such as `=~/.cache=`.
    - Lists: `-` for unordered, `1)` for ordered
    - Wrap Org prose to 72 columns using Org-mode fill behavior, as if
      you had run `org-fill-paragraph` in Emacs. Preserve Org link
