@@ -22,6 +22,10 @@ edit = [
     { run = '$EDITOR %s', orphan = true, desc = "Edit", for = "unix" },
 ]
 
+open_visidata = [
+    { run = 'vd %s', block = true, desc = "Open with VisiData" },
+]
+
 open_html = [
     { run = 'open %s', desc = "Open in browser", for = "macos" },
     { run = 'xdg-open %s1', desc = "Open in browser", for = "linux" },
@@ -67,6 +71,8 @@ copy_bookmark = [
 
 [open]
 prepend_rules = [
+  { url = "*.{json,csv}", use = [ "edit", "open_visidata", "reveal" ] },
+  { mime = "application/{json,*+json}", use = [ "edit", "open_visidata", "reveal" ] },
   { url = "*.{htm,html}", use = [ "open_html" ] },
   { url = "*.md", use = [ "edit", "open", "reveal" ] },
   { url = "*.markdown", use = [ "edit", "open", "reveal" ] },
