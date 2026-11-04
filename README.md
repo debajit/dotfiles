@@ -15,6 +15,14 @@ Clone this repository and run `make`.
 
 This will copy all the dotfiles into their appropriate places.
 
+## Uninstallation
+
+From your local working directory for this repo, run
+
+```bash
+make uninstall
+```
+
 ## Local dictionary for Emacs
 
 Run `make dict` to install and start a local DICT server with GCIDE, WordNet,
@@ -51,11 +59,3 @@ launchctl disable "gui/$(id -u)/local.dictd"
 ```
 
 On Arch, use `sudo systemctl disable --now dictd`. Run `make dict` to re-enable.
-
-## Uninstallation
-
-From your local working directory for this repo, run
-
-```bash
-make uninstall
-```

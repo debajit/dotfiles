@@ -1,0 +1,53 @@
+# VisiData adaptation of Gruvbox Dark Hard using its upstream 256-color palette.
+# Palette: https://github.com/morhetz/gruvbox/blob/master/colors/gruvbox.vim
+# 234 = hard background; 223 = foreground; 237 = raised background.
+
+vd.themes['gruvbox-dark-hard'] = dict(
+    color_default='223 on 234',
+    color_default_hdr='bold 223 on 234',
+    color_bottom_hdr='underline 223 on 234',
+    color_column_sep='239 on 234',
+    color_key_col='108',
+    color_hidden_col='245',
+    color_selected_row='142',
+
+    # Keep the whole cursor row visible and distinguish the active cell.
+    color_current_row='on 237',
+    color_current_col='bold',
+    color_current_cell='bold 234 on 214',
+    color_current_hdr='bold 214 on 234',
+
+    color_menu='223 on 237',
+    color_menu_active='bold 234 on 109',
+    color_menu_spec='234 on 142',
+    color_menu_help='223 on 237',
+    color_status='223 on 237',
+    color_active_status='bold 223 on 237',
+    color_inactive_status='245 on 234',
+    color_highlight_status='234 on 142',
+    color_keystrokes='bold 223 on 237',
+    color_longname_status='223',
+    color_working='142',
+    color_error='bold 167',
+    color_warning='bold 208',
+    color_sidebar='223 on 237',
+    color_sidebar_title='bold 234 on 214',
+    color_edit_cell='234 on 109',
+    color_edit_unfocused='234 on 250',
+    color_cmdpalette='223 on 237',
+    color_note_pending='bold 142',
+    color_note_type='175',
+    color_note_row='214',
+    color_code='223 on 237',
+    color_heading='bold 214',
+    color_currency_neg='167',
+    color_status_replay='142',
+    color_add_pending='142',
+    color_change_pending='reverse 214',
+    color_delete_pending='167',
+    color_match='208',
+    color_highlight_search='234 on 214',
+    plot_colors='109 142 214 167 175 108 208',
+)
+
+options.theme = 'gruvbox-dark-hard'
