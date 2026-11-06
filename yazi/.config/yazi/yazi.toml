@@ -71,7 +71,7 @@ copy_bookmark = [
 
 [open]
 prepend_rules = [
-  { url = "*.{json,csv}", use = [ "edit", "open_visidata", "reveal" ] },
+  { url = "*.{json,csv,dat}", use = [ "edit", "open_visidata", "reveal" ] },
   { mime = "application/{json,*+json}", use = [ "edit", "open_visidata", "reveal" ] },
   { url = "*.{htm,html}", use = [ "open_html" ] },
   { url = "*.md", use = [ "edit", "open", "reveal" ] },
