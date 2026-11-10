@@ -29,3 +29,5 @@ TAGS
 
 # Backup
 .duplicacy/
+
+**/.claude/settings.local.json
