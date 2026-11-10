@@ -21,6 +21,9 @@
 *.a
 *.o
 
+# Claude
+**/.claude/
+
 # Git
 **/.git/
 
