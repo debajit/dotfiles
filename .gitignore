@@ -1,2 +1,7 @@
 tmux/.config/tmux/plugins/catppuccin-tmux/
 tmux/.config/tmux/plugins/tmux-sensible/
+
+# Yazi plugins installed by `ya pkg` (pinned in package.toml; restore with
+# `ya pkg install`). Locally maintained plugins are re-included below.
+yazi/.config/yazi/plugins/*.yazi/
+!yazi/.config/yazi/plugins/toggle-dir-first.yazi/

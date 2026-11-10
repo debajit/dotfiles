@@ -105,30 +105,6 @@ run  = '''shell --block -- dir="$(fd --type d --hidden --follow --exclude .git -
 desc = "Cd to a directory via fzf"
 
 
-# Bookmarks Plugin
-# https://github.com/dedukun/bookmarks.yazi
-
-[[mgr.prepend_keymap]]
-on = [ "m" ]
-run = "plugin bookmarks --args=save"
-desc = "Save current position as a bookmark"
-
-[[mgr.prepend_keymap]]
-on = [ "'" ]
-run = "plugin bookmarks --args=jump"
-desc = "Jump to a bookmark"
-
-[[mgr.prepend_keymap]]
-on = [ "b", "d" ]
-run = "plugin bookmarks --args=delete"
-desc = "Delete a bookmark"
-
-[[mgr.prepend_keymap]]
-on = [ "b", "D" ]
-run = "plugin bookmarks --args=delete_all"
-desc = "Delete all bookmarks"
-
-
 # toggle-pane.yazi Plugin
 # https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi
 [[mgr.prepend_keymap]]
@@ -148,11 +124,3 @@ desc = "Open with command in the terminal"
 on   = "O"
 run  = "plugin open-with-cmd"
 desc = "Open with command"
-
-
-# Smart-enter plugin
-# See https://github.com/Ape/smart-enter.yazi
-[[mgr.prepend_keymap]]
-on   = "l"
-run  = "plugin --sync smart-enter"
-desc = "Enter the child directory, or open the file"
