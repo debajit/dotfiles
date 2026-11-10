@@ -21,19 +21,9 @@ run  = "cd ~/Archive"
 desc = "Cd to ~/Archive"
 
 [[mgr.prepend_keymap]]
-on   = [ "g", "b" ]
+on   = "<A-B>"
 run  = "cd ~/Archive/Bookshelf/Books"
 desc = "Cd to ~/Archive/Bookshelf/Books"
-
-[[mgr.prepend_keymap]]
-on   = [ "g", "b" ]
-run  = "cd ~/Archive/Knowledge/Bookmarks/"
-desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
-
-[[mgr.prepend_keymap]]
-on   = [ "b", "b" ]
-run  = "cd ~/Archive/Knowledge/Bookmarks/"
-desc = "Cd to ~/Archive/Knowledge/Bookmarks/"
 
 [[mgr.prepend_keymap]]
 on   = "<A-b>"
