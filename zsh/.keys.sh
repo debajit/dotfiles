@@ -20,7 +20,7 @@ _bind_key_to_command        SUPER_SHIFT_S   'git show\n'
 _bind_key_to_command        SUPER_T         'git ll -2\n'
 _bind_key_to_cycle_commands SUPER_U         'git pull ' 'git pull --autostash ' 'git fetch origin '
 _bind_key_to_cycle_commands SUPER_A         'git add -u ' 'git amend'  'git add .'
-_bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
+_bind_key_to_cycle_commands SUPER_SHIFT_P   'git push '   'git push --force-with-lease' 'git remote | xargs -P4 -I{} git push {} main ' 'git remote | grep -v origin | xargs -P4 -I{} git push {} main '
 _bind_key_to_cycle_commands SUPER_SHIFT_X   'git reset --hard ' 'git reset --hard @{u}'
 _bind_key_to_cycle_commands ALT_G           'rg -S '    'git grep -i '
 _bind_key_to_cycle_commands SUPER_CONTROL_S 'git show ' 'git -c delta.side-by-side=false show '
@@ -41,7 +41,7 @@ _bind_key_to_command ALT_SHIFT_S 'cd ~/src/setup/scripts\n'
 _bind_key_to_command ALT_SHIFT_E 'cd ~/.emacs.d\n'
 _bind_key_to_command ALT_SHIFT_N 'cd ~/Archive/Knowledge/Notes\n'
 _bind_key_to_command ALT_SHIFT_B 'cd ~/Archive/Knowledge/Bookmarks\n'
-_bind_key_to_command ALT_SHIFT_W 'cd ~/Projects/Code/debajit.com-hugo/\n'
+_bind_key_to_command ALT_SHIFT_W 'cd ~/src/debajit.com-hugo/\n'
 
 
 # Utilities
