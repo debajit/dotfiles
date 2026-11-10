@@ -73,7 +73,7 @@ NEWLINE=$'\n'
 # For Gruvbox Dark Hard Kitty theme
 export PROMPT='${NEWLINE}%B%F{#c49fc4}%5~%f%B%F{#f6c177} ${vcs_info_msg_0_}%f%b${NEWLINE}%B%F{154}%(!.#.❯) %f%b'
 
-export RPROMPT='%F{#43a0bc}%L%f' # Show shell nesting depth $SHLVL
+# export RPROMPT='%F{#43a0bc}%L%f' # Show shell nesting depth $SHLVL
 
 # Use extended prompt for remote sessions
 if [[ -n "$SESSION_TYPE" ]]; then
