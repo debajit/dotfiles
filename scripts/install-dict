@@ -83,6 +83,18 @@ install_arch() {
     need systemctl
     sudo pacman -S --needed dictd
     paru -S --needed dict-gcide dict-wn dict-moby-thesaurus dict-devils dict-jargon dict-foldoc
+
+    # Some packages (e.g. dict-moby-thesaurus) ship an uncompressed .dict
+    # but register it as .dict.dz in dictd.conf, which stops dictd from
+    # starting. Point any such entry at the file that actually exists.
+    local conf=/etc/dict/dictd.conf data
+    while read -r data; do
+        if [[ ! -e $data && -e ${data%.dz} ]]; then
+            printf 'Fixing %s: %s -> %s\n' "$conf" "$data" "${data%.dz}"
+            sudo sed -i "s#[[:space:]]${data}\$# ${data%.dz}#" "$conf"
+        fi
+    done < <(awk '$1 == "data" && $2 ~ /\.dz$/ { print $2 }' "$conf")
+
     sudo systemctl enable --now dictd
     sudo systemctl restart dictd
     dict_client=$(command -v dict)
