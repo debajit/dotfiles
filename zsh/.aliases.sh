@@ -214,8 +214,17 @@ yta() { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }                      
 # Aliases with OS-specific implementations
 # See OS detection in https://stackoverflow.com/a/18434831/2288585
 case "$OSTYPE" in
+
   # GNU/Linux
   linux*)
+
+    #-------------------------------------
+    # Aliases
+    #-------------------------------------
+
+    alias aria2c='systemd-inhibit aria2c' # Stay awake while aria2c is downloading
+    alias rsync='systemd-inhibit rsync'   # Stay awake while rsync runs
+
     #-------------------------------------
     # Keyboard customizations
     #-------------------------------------
