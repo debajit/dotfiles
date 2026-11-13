@@ -14,10 +14,6 @@ export MAILDIR="$HOME/.mail"
 # Bat
 export BAT_THEME='gruvbox-dark'
 
-# Docker
-# export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-# export DOCKER_HOST=unix://$HOME/.rd/docker.sock # Rancher Desktop
-
 # Gum
 export GUM_FILTER_INDICATOR='⏺'
 

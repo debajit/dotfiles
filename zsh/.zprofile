@@ -23,6 +23,12 @@ case "$OSTYPE" in
       export SSH_ASKPASS=/usr/lib/gcr4-ssh-askpass
       export SSH_ASKPASS_REQUIRE=prefer
     fi
+
+    # Point Docker-API clients (lazydocker, oxker, compose) at the rootless
+    # Podman socket (systemctl --user enable --now podman.socket).
+    if [[ -n "${XDG_RUNTIME_DIR}" && -S "${XDG_RUNTIME_DIR}/podman/podman.sock" ]]; then
+      export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/podman/podman.sock"
+    fi
     ;;
 
   darwin*)
