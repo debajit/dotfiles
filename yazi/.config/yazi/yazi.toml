@@ -19,7 +19,10 @@ sort_dir_first = false
 
 [opener]
 edit = [
-    { run = '$EDITOR %s', orphan = true, desc = "Edit", for = "unix" },
+    # Use the existing server and frame when available. On macOS, fall back to
+    # Launch Services so an existing GUI Emacs is reused even without a server.
+    { run = 'emacsclient -n --alternate-editor="open -a /Applications/Emacs.app" %s', orphan = true, desc = "Edit", for = "macos" },
+    { run = 'emacsclient -n --alternate-editor=emacs %s', orphan = true, desc = "Edit", for = "linux" },
 ]
 
 open_visidata = [
